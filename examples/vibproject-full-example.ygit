@@ -1,0 +1,235 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+
+  "project": {
+    "id": "contextvault",
+    "name": "ContextVault",
+    "slug": "contextvault",
+    "displayName": "ContextVault",
+    "description": "Lossless AI Conversation Archive Engine.",
+    "summary": "An open-source platform for archiving, organizing and preserving AI conversations.",
+    "version": "1.0.0",
+    "status": "stable",
+    "visibility": "public",
+    "category": "Open Source",
+    "keywords": [
+      "ai",
+      "chatgpt",
+      "gemini",
+      "archive",
+      "memory",
+      "rag",
+      "conversation",
+      "context"
+    ],
+    "homepage": "https://contextvault.dev",
+    "website": "https://contextvault.dev"
+  },
+
+  "organization": {
+    "company": "Vib Tools",
+    "owner": "Raj",
+    "maintainers": [
+      "Raj"
+    ],
+    "contributors": [
+      "Open Source Community"
+    ],
+    "contact": {
+      "email": "opensource@vib.tools",
+      "website": "https://vib.tools"
+    }
+  },
+
+  "repository": {
+    "provider": "GitHub",
+    "url": "https://github.com/vibtools/contextvault",
+    "branch": "main",
+    "defaultBranch": "main",
+    "issues": "https://github.com/vibtools/contextvault/issues",
+    "discussions": "https://github.com/vibtools/contextvault/discussions",
+    "wiki": "https://github.com/vibtools/contextvault/wiki",
+    "documentation": "https://docs.contextvault.dev"
+  },
+
+  "branding": {
+    "productName": "ContextVault",
+    "shortName": "CV",
+    "logo": "assets/images/logo.svg",
+    "icon": "assets/icons/icon.svg",
+    "banner": "assets/images/banner.png",
+    "favicon": "assets/icons/favicon.ico",
+    "theme": "dark"
+  },
+
+  "license": {
+    "name": "MIT License",
+    "spdx": "MIT",
+    "file": "LICENSE"
+  },
+
+  "technology": {
+    "languages": [
+      "Python",
+      "JavaScript"
+    ],
+    "frameworks": [
+      "FastAPI"
+    ],
+    "libraries": [
+      "Playwright"
+    ],
+    "packageManagers": [
+      "pip",
+      "npm"
+    ],
+    "databases": [
+      "SQLite"
+    ],
+    "apis": [
+      "OpenAI API",
+      "Google Gemini API"
+    ]
+  },
+
+  "platform": {
+    "desktop": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "mobile": [],
+    "server": [
+      "Docker"
+    ],
+    "web": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "operatingSystems": [
+      "Windows",
+      "Ubuntu",
+      "macOS"
+    ]
+  },
+
+  "runtime": {
+    "python": ">=3.12",
+    "node": ">=22",
+    "docker": true,
+    "container": "Docker"
+  },
+
+  "entrypoints": {
+    "application": "src/main.py",
+    "cli": "src/cli.py",
+    "api": "src/api.py",
+    "documentation": "README.md",
+    "tests": "tests/"
+  },
+
+  "paths": {
+    "source": "src/",
+    "tests": "tests/",
+    "documentation": "docs/",
+    "scripts": "scripts/",
+    "assets": "assets/",
+    "examples": "examples/",
+    "configuration": "config/",
+    "data": "data/",
+    "project": "project/"
+  },
+
+  "dependencies": {
+    "required": [
+      "Python",
+      "Node.js"
+    ],
+    "optional": [
+      "Docker"
+    ],
+    "externalServices": [
+      "GitHub",
+      "OpenAI",
+      "Google AI Studio"
+    ]
+  },
+
+  "documentation": {
+    "readme": "README.md",
+    "structure": "PROJECT_STRUCTURE.md",
+    "changelog": "CHANGELOG.md",
+    "license": "LICENSE",
+    "docsRoot": "docs/",
+    "website": "https://docs.contextvault.dev"
+  },
+
+  "build": {
+    "buildSystem": "Python",
+    "packageFormat": [
+      "wheel",
+      "docker"
+    ],
+    "commands": {
+      "install": "pip install -r requirements.txt",
+      "build": "python -m build",
+      "test": "pytest",
+      "lint": "ruff check .",
+      "format": "ruff format ."
+    }
+  },
+
+  "release": {
+    "strategy": "Semantic Versioning",
+    "versioning": "SemVer",
+    "latestVersion": "1.0.0",
+    "releaseNotes": "docs/release-notes/"
+  },
+
+  "quality": {
+    "formatter": "Ruff",
+    "linter": "Ruff",
+    "testFramework": "Pytest",
+    "coverage": "Coverage.py",
+    "security": [
+      "Dependabot",
+      "CodeQL"
+    ]
+  },
+
+  "automation": {
+    "ci": "GitHub Actions",
+    "cd": "GitHub Actions",
+    "workflows": [
+      "CI",
+      "Release",
+      "Documentation"
+    ],
+    "scheduledTasks": [
+      "Dependency Updates"
+    ]
+  },
+
+  "ai": {
+    "enabled": true,
+    "repositoryContext": true,
+    "documentationContext": true,
+    "projectStructure": true,
+    "codingGuidelines": true,
+    "architectureGuidelines": true,
+    "entrypointDiscovery": true
+  },
+
+  "metadata": {
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-07-28T00:00:00Z",
+    "manifestAuthor": "Vib Tools",
+    "generator": "YGit CLI",
+    "specification": "VPMS",
+    "specificationVersion": "1.0.0"
+  }
+}

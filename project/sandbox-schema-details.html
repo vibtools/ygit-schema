@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SchemaDetails</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0B0F17;--top:#0D1117;--card:#161B22;--muted:#8B949E;--text:#F8FAFC;
+--border:#30363D;--blue:#2563EB;--cyan:#38BDF8;--green:#22C55E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 Inter,sans-serif}
+header{height:60px;background:var(--top);border-bottom:1px solid var(--border);position:sticky;top:0}
+.wrap{max-width:1440px;margin:auto;padding:0 20px}
+.nav{height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:18px;font-weight:700}.logo span{color:var(--cyan)}
+.topnav{font-size:13px;color:var(--muted);display:flex;gap:24px}
+.layout{max-width:1440px;margin:auto;padding:20px;display:grid;grid-template-columns:240px 1fr 280px;gap:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px}
+.side{padding:14px}
+.group{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 8px}
+.item{display:block;padding:8px 10px;border-radius:8px;color:#c9d1d9;text-decoration:none;font-size:14px}
+.item.active{background:#21262D;color:var(--cyan)}
+.main>.card{padding:20px;margin-bottom:18px}
+.badge{display:inline-block;background:#13321d;color:var(--green);padding:3px 8px;border-radius:999px;font-size:11px}
+h1{font-size:24px;margin:10px 0 6px}
+h2{font-size:18px;margin:0 0 16px}
+.desc{font-size:14px;color:var(--muted);max-width:720px}
+.meta{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
+.meta div{background:#21262D;padding:12px;border-radius:10px}
+.meta small{display:block;color:var(--muted);font-size:11px}
+.meta strong{font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
+th{font-size:12px;color:var(--muted)}
+code,pre{font-family:"JetBrains Mono",monospace}
+pre{margin:0;background:#0D1117;border:1px solid var(--border);border-radius:10px;padding:16px;font-size:13px;color:#d8dee9}
+.right{position:sticky;top:80px;height:max-content;padding:16px}
+.btn{display:block;text-align:center;padding:10px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:10px}
+.primary{background:var(--blue);color:#fff}
+.secondary{border:1px solid var(--border);color:var(--text)}
+.info{font-size:13px}
+.info div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #242b33}
+@media(max-width:1100px){
+.layout{grid-template-columns:1fr}
+.right{position:static}
+.meta{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<div class="logo">schema<span>.ygit.dev</span></div>
+<div class="topnav"><span>Schemas</span><span>Documentation</span><span>Versions</span></div>
+</div></header>
+
+<div class="layout">
+<aside class="card side">
+<div style="font-weight:600;font-size:15px">VPMS v1 (Stable)</div>
+<div class="group">Overview</div>
+<a class="item active">Overview</a>
+<a class="item">Properties</a>
+<a class="item">Definitions</a>
+<a class="item">Validation Rules</a>
+<a class="item">Examples</a>
+<div class="group">Resources</div>
+<a class="item">Changelog</a>
+<a class="item">Migration Guide</a>
+</aside>
+
+<main class="main">
+<div class="card">
+<div class="badge">Stable</div>
+<h1>Vib Project Manifest Schema <span style="font-size:14px;color:#8B949E;font-weight:500">v1.0.0</span></h1>
+<p class="desc">Official JSON Schema for <code>vibproject.ygit</code>. Documentation for fields, validation rules and example manifests.</p>
+<div class="meta">
+<div><small>Schema</small><strong>VPMS</strong></div>
+<div><small>Version</small><strong>v1.0.0</strong></div>
+<div><small>Draft</small><strong>2020-12</strong></div>
+<div><small>License</small><strong>MIT</strong></div>
+<div><small>Compatibility</small><strong>YGit v1</strong></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Properties</h2>
+<table>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+<tr><td><a style="color:#38BDF8;text-decoration:none" href="#">schemaVersion</a></td><td>string</td><td>✓</td><td>Schema version identifier.</td></tr>
+<tr><td><a style="color:#38BDF8;text-decoration:none" href="#">manifestVersion</a></td><td>string</td><td>✓</td><td>Manifest version.</td></tr>
+<tr><td><a style="color:#38BDF8;text-decoration:none" href="#">project</a></td><td>object</td><td>✓</td><td>Project information.</td></tr>
+<tr><td><a style="color:#38BDF8;text-decoration:none" href="#">repository</a></td><td>object</td><td>No</td><td>Repository metadata.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Example Manifest</h2>
+<pre>{
+  "$schema":"https://schema.ygit.dev/v1/vibproject.schema.json",
+  "schemaVersion":"1.0",
+  "manifestVersion":"1.0"
+}</pre>
+</div>
+</main>
+
+<aside class="card right">
+<a class="btn primary" href="#">Download Schema</a>
+<a class="btn secondary" href="#">View Raw JSON</a>
+<div class="group" style="margin-top:18px">Information</div>
+<div class="info">
+<div><span>Status</span><strong>Stable</strong></div>
+<div><span>Release</span><strong>v1.0.0</strong></div>
+<div><span>Draft</span><strong>2020-12</strong></div>
+<div><span>License</span><strong>MIT</strong></div>
+</div>
+</aside>
+</div>
+</body>
+</html>

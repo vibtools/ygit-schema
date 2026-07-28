@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "$id": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+
+  "title": "Vib Project Manifest Schema",
+
+  "description": "Official JSON Schema for validating Vib Project Manifest (vibproject.json) files.",
+
+  "$comment": "VPMS (Vib Project Manifest Specification) v1",
+
+  "type": "object",
+
+  "additionalProperties": false,
+
+  "required": [
+    "schemaVersion",
+    "manifestVersion",
+    "project"
+  ],
+
+  "properties": {
+
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Version of the Vib Project Manifest Schema."
+    },
+
+    "manifestVersion": {
+      "type": "string",
+      "description": "Version of the Vib Project Manifest format."
+    },
+
+    "project": {
+      "type": "object",
+      "description": "Project identity and general metadata."
+    },
+
+    "organization": {
+      "type": "object",
+      "description": "Organization, authors, maintainers and ownership information."
+    },
+
+    "repository": {
+      "type": "object",
+      "description": "Repository hosting and source control information."
+    },
+
+    "technology": {
+      "type": "object",
+      "description": "Programming languages, frameworks, runtimes and package managers."
+    },
+
+    "platform": {
+      "type": "object",
+      "description": "Supported operating systems and target platforms."
+    },
+
+    "entrypoints": {
+      "type": "object",
+      "description": "Primary application, CLI, GUI, API and documentation entry points."
+    },
+
+    "paths": {
+      "type": "object",
+      "description": "Canonical repository directory and file locations."
+    },
+
+    "documentation": {
+      "type": "object",
+      "description": "Documentation configuration and locations."
+    },
+
+    "build": {
+      "type": "object",
+      "description": "Build, packaging and distribution configuration."
+    },
+
+    "release": {
+      "type": "object",
+      "description": "Release management and version information."
+    },
+
+    "quality": {
+      "type": "object",
+      "description": "Formatting, linting, testing and quality assurance configuration."
+    },
+
+    "automation": {
+      "type": "object",
+      "description": "Automation, CI/CD and workflow configuration."
+    },
+
+    "ai": {
+      "type": "object",
+      "description": "AI-related project metadata, guidance and repository context."
+    },
+
+    "metadata": {
+      "type": "object",
+      "description": "Manifest metadata, timestamps and lifecycle information."
+    }
+
+  }
+}

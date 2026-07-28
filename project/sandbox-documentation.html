@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Documentation Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0B0F17;--top:#0D1117;--card:#161B22;--border:#30363D;
+--text:#F8FAFC;--muted:#8B949E;--blue:#2563EB;--cyan:#38BDF8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 Inter,sans-serif}
+header{height:60px;background:var(--top);border-bottom:1px solid var(--border);position:sticky;top:0}
+.wrap{max-width:1440px;margin:auto;padding:0 20px}
+.nav{height:60px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:18px;font-weight:700}.logo span{color:var(--cyan)}
+.menu{display:flex;gap:22px;color:var(--muted);font-size:13px}
+.layout{max-width:1440px;margin:auto;padding:20px;display:grid;grid-template-columns:240px 1fr 260px;gap:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px}
+.left{padding:14px}
+.group{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 8px}
+.item{display:block;padding:8px 10px;border-radius:8px;color:#c9d1d9;text-decoration:none}
+.item.active{background:#21262D;color:var(--cyan)}
+.content .section{padding:22px;margin-bottom:18px}
+.breadcrumb{font-size:12px;color:var(--muted);margin-bottom:10px}
+h1{font-size:24px;margin:0 0 8px}
+h2{font-size:18px;margin:24px 0 10px}
+p,li{color:#D8DEE9}
+.note{border-left:3px solid var(--blue);padding:12px 14px;background:#121822;border-radius:8px}
+pre{margin:14px 0;background:#0D1117;border:1px solid var(--border);padding:16px;border-radius:10px;font:13px/1.6 "JetBrains Mono",monospace;color:#D8DEE9;overflow:auto}
+code{font-family:"JetBrains Mono",monospace}
+.right{padding:16px;position:sticky;top:80px;height:max-content}
+.right h4{font-size:13px;margin:0 0 12px}
+.right a{display:block;color:#c9d1d9;text-decoration:none;padding:6px 0;font-size:13px}
+.btn{display:block;text-align:center;background:var(--blue);color:#fff;text-decoration:none;padding:10px;border-radius:8px;font-weight:600;margin-bottom:16px}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.right{position:static}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<div class="logo">schema<span>.ygit.dev</span></div>
+<div class="menu"><span>Schemas</span><span>Documentation</span><span>Examples</span><span>Versions</span></div>
+</div></header>
+
+<div class="layout">
+<aside class="card left">
+<div style="font-weight:600">Documentation</div>
+<div class="group">Getting Started</div>
+<a class="item active">Introduction</a>
+<a class="item">Installation</a>
+<a class="item">Create Manifest</a>
+<a class="item">Validation</a>
+<div class="group">Reference</div>
+<a class="item">Schema Fields</a>
+<a class="item">Examples</a>
+<a class="item">FAQ</a>
+</aside>
+
+<main class="content">
+<div class="card section">
+<div class="breadcrumb">Documentation / Getting Started / Introduction</div>
+<h1>Getting Started with VPMS</h1>
+<p>Learn how to create, validate and maintain <code>vibproject.ygit</code> manifests using the official YGit schema registry.</p>
+
+<div class="note">
+<strong>Quick Note</strong><br>
+Always reference the official schema URL inside your manifest before validation.
+</div>
+
+<h2>Step 1 — Create a Manifest</h2>
+<p>Create a file named <code>vibproject.ygit</code> in the root of your project.</p>
+
+<pre>{
+  "$schema":"https://schema.ygit.dev/v1/vibproject.schema.json",
+  "schemaVersion":"1.0",
+  "manifestVersion":"1.0"
+}</pre>
+
+<h2>Step 2 — Validate</h2>
+<p>Use your preferred validator or future YGit CLI to validate the manifest against the published schema.</p>
+
+<h2>Next Steps</h2>
+<ul>
+<li>Read the Schema Reference</li>
+<li>Explore Examples</li>
+<li>Review Validation Rules</li>
+</ul>
+</div>
+</main>
+
+<aside class="card right">
+<a class="btn" href="#">Open Schema</a>
+<h4>On this page</h4>
+<a href="#">Introduction</a>
+<a href="#">Step 1 — Create a Manifest</a>
+<a href="#">Step 2 — Validate</a>
+<a href="#">Next Steps</a>
+</aside>
+</div>
+</body>
+</html>

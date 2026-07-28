@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Search Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0B0F17;--top:#0D1117;--card:#161B22;--muted:#8B949E;
+--text:#F8FAFC;--border:#30363D;--blue:#2563EB;--cyan:#38BDF8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 Inter,sans-serif}
+header{height:60px;background:var(--top);border-bottom:1px solid var(--border);position:sticky;top:0}
+.wrap{max-width:1440px;margin:auto;padding:0 20px}
+.nav{height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:18px;font-weight:700}.logo span{color:var(--cyan)}
+.menu{display:flex;gap:22px;font-size:13px;color:var(--muted)}
+.layout{max-width:1440px;margin:auto;padding:20px;display:grid;grid-template-columns:240px 1fr;gap:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px}
+.side{padding:14px}
+.group{font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:.08em;margin:16px 0 8px}
+.item{display:block;padding:8px 10px;border-radius:8px;text-decoration:none;color:#c9d1d9}
+.item.active{background:#21262D;color:var(--cyan)}
+.main{display:flex;flex-direction:column;gap:18px}
+.searchbox{padding:20px}
+input{width:100%;background:#0D1117;border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:#fff;font:14px Inter}
+.summary{font-size:13px;color:var(--muted);margin-top:10px}
+.result{padding:18px}
+.badge{display:inline-block;font-size:11px;padding:3px 8px;border:1px solid var(--border);border-radius:999px;color:var(--cyan);margin-bottom:8px}
+h3{margin:4px 0;font-size:18px}
+.path{font:12px "JetBrains Mono",monospace;color:var(--cyan)}
+.desc{color:#D8DEE9;margin:8px 0}
+.meta{display:flex;gap:18px;font-size:12px;color:var(--muted)}
+.pagination{display:flex;gap:10px;justify-content:center;padding:20px}
+.page{padding:8px 12px;border:1px solid var(--border);border-radius:8px}
+.current{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<div class="logo">schema<span>.ygit.dev</span></div>
+<div class="menu"><span>Schemas</span><span>Documentation</span><span>Examples</span><span>Versions</span></div>
+</div>
+</header>
+
+<div class="layout">
+<aside class="card side">
+<div class="group">Search</div>
+<a class="item active">All Results</a>
+<a class="item">Schemas</a>
+<a class="item">Documentation</a>
+<a class="item">Examples</a>
+<div class="group">Filter</div>
+<a class="item">Stable</a>
+<a class="item">Latest</a>
+<a class="item">v1</a>
+</aside>
+
+<main class="main">
+<div class="card searchbox">
+<input value="project">
+<div class="summary">Showing <strong>12</strong> results for <strong>"project"</strong></div>
+</div>
+
+<div class="card result">
+<div class="badge">Schema Property</div>
+<h3>project</h3>
+<div class="path">/vpms/v1/properties/project</div>
+<p class="desc">Defines the root project information including name, slug, type and related metadata.</p>
+<div class="meta"><span>Schema: VPMS</span><span>Version: v1.0.0</span><span>Updated: May 2025</span></div>
+</div>
+
+<div class="card result">
+<div class="badge">Documentation</div>
+<h3>Project Object</h3>
+<div class="path">/docs/reference/project</div>
+<p class="desc">Reference guide explaining every field inside the project object with validation examples.</p>
+<div class="meta"><span>Guide</span><span>8 min read</span></div>
+</div>
+
+<div class="card result">
+<div class="badge">Example</div>
+<h3>Minimal vibproject.ygit</h3>
+<div class="path">/examples/minimal</div>
+<p class="desc">A minimal manifest demonstrating the required project fields.</p>
+<div class="meta"><span>Example</span><span>JSON</span></div>
+</div>
+
+<div class="pagination">
+<div class="page current">1</div>
+<div class="page">2</div>
+<div class="page">3</div>
+</div>
+
+</main>
+</div>
+</body>
+</html>

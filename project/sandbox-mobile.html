@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mobile Layout Sandbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0B0F17;--top:#0D1117;--card:#161B22;--border:#30363D;
+--text:#F8FAFC;--muted:#8B949E;--blue:#2563EB;--cyan:#38BDF8;--green:#22C55E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 Inter,sans-serif}
+.phone{width:390px;max-width:100%;margin:18px auto;border:1px solid var(--border);border-radius:22px;overflow:hidden;background:var(--bg)}
+header{height:56px;background:var(--top);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.logo{font-size:17px;font-weight:700}.logo span{color:var(--cyan)}
+.icon{color:var(--muted);font-size:18px}
+main{padding:16px}
+.search{background:#161B22;border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--muted);font-size:13px}
+.card{margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;background:#13321d;color:var(--green);font-size:11px}
+h1{font-size:22px;margin:10px 0 6px}
+p{margin:0;color:#D8DEE9}
+.meta{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.meta div{background:#21262D;padding:10px;border-radius:8px}
+.meta small{display:block;color:var(--muted);font-size:11px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.btn{padding:10px;border-radius:8px;text-align:center;font-weight:600;font-size:13px}
+.primary{background:var(--blue)}
+.secondary{border:1px solid var(--border)}
+.section-title{font-size:17px;font-weight:600;margin:22px 0 12px}
+.item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+.item h3{margin:0;font-size:15px}
+.path{margin-top:4px;font:12px "JetBrains Mono",monospace;color:var(--cyan)}
+.desc{margin-top:8px;font-size:13px;color:#D8DEE9}
+.bottom{position:sticky;bottom:0;background:var(--top);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 0}
+.bottom div{font-size:12px;color:var(--muted);text-align:center}
+.bottom .active{color:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="phone">
+<header>
+<div class="icon">☰</div>
+<div class="logo">schema<span>.ygit.dev</span></div>
+<div class="icon">⌕</div>
+</header>
+<main>
+<div class="search">Search schemas, docs, examples…</div>
+
+<div class="card">
+<span class="badge">Stable</span>
+<h1>VPMS v1</h1>
+<p>Official schema for <code>vibproject.ygit</code>.</p>
+<div class="meta">
+<div><small>Version</small><strong>v1.0.0</strong></div>
+<div><small>Draft</small><strong>2020-12</strong></div>
+<div><small>License</small><strong>MIT</strong></div>
+<div><small>Status</small><strong>Stable</strong></div>
+</div>
+<div class="actions">
+<div class="btn primary">Download</div>
+<div class="btn secondary">View JSON</div>
+</div>
+</div>
+
+<div class="section-title">Quick Links</div>
+
+<div class="item">
+<h3>Schema Details</h3>
+<div class="path">/vpms/v1</div>
+<div class="desc">Browse fields, validation rules and schema definitions.</div>
+</div>
+
+<div class="item">
+<h3>Documentation</h3>
+<div class="path">/docs/getting-started</div>
+<div class="desc">Learn how to create and validate manifests.</div>
+</div>
+
+<div class="item">
+<h3>Examples</h3>
+<div class="path">/examples</div>
+<div class="desc">Ready-to-use manifest examples.</div>
+</div>
+
+</main>
+
+<div class="bottom">
+<div class="active">Home</div>
+<div>Schemas</div>
+<div>Docs</div>
+<div>Search</div>
+</div>
+</div>
+</body>
+</html>
