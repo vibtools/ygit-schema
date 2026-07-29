@@ -1,0 +1,16 @@
+---
+import { ChevronRight } from '@lucide/astro';
+type Item = Readonly<{ label: string; href?: string }>;
+type Props = Readonly<{ items: readonly Item[] }>;
+const { items } = Astro.props;
+---
+<nav aria-label="Breadcrumb" class="mb-3 text-sm text-muted">
+  <ol class="flex flex-wrap items-center gap-1">
+    {items.map((item, index) => (
+      <li class="flex items-center gap-1">
+        {index > 0 && <ChevronRight size={13} aria-hidden="true" />}
+        {item.href ? <a class="text-muted hover:text-accent" href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

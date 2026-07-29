@@ -1,0 +1,145 @@
+[
+  {
+    "slug": "vibproject",
+    "acronym": "VPMS",
+    "name": "Vib Project Manifest Schema",
+    "description": "Official schema for vibproject.ygit project manifests.",
+    "version": "1.0.0",
+    "schemaVersion": 1,
+    "status": "stable",
+    "draft": "2020-12",
+    "license": "MIT",
+    "compatibility": "YGit v1",
+    "schemaPath": "/vpms/v1/vibproject.schema.json",
+    "examplePath": "/examples/vibproject-full-example.ygit",
+    "updatedAt": "2026-07-28",
+    "properties": [
+      {
+        "name": "$schema",
+        "type": "string (URI)",
+        "required": true,
+        "description": "Canonical VPMS Version 1 schema URL."
+      },
+      {
+        "name": "schemaVersion",
+        "type": "integer",
+        "required": true,
+        "description": "Schema major version; must equal 1."
+      },
+      {
+        "name": "manifestVersion",
+        "type": "string (SemVer)",
+        "required": true,
+        "description": "VPMS Version 1 manifest format version."
+      },
+      {
+        "name": "project",
+        "type": "object",
+        "required": true,
+        "description": "Project identity and core metadata."
+      },
+      {
+        "name": "organization",
+        "type": "object",
+        "required": false,
+        "description": "Ownership, maintainers, contributors, and contact details."
+      },
+      {
+        "name": "repository",
+        "type": "object",
+        "required": false,
+        "description": "Repository provider, URLs, and branches."
+      },
+      {
+        "name": "branding",
+        "type": "object",
+        "required": false,
+        "description": "Product naming and branding asset paths."
+      },
+      {
+        "name": "license",
+        "type": "object",
+        "required": false,
+        "description": "License name, SPDX identifier, and file."
+      },
+      {
+        "name": "technology",
+        "type": "object",
+        "required": false,
+        "description": "Languages, frameworks, libraries, databases, and APIs."
+      },
+      {
+        "name": "platform",
+        "type": "object",
+        "required": false,
+        "description": "Supported desktop, mobile, server, web, and operating systems."
+      },
+      {
+        "name": "runtime",
+        "type": "object",
+        "required": false,
+        "description": "Runtime version constraints and container requirements."
+      },
+      {
+        "name": "entrypoints",
+        "type": "object",
+        "required": false,
+        "description": "Application, CLI, GUI, API, documentation, and test entry points."
+      },
+      {
+        "name": "paths",
+        "type": "object",
+        "required": false,
+        "description": "Canonical repository paths."
+      },
+      {
+        "name": "dependencies",
+        "type": "object",
+        "required": false,
+        "description": "Required, optional, and external service dependencies."
+      },
+      {
+        "name": "documentation",
+        "type": "object",
+        "required": false,
+        "description": "Documentation files, roots, and website."
+      },
+      {
+        "name": "build",
+        "type": "object",
+        "required": false,
+        "description": "Build system, package formats, and commands."
+      },
+      {
+        "name": "release",
+        "type": "object",
+        "required": false,
+        "description": "Release strategy and latest version."
+      },
+      {
+        "name": "quality",
+        "type": "object",
+        "required": false,
+        "description": "Formatter, linter, tests, coverage, and security tooling."
+      },
+      {
+        "name": "automation",
+        "type": "object",
+        "required": false,
+        "description": "CI/CD workflows and scheduled tasks."
+      },
+      {
+        "name": "ai",
+        "type": "object",
+        "required": false,
+        "description": "AI repository-context capabilities."
+      },
+      {
+        "name": "metadata",
+        "type": "object",
+        "required": false,
+        "description": "Manifest timestamps, author, generator, and specification metadata."
+      }
+    ]
+  }
+]

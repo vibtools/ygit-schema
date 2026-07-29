@@ -1,0 +1,5 @@
+---
+type Props = Readonly<{ class?: string }>;
+const { class: className = '' } = Astro.props;
+---
+<div class:list={['mx-auto w-full max-w-page px-4 md:px-5', className]}><slot /></div>

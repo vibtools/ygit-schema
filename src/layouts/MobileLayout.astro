@@ -1,0 +1,6 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+type Props = Readonly<{ title: string; description?: string; noindex?: boolean; indexable?: boolean }>;
+const { title, description, noindex = false, indexable = true } = Astro.props;
+---
+<MainLayout {title} {description} {noindex} {indexable}><div class="mx-auto max-w-content px-4 py-5"><slot /></div></MainLayout>

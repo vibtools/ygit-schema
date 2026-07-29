@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+  "project": {
+    "id": "invalid-example",
+    "name": "Invalid Example",
+    "description": "This fixture must fail validation.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "source": "src\\\\main"
+  }
+}

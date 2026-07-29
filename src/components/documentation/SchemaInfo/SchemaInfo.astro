@@ -1,0 +1,15 @@
+---
+import type { SchemaRecord } from '@/types/schema';
+type Props = Readonly<{ schema: SchemaRecord }>;
+const { schema } = Astro.props;
+const items = [
+  ['Schema', schema.acronym],
+  ['Version', `v${schema.version}`],
+  ['Draft', schema.draft],
+  ['License', schema.license],
+  ['Compatibility', schema.compatibility],
+];
+---
+<dl class="grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+  {items.map(([label, value]) => <div class="bg-surface p-3"><dt class="text-sm text-muted">{label}</dt><dd class="mt-1 font-mono text-md font-semibold text-text">{value}</dd></div>)}
+</dl>

@@ -1,0 +1,5 @@
+---
+type Props = Readonly<{ id: string; label: string; name?: string; checked?: boolean }>;
+const { id, label, name = id, checked = false } = Astro.props;
+---
+<label class="inline-flex min-h-11 items-center gap-3 text-base text-content" for={id}><input class="h-4 w-4 rounded-sm border-border bg-background accent-primary" id={id} name={name} type="checkbox" checked={checked} /><span>{label}</span></label>

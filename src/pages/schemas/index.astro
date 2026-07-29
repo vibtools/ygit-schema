@@ -1,0 +1,10 @@
+---
+import SchemaCard from '@/components/cards/SchemaCard';
+import Container from '@/components/common/Container';
+import Breadcrumb from '@/components/navigation/Breadcrumb';
+import PageHeader from '@/components/documentation/PageHeader';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { getSchemas } from '@/services/schema.service';
+const schemas = getSchemas();
+---
+<MainLayout category="schema" title="Schemas" description="Browse official YGit JSON Schemas and released versions."><Container class="py-5"><Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Schemas' }]} /><PageHeader title="Schemas" description="Official versioned JSON Schemas published by the YGit ecosystem." /><div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{schemas.map((schema) => <SchemaCard {schema} />)}</div></Container></MainLayout>

@@ -1,0 +1,38 @@
+---
+title: Schema Reference
+description: VPMS Version 1 objects, required properties, and validation constraints.
+order: 4
+---
+
+# Schema Reference
+
+The Version 1 schema uses JSON Schema Draft 2020-12 and rejects unknown root and nested properties.
+
+## Root properties
+
+| Property | Type | Required | Purpose |
+| --- | --- | --- | --- |
+| `$schema` | URI string | Yes | Canonical schema identifier. |
+| `schemaVersion` | Integer | Yes | Must equal `1`. |
+| `manifestVersion` | Semantic version | Yes | Must be a Version 1 release such as `1.0.0`. |
+| `project` | Object | Yes | Project identity and version. |
+| Other objects | Object | No | Optional metadata defined by the schema. |
+
+## Project object
+
+The following fields are required:
+
+- `id`: lowercase kebab-case identifier.
+- `name`: canonical project name.
+- `description`: concise description, at most 240 characters.
+- `version`: semantic version.
+
+Optional `status` values are `draft`, `alpha`, `beta`, `stable`, `deprecated`, and `archived`.
+
+## Strict object validation
+
+Every defined object uses `additionalProperties: false`. Unsupported fields fail validation rather than being silently ignored.
+
+## Formats
+
+The schema validates URI, email, and date-time formats. Semantic versions are validated with explicit patterns.

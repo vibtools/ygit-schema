@@ -1,0 +1,6 @@
+---
+type Heading = Readonly<{ depth: number; slug: string; text: string }>;
+type Props = Readonly<{ headings?: readonly Heading[] }>;
+const { headings = [] } = Astro.props;
+---
+<aside class="hidden w-[var(--toc-width)] shrink-0 xl:block"><div class="sticky top-[calc(var(--header-height)+var(--space-5))] rounded-card border border-border bg-surface p-4"><h2 class="mb-3 text-md font-semibold text-text">On this page</h2>{headings.length > 0 ? <nav aria-label="Table of contents"><ul class="grid gap-1">{headings.filter((heading) => heading.depth <= 3).map((heading) => <li class:list={[heading.depth === 3 && 'pl-3']}><a class="block py-1 text-md text-muted no-underline hover:text-accent" href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav> : <p class="text-sm text-muted">No section headings.</p>}</div></aside>

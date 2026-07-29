@@ -1,0 +1,49 @@
+{
+  "name": "@vibtools/ygit-schema",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Official YGit Schema Registry and VPMS documentation portal.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.16.0",
+    "npm": ">=11.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "check": "astro check && eslint .",
+    "build:site": "astro build",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "format": "prettier --write .",
+    "format:check": "python scripts/audit.py --format-only",
+    "validate": "python scripts/validate.py --all",
+    "test": "python -m unittest discover -s test -p 'test_*.py'",
+    "quality": "npm run format:check && npm run audit && npm run check && npm run validate && npm run test && npm run build",
+    "audit": "python scripts/audit.py"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.4",
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@lucide/astro": "^1.27.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.0.0",
+    "eslint": "^10.8.0",
+    "eslint-plugin-astro": "~3.0.1",
+    "pagefind": "^1.5.2",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.65.0"
+  }
+}

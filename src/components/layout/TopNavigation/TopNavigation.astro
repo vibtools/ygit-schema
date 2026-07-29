@@ -1,0 +1,13 @@
+---
+import { GITHUB_URL } from '@/constants/config';
+import { ROUTES } from '@/constants/routes';
+import { getActivePath } from '@/utils/getActivePath';
+const currentPath = Astro.url.pathname;
+const items = [
+  ['Schemas', ROUTES.schemas],
+  ['Documentation', ROUTES.documentation],
+  ['Examples', ROUTES.examples],
+  ['Versions', ROUTES.versions],
+];
+---
+<nav aria-label="Primary navigation" class="hidden items-center gap-5 lg:flex">{items.map(([label, href]) => <a class:list={['text-md font-medium no-underline transition-colors duration-150', getActivePath(currentPath, href) ? 'text-accent' : 'text-muted hover:text-text']} href={href}>{label}</a>)}<a class="text-md font-medium text-muted no-underline hover:text-text" href={GITHUB_URL} rel="noreferrer">GitHub</a></nav>

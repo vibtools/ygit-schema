@@ -1,0 +1,8 @@
+---
+import Card from '@/components/cards/Card';
+import Container from '@/components/common/Container';
+import Breadcrumb from '@/components/navigation/Breadcrumb';
+import PageHeader from '@/components/documentation/PageHeader';
+import MainLayout from '@/layouts/MainLayout.astro';
+---
+<MainLayout title="Changelog" description="YGit Schema Registry release history."><Container class="py-5"><Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Changelog' }]} /><PageHeader title="Changelog" description="Schema, documentation, validation, portal, and automation changes." /><Card as="article"><header class="flex flex-wrap items-baseline justify-between gap-2"><h2 class="text-lg font-semibold text-text">1.0.0</h2><time class="font-mono text-sm text-muted">2026-07-28</time></header><h3 class="mt-5 text-h3 font-semibold text-text">Added</h3><ul class="mt-2 list-disc space-y-2 pl-5 text-base text-content"><li>Complete VPMS Version 1 schema with strict nested validation.</li><li>Astro documentation portal, component library, pages, Pagefind search, and Cloudflare configuration.</li><li>Python validator, release tooling, valid and invalid fixtures, and CI quality checks.</li><li>Synchronized getting started, reference, guides, examples, validation, versioning, migration, and FAQ documentation.</li></ul></Card></Container></MainLayout>

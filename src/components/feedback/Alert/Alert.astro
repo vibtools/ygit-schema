@@ -1,0 +1,6 @@
+---
+import Callout from '@/components/documentation/Callout';
+type Props = Readonly<{ title?: string; variant?: 'info' | 'success' | 'warning' | 'danger' }>;
+const { title, variant = 'info' } = Astro.props;
+---
+<Callout {title} {variant}><slot /></Callout>

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Getting Started",
+    "items": [
+      { "label": "Introduction", "href": "/docs/getting-started/" },
+      { "label": "Installation", "href": "/docs/installation/" },
+      { "label": "Create a Manifest", "href": "/docs/create-manifest/" }
+    ]
+  },
+  {
+    "title": "Reference",
+    "items": [
+      { "label": "Schema Reference", "href": "/docs/schema-reference/" },
+      { "label": "Validation", "href": "/docs/validation/" },
+      { "label": "Versioning", "href": "/docs/versioning/" }
+    ]
+  },
+  {
+    "title": "Resources",
+    "items": [
+      { "label": "Best Practices", "href": "/docs/best-practices/" },
+      { "label": "Migration", "href": "/docs/migration/" },
+      { "label": "FAQ", "href": "/docs/faq/" }
+    ]
+  }
+]

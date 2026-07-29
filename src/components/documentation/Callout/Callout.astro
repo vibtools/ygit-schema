@@ -1,0 +1,15 @@
+---
+type Variant = 'info' | 'success' | 'warning' | 'danger';
+type Props = Readonly<{ title?: string; variant?: Variant }>;
+const { title, variant = 'info' } = Astro.props;
+const variants: Record<Variant, string> = {
+  info: 'border-l-primary',
+  success: 'border-l-success',
+  warning: 'border-l-warning',
+  danger: 'border-l-danger',
+};
+---
+<aside class:list={['rounded-button border border-border border-l-[3px] bg-background p-4', variants[variant]]} role={variant === 'danger' ? 'alert' : 'note'}>
+  {title && <strong class="mb-1 block text-base text-text">{title}</strong>}
+  <div class="text-base text-content"><slot /></div>
+</aside>

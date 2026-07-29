@@ -1,0 +1,10 @@
+---
+import Container from '@/components/common/Container';
+import RightTOC from '@/components/layout/RightTOC';
+import Sidebar from '@/components/layout/Sidebar';
+import MainLayout from '@/layouts/MainLayout.astro';
+type Heading = Readonly<{ depth: number; slug: string; text: string }>;
+type Props = Readonly<{ title: string; description?: string; headings?: readonly Heading[]; category?: 'schema' | 'documentation' }>;
+const { title, description, headings = [], category = 'documentation' } = Astro.props;
+---
+<MainLayout {title} {description} {category}><Container class="flex items-start gap-5 py-5"><Sidebar /><article class="min-w-0 flex-1 rounded-card border border-border bg-surface p-5 md:p-6"><slot /></article><RightTOC {headings} /></Container></MainLayout>

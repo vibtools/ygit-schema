@@ -1,0 +1,13 @@
+---
+import { BookOpen, FileJson, Home, Search } from '@lucide/astro';
+import { ROUTES } from '@/constants/routes';
+import { getActivePath } from '@/utils/getActivePath';
+const currentPath = Astro.url.pathname;
+const items = [
+  { label: 'Home', href: ROUTES.home, icon: Home },
+  { label: 'Schemas', href: ROUTES.schemas, icon: FileJson },
+  { label: 'Docs', href: ROUTES.documentation, icon: BookOpen },
+  { label: 'Search', href: ROUTES.search, icon: Search },
+];
+---
+<nav aria-label="Mobile navigation" class="fixed inset-x-0 bottom-0 z-50 grid h-16 grid-cols-4 border-t border-border bg-background md:hidden">{items.map(({ label, href, icon: Icon }) => <a class:list={['flex min-h-11 flex-col items-center justify-center gap-1 text-xs no-underline', getActivePath(currentPath, href) ? 'text-accent' : 'text-muted']} href={href}><Icon size={18} aria-hidden="true" /><span>{label}</span></a>)}</nav>

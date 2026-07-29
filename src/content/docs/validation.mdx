@@ -1,0 +1,42 @@
+---
+title: Validation Guide
+description: Validate individual manifests, examples, and regression fixtures.
+order: 5
+---
+
+# Validation Guide
+
+## Validate one or more manifests
+
+```bash
+python scripts/validate.py path/to/vibproject.ygit
+python scripts/validate.py first.ygit second.ygit
+```
+
+## Validate the repository
+
+```bash
+python scripts/validate.py --all
+```
+
+This checks:
+
+- Every file under `examples/` must pass.
+- Every file under `test/valid/` must pass.
+- Every file under `test/invalid/` must fail.
+
+## Run regression tests
+
+```bash
+python -m unittest discover -s test -p "test_*.py"
+```
+
+## Exit codes
+
+- `0`: all requested validation checks passed.
+- `1`: one or more manifests produced an unexpected result.
+- `2`: schema loading or command configuration failed.
+
+## Common errors
+
+An error includes the exact JSON path and the failed constraint. Correct the manifest rather than disabling validation.

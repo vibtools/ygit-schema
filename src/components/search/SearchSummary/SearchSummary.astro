@@ -1,0 +1,5 @@
+---
+type Props = Readonly<{ count?: number; query?: string }>;
+const { count = 0, query = '' } = Astro.props;
+---
+<p class="text-md text-muted" aria-live="polite" data-search-summary>{query ? <>Showing <strong class="text-text">{count}</strong> results for <strong class="text-text">“{query}”</strong></> : 'Enter a search term to begin.'}</p>

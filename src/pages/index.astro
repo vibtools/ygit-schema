@@ -1,0 +1,51 @@
+---
+import { BookOpen, Code2, Github, Layers3 } from '@lucide/astro';
+import Button from '@/components/buttons/Button';
+import Card from '@/components/cards/Card';
+import SchemaCard from '@/components/cards/SchemaCard';
+import Container from '@/components/common/Container';
+import Badge from '@/components/common/Badge';
+import CodeBlock from '@/components/documentation/CodeBlock';
+import SearchBox from '@/components/search/SearchBox';
+import { GITHUB_URL } from '@/constants/config';
+import { ROUTES } from '@/constants/routes';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { getSchemas } from '@/services/schema.service';
+const schemas = getSchemas();
+const quickStart = `{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+  "project": {
+    "id": "example-project",
+    "name": "Example Project",
+    "description": "A minimal valid VPMS manifest.",
+    "version": "1.0.0"
+  }
+}`;
+const actions = [
+  { title: 'Browse Schemas', description: 'Inspect official versions, properties, and constraints.', href: ROUTES.schemas, icon: Layers3 },
+  { title: 'Documentation', description: 'Create, validate, version, and maintain manifests.', href: ROUTES.documentation, icon: BookOpen },
+  { title: 'Examples', description: 'Use production-oriented reference manifests.', href: ROUTES.examples, icon: Code2 },
+  { title: 'GitHub', description: 'Review source, issues, releases, and contribution rules.', href: GITHUB_URL, icon: Github },
+];
+---
+<MainLayout>
+  <Container class="py-8 md:py-10">
+    <section class="max-w-content py-6 md:py-8">
+      <Badge variant="draft">Official YGit Schema Registry</Badge>
+      <h1 class="mt-4 text-2xl font-bold text-text">Build, validate, and version YGit manifests.</h1>
+      <p class="mt-3 max-w-[72ch] text-base text-content">Browse the official VPMS schema, implementation documentation, validation fixtures, and release history from one developer-focused registry.</p>
+      <div class="mt-5"><form action={ROUTES.search} method="get"><SearchBox id="home-search" /></form></div>
+      <div class="mt-5 flex flex-wrap gap-3"><Button href={ROUTES.schemas}>Browse Schemas</Button><Button href={ROUTES.gettingStarted} variant="secondary">Documentation</Button></div>
+    </section>
+
+    <section aria-labelledby="quick-actions-title" class="py-6"><h2 id="quick-actions-title" class="mb-4 text-lg font-semibold text-text">Quick actions</h2><div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{actions.map(({ title, description, href, icon: Icon }) => <Card as="article" hover><Icon class="mb-3 text-accent" size={20} aria-hidden="true" /><h3 class="text-h3 text-text"><a class="text-text" href={href}>{title}</a></h3><p class="mt-2 text-base text-content">{description}</p></Card>)}</div></section>
+
+    <section aria-labelledby="featured-title" class="py-6"><div class="mb-4 flex items-center justify-between"><h2 id="featured-title" class="text-lg font-semibold text-text">Featured schemas</h2><a class="text-md" href={ROUTES.schemas}>View all</a></div><div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{schemas.map((schema) => <SchemaCard {schema} />)}</div></section>
+
+    <section aria-labelledby="quick-start-title" class="grid gap-5 py-6 lg:grid-cols-[1fr_1.2fr]"><div><h2 id="quick-start-title" class="text-lg font-semibold text-text">Quick start</h2><p class="mt-2 text-base text-content">Create a minimal `vibproject.ygit`, install the Python validator, then validate the manifest before committing.</p><div class="mt-4"><Button href={ROUTES.gettingStarted} variant="secondary">Read getting started</Button></div></div><CodeBlock code={quickStart} language="json" title="vibproject.ygit" /></section>
+
+    <section aria-labelledby="updates-title" class="py-6"><h2 id="updates-title" class="mb-4 text-lg font-semibold text-text">Latest updates</h2><Card><ol class="grid gap-4"><li class="grid gap-1 border-b border-border pb-4 sm:grid-cols-[120px_1fr]"><time class="font-mono text-sm text-muted">2026-07-28</time><div><strong class="text-base text-text">VPMS Version 1 implementation</strong><p class="mt-1 text-base text-content">Complete schema constraints, documentation, validation fixtures, automation, and registry portal.</p></div></li><li class="grid gap-1 sm:grid-cols-[120px_1fr]"><time class="font-mono text-sm text-muted">2026-07-28</time><div><strong class="text-base text-text">Production foundation</strong><p class="mt-1 text-base text-content">Astro, Tailwind, MDX, Shiki, Pagefind, Lucide, CI checks, and Cloudflare Pages configuration.</p></div></li></ol></Card></section>
+  </Container>
+</MainLayout>

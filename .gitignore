@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Astro and build output
+.astro/
+dist/
+public/pagefind/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Release artifacts
+release/
+*.zip.sha256
+
+# Environment and local tooling
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Project update workspace
+project/update/
+project/update/**

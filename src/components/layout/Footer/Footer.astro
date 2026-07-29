@@ -1,0 +1,7 @@
+---
+import Container from '@/components/common/Container';
+import { GITHUB_URL, SITE_NAME } from '@/constants/config';
+import { ROUTES } from '@/constants/routes';
+const year = new Date().getUTCFullYear();
+---
+<footer class="mt-10 border-t border-border bg-background py-6"><Container class="flex flex-col gap-4 text-md text-muted sm:flex-row sm:items-center sm:justify-between"><div><strong class="text-text">{SITE_NAME}</strong><span class="ml-2">© {year} YGit Contributors</span></div><nav aria-label="Footer navigation" class="flex flex-wrap gap-4"><a class="text-muted hover:text-accent" href={ROUTES.documentation}>Documentation</a><a class="text-muted hover:text-accent" href={ROUTES.schemas}>Schemas</a><a class="text-muted hover:text-accent" href={ROUTES.examples}>Examples</a><a class="text-muted hover:text-accent" href={GITHUB_URL}>GitHub</a><a class="text-muted hover:text-accent" href="/LICENSE">MIT</a></nav></Container></footer>

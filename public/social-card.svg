@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">YGit Schema Registry</title>
+  <desc id="desc">Official JSON Schema registry, documentation, examples, and validation reference.</desc>
+  <rect width="1200" height="630" fill="#0B0F17" />
+  <rect x="70" y="70" width="1060" height="490" rx="24" fill="#161B22" stroke="#30363D" stroke-width="2" />
+  <text x="130" y="230" fill="#38BDF8" font-family="Inter, sans-serif" font-size="34" font-weight="600">schema.ygit.dev</text>
+  <text x="130" y="330" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="62" font-weight="700">YGit Schema Registry</text>
+  <text x="130" y="405" fill="#D8DEE9" font-family="Inter, sans-serif" font-size="30">Official schemas, documentation, examples, and validation.</text>
+  <text x="130" y="490" fill="#8B949E" font-family="JetBrains Mono, monospace" font-size="24">VPMS v1 · JSON Schema 2020-12 · MIT</text>
+</svg>

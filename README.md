@@ -1,375 +1,151 @@
 # YGit Schema
 
-> Official JSON Schema Specification for the YGit Ecosystem
+> Official JSON Schema Specification and Registry for the YGit Ecosystem
 
-[![Schema Version](https://img.shields.io/badge/schema-v1-blue.svg)](#)
+[![Schema Version](https://img.shields.io/badge/schema-v1-blue.svg)](v1/vibproject.schema.json)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Astro](https://img.shields.io/badge/docs-Astro-ff5d01.svg)](#)
-[![Cloudflare Pages](https://img.shields.io/badge/deploy-Cloudflare%20Pages-f38020.svg)](#)
-
----
+[![Astro](https://img.shields.io/badge/docs-Astro-ff5d01.svg)](package.json)
+[![Cloudflare Pages](https://img.shields.io/badge/deploy-Cloudflare%20Pages-f38020.svg)](project/10-DEPLOYMENT.md)
 
 ## Overview
 
-**YGit Schema** is the official schema specification repository for the **YGit Ecosystem**.
+YGit Schema publishes the **Vib Project Manifest Specification (VPMS)**, official examples, validation tooling, regression fixtures, documentation, and the `schema.ygit.dev` static registry portal.
 
-It defines standardized manifest formats, validation rules, documentation, examples, and implementation guidelines that allow developers and tools to describe projects in a consistent, machine-readable format.
+The Version 1 schema validates `vibproject.ygit` files using JSON Schema Draft 2020-12. The registry portal is built with Astro, Tailwind CSS, TypeScript, MDX, Shiki, Pagefind, and Lucide icons, then deployed through Cloudflare Pages Git integration.
 
-The repository is designed to provide:
-
-- A stable schema specification
-- Official documentation
-- Reference implementations
-- Validation examples
-- Long-term version management
-- AI-friendly project standards
-
----
-
-# Project Goals
-
-The primary goals of this project are:
-
-- Define an official schema specification
-- Standardize project manifests
-- Improve interoperability across tools
-- Simplify validation
-- Provide complete developer documentation
-- Maintain backward compatibility where possible
-- Support automation and AI-assisted development
-
----
-
-# Repository Structure
+## Repository structure
 
 ```text
 ygit-schema/
-
-.github/
-    workflows/
-
-assets/
-    logo/
-
-examples/
-
-project/
-
-scripts/
-
-test/
-    valid/
-    invalid/
-
-v1/
-
-v2/
-
-README.md
-CHANGELOG.md
-CONTRIBUTING.md
-LICENSE
+├── .github/workflows/     CI validation and build-readiness checks
+├── assets/                Source brand assets
+├── docs/                  Repository documentation
+├── examples/              Official valid manifests
+├── project/               Frozen architecture, design, and workflow specifications
+├── public/                Registry assets and published schema files
+├── scripts/               Validation and release automation
+├── src/                   Astro application source
+├── test/                  Positive, negative, and Python regression tests
+├── v1/                    VPMS Version 1 schema
+├── astro.config.mjs
+├── package.json
+├── tailwind.config.ts
+└── tsconfig.json
 ```
 
----
+## Current schema
 
-# Directory Overview
+- Schema: `v1/vibproject.schema.json`
+- Published URL: `https://schema.ygit.dev/vpms/v1/vibproject.schema.json`
+- Example: `examples/vibproject-full-example.ygit`
+- Schema version: `1`
+- Manifest format: `1.0.0`
 
-| Directory | Purpose |
-|-----------|---------|
-| `.github/` | GitHub workflows and repository automation |
-| `assets/` | Project logos and branding assets |
-| `examples/` | Official reference manifest examples |
-| `project/` | Complete project specifications, architecture, design system, roadmap, and development standards |
-| `scripts/` | Validation and release automation scripts |
-| `test/` | Valid and invalid schema test cases |
-| `v1/` | Current stable schema version |
-| `v2/` | Future schema version (reserved) |
+Minimal manifest:
 
----
-
-# Current Schema
-
-Current release:
-
-```text
-v1/
-    vibproject.schema.json
+```json
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+  "project": {
+    "id": "example-project",
+    "name": "Example Project",
+    "description": "A minimal valid VPMS manifest.",
+    "version": "1.0.0"
+  }
+}
 ```
 
-This schema defines the official **Vib Project Manifest**.
+## Install
 
-Future schema versions will be added as new directories without modifying previous releases.
+### Validator
 
-Example:
-
-```text
-v1/
-
-v2/
-
-v3/
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python scripts/validate.py --all
 ```
 
----
+### Registry portal
 
-# Documentation
+Node.js 24.16.0 or later is required.
 
-All project specifications are located in:
-
-```text
-project/
+```bash
+npm install
+npm run dev
 ```
 
-The documentation includes:
+## Quality commands
 
-- Brand Guidelines
-- Layout System
-- Component Library
-- Page Templates
-- Design System
-- UI Framework
-- Project Architecture
-- Coding Standards
-- Component Development Guide
-- Deployment Specification
-- Official Roadmap
-
-The `project/README.md` file explains the purpose and organization of each document.
-
----
-
-# Examples
-
-The `examples/` directory contains complete reference implementations of official manifests.
-
-Current example:
-
-```text
-examples/
-
-vibproject-full.ygit
+```bash
+npm run format:check
+npm run audit
+npm run check
+npm run validate
+npm run test
+npm run build
 ```
 
-These examples are intended for:
+`npm run build` produces static output in `dist/` and generates the Pagefind search index.
 
-- Learning
-- Validation
-- Documentation
-- Tool development
-- AI-assisted generation
+## Validation behavior
 
-See `examples/README.md` for detailed guidelines.
+The validator enforces the following expectations:
 
----
+- Every manifest in `examples/` and `test/valid/` passes.
+- Every manifest in `test/invalid/` fails.
+- Unknown root and nested properties are rejected.
+- Required fields, types, semantic versions, paths, URLs, email addresses, and timestamps are checked.
 
-# Validation
+Validate custom manifests:
 
-Schema validation resources are organized as follows:
-
-```text
-test/
-
-valid/
-
-invalid/
+```bash
+python scripts/validate.py path/to/vibproject.ygit
 ```
 
-Validation scripts are located in:
+## Release preparation
 
-```text
-scripts/
-
-validate.py
+```bash
+python scripts/release.py --version 1.0.0
 ```
 
-Example manifests should always validate successfully against the corresponding schema version.
+The release script requires a clean worktree, runs validation, tests, frontend checks, and the production build, then creates a deterministic ZIP plus SHA-256 checksum in `release/`.
 
----
+## Deployment
 
-# Design & Development Standards
+- Source of truth: GitHub
+- Production branch: `main`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Hosting: Cloudflare Pages
+- Deployment: Cloudflare Pages Git integration
 
-The project follows a documented engineering standard covering:
+GitHub Actions validates quality and build readiness. It does not perform production deployment.
 
-- Brand identity
-- Design system
-- Project architecture
-- Component architecture
-- Coding standards
-- Deployment workflow
-- Development roadmap
+## Documentation
 
-These standards are maintained under the `project/` directory and should be followed throughout development.
+- User and developer documentation: `docs/`
+- Website content: `src/content/docs/`
+- Frozen project specifications: `project/`
+- Schema reference: `v1/README.md`
+- Test philosophy: `test/README.md`
+- Automation reference: `scripts/README.md`
 
----
-
-# Technology Stack
-
-| Category | Technology |
-|----------|------------|
-| Documentation | Markdown (MD) |
-| Frontend Documentation Site | Astro |
-| Styling | Tailwind CSS |
-| Language | TypeScript |
-| Content | MDX |
-| Search | Pagefind |
-| Syntax Highlighting | Shiki |
-| Icons | Lucide Icons |
-| Hosting | Cloudflare Pages |
-| Source Control | GitHub |
-
----
-
-# Deployment
-
-Official documentation is designed to be deployed using:
-
-```text
-GitHub
-
-↓
-
-Cloudflare Pages
-
-↓
-
-Automatic Build
-
-↓
-
-Automatic Deployment
-```
-
-The deployment process is fully documented in:
-
-```text
-project/10-DEPLOYMENT.md
-```
-
----
-
-# Development Workflow
-
-```text
-Planning
-
-↓
-
-Architecture
-
-↓
-
-Implementation
-
-↓
-
-Validation
-
-↓
-
-Documentation
-
-↓
-
-Release
-```
-
-All implementation work should follow the official project roadmap.
-
----
-
-# Versioning
-
-Schema versions are maintained independently.
-
-Example:
-
-```text
-v1/
-
-v2/
-
-v3/
-```
-
-Existing versions should remain stable after release.
-
-New functionality should be introduced through new version directories when appropriate.
-
----
-
-# Contributing
-
-Contributors should:
-
-- Follow the official coding standards
-- Follow the component development guide
-- Validate all schema changes
-- Keep examples synchronized with the schema
-- Update documentation when specifications change
-
-Before submitting changes, review:
-
-- `CONTRIBUTING.md`
-- `project/08-CODING_STANDARDS.md`
-- `project/09-COMPONENT_GUIDE.md`
-
----
-
-# Project Principles
-
-The project is built around the following principles:
-
-- Consistency
-- Simplicity
-- Maintainability
-- Predictability
-- Documentation-first
-- Developer-first
-- AI-friendly architecture
-- Long-term stability
-
----
-
-# Repository Status
+## Status
 
 | Component | Status |
-|-----------|--------|
-| Schema Specification | Active |
-| Documentation | Active |
-| Design System | Frozen |
-| Project Architecture | Frozen |
-| Coding Standards | Frozen |
-| Component Rules | Frozen |
-| Deployment Standard | Frozen |
-| Roadmap | Frozen |
+| --- | --- |
+| VPMS Version 1 schema | Implemented |
+| Examples and fixtures | Implemented |
+| Validation and release automation | Implemented |
+| Documentation portal | Implemented |
+| Search | Implemented |
+| CI quality checks | Implemented |
+| Cloudflare Pages configuration | Ready |
+| Production deployment | Requires repository-to-Cloudflare connection |
 
----
+## License
 
-# License
-
-This project is released under the terms of the **MIT License**.
-
-See the `LICENSE` file for details.
-
----
-
-# Maintainers
-
-Maintained by the **YGit** project.
-
----
-
-# Project Status
-
-```text
-Repository
-
-Production Structure Ready
-
-Documentation Complete
-
-Architecture Defined
-
-Implementation Ready
-```
+Released under the [MIT License](LICENSE).

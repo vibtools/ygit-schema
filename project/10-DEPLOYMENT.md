@@ -704,3 +704,8 @@ schema.ygit.dev
 **Status:** ✅ Frozen
 
 এই Deployment Architecture-ই `schema.ygit.dev`-এর Official CI/CD Standard হিসেবে গণ্য হবে।
+---
+
+# Workflow File Clarification
+
+`.github/workflows/deploy.yml` performs production build-readiness verification only. Cloudflare Pages Git integration remains the sole production deployment mechanism.

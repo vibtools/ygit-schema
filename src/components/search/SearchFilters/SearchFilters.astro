@@ -1,0 +1,6 @@
+---
+type Filter = Readonly<{ value: string; label: string }>;
+type Props = Readonly<{ filters?: readonly Filter[] }>;
+const { filters = [{ value: 'all', label: 'All Results' }, { value: 'schema', label: 'Schemas' }, { value: 'documentation', label: 'Documentation' }, { value: 'example', label: 'Examples' }] } = Astro.props;
+---
+<fieldset><legend class="mb-2 text-xs font-semibold uppercase tracking-wider text-muted">Filter</legend><div class="grid gap-1">{filters.map((filter, index) => <label class="flex min-h-10 cursor-pointer items-center gap-2 rounded-button px-2 text-base text-content hover:bg-surface-hover"><input type="radio" name="search-category" value={filter.value} checked={index === 0} class="accent-primary" /><span>{filter.label}</span></label>)}</div></fieldset>

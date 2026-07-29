@@ -1,0 +1,25 @@
+---
+title: Versioning
+description: Understand schema, manifest, and project version fields.
+order: 7
+---
+
+# Versioning
+
+VPMS uses three distinct version concepts.
+
+## Schema version
+
+`schemaVersion` is the major schema generation. Version 1 manifests use the integer `1`.
+
+## Manifest version
+
+`manifestVersion` identifies the VPMS format release within the Version 1 compatibility line. It must start with major version `1` and use semantic version syntax.
+
+## Project version
+
+`project.version` is the version of the described project. It follows semantic versioning independently from VPMS.
+
+## Compatibility policy
+
+Released major schema directories are immutable with respect to breaking changes. Backward-compatible refinements may be released within the same major format only when existing valid manifests remain valid. Breaking changes require a new schema directory such as `v2/` and a migration guide.

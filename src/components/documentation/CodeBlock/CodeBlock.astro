@@ -1,0 +1,27 @@
+---
+type Props = Readonly<{ code: string; language?: string; title?: string }>;
+const { code, language = 'text', title } = Astro.props;
+---
+<div class="overflow-hidden rounded-code border border-border bg-background">
+  <div class="flex min-h-10 items-center justify-between border-b border-border px-4 text-sm text-muted">
+    <span>{title ?? language}</span>
+    <button class="copy-code min-h-8 rounded-button px-2 text-sm text-muted hover:bg-surface-hover hover:text-text" type="button" data-code={code}>Copy</button>
+  </div>
+  <pre class="m-0 overflow-x-auto p-4 text-md leading-relaxed text-content"><code class={`language-${language}`}>{code}</code></pre>
+</div>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-code').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const code = button.dataset.code ?? '';
+      try {
+        await navigator.clipboard.writeText(code);
+        button.textContent = 'Copied';
+      } catch {
+        button.textContent = 'Copy failed';
+      }
+      window.setTimeout(() => {
+        button.textContent = 'Copy';
+      }, 1500);
+    });
+  });
+</script>

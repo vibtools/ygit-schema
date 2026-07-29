@@ -165,7 +165,7 @@ Button.types.ts
 Utilities
 
 ```text
-Button.utils.ts
+button.utils.ts
 ```
 
 ---
@@ -173,7 +173,7 @@ Button.utils.ts
 Constants
 
 ```text
-Button.constants.ts
+button.constants.ts
 ```
 
 ---

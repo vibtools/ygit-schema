@@ -1,0 +1,5 @@
+---
+type Props = Readonly<{ label: string; type?: 'button' | 'submit'; class?: string }>;
+const { label, type = 'button', class: className = '' } = Astro.props;
+---
+<button class:list={['inline-flex min-h-11 min-w-11 items-center justify-center rounded-button border border-border bg-transparent text-content transition-colors duration-150 hover:bg-surface-hover', className]} type={type} aria-label={label} title={label}><slot /></button>

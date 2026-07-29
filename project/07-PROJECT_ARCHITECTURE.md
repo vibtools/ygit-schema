@@ -797,7 +797,7 @@ Allowed নয়
 - Deep Nested Folder (>3 levels)
 - Circular Import
 - Inline CSS
-- Multiple Global CSS Files
+- Global CSS files other than the official `tokens.css`, `fonts.css`, and `global.css`
 - Component Logic Inside Pages
 
 ---
@@ -848,3 +848,8 @@ Status
 
 ✅ Frozen
 ```
+---
+
+# Root Location Clarification
+
+The Astro application is implemented at this repository root. The root directory in examples named `schema.ygit.dev/` refers to the repository root, not an additional nested folder.

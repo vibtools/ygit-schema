@@ -1,0 +1,20 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import Badge from '@/components/common/Badge';
+import Card from '@/components/cards/Card';
+import type { SchemaRecord } from '@/types/schema';
+type Props = Readonly<{ schema: SchemaRecord }>;
+const { schema } = Astro.props;
+---
+<Card as="article" hover class="flex h-full flex-col">
+  <div class="mb-3 flex items-center justify-between gap-3">
+    <span class="font-mono text-sm text-muted">{schema.acronym}</span>
+    <Badge variant={schema.status}>{schema.status}</Badge>
+  </div>
+  <h3 class="mb-2 text-h3 font-semibold text-text">{schema.name}</h3>
+  <p class="mb-4 flex-1 text-base text-content">{schema.description}</p>
+  <div class="flex items-center justify-between border-t border-border pt-3">
+    <span class="font-mono text-sm text-muted">v{schema.version}</span>
+    <a class="inline-flex items-center gap-1 text-base font-medium text-accent" href={`/schemas/${schema.slug}/`}>View schema <ArrowRight size={15} aria-hidden="true" /></a>
+  </div>
+</Card>

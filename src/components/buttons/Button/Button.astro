@@ -1,0 +1,40 @@
+---
+type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success';
+type Size = 'small' | 'default' | 'large';
+type Props = Readonly<{
+  href?: string;
+  variant?: Variant;
+  size?: Size;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  download?: string | boolean;
+  class?: string;
+}>;
+const {
+  href,
+  variant = 'primary',
+  size = 'default',
+  type = 'button',
+  disabled = false,
+  download,
+  class: className = '',
+} = Astro.props;
+const variants: Record<Variant, string> = {
+  primary: 'border-primary bg-primary text-white hover:brightness-105',
+  secondary: 'border-border bg-transparent text-text hover:bg-surface-hover',
+  ghost: 'border-transparent bg-transparent text-content hover:bg-surface-hover',
+  danger: 'border-danger bg-danger text-white hover:brightness-105',
+  success: 'border-success bg-success text-white hover:brightness-105',
+};
+const sizes: Record<Size, string> = {
+  small: 'min-h-8 px-3 text-md',
+  default: 'min-h-10 px-4 text-base',
+  large: 'min-h-11 px-5 text-base',
+};
+const classes = ['inline-flex items-center justify-center gap-2 rounded-button border font-semibold no-underline transition-colors duration-150 focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50', variants[variant], sizes[size], className];
+---
+{href ? (
+  <a class:list={classes} href={disabled ? undefined : href} download={disabled ? undefined : download} aria-disabled={disabled ? 'true' : undefined} tabindex={disabled ? -1 : undefined}><slot /></a>
+) : (
+  <button class:list={classes} type={type} disabled={disabled}><slot /></button>
+)}

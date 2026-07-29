@@ -1,0 +1,8 @@
+---
+import Badge from '@/components/common/Badge';
+import Card from '@/components/cards/Card';
+import type { SearchResult } from '@/types/search';
+type Props = Readonly<{ result: SearchResult }>;
+const { result } = Astro.props;
+---
+<Card as="article" hover><Badge variant="draft">{result.category}</Badge><h2 class="mt-2 text-lg font-semibold"><a class="text-text" href={result.url}>{result.title}</a></h2><p class="mt-1 font-mono text-sm text-accent">{result.url}</p><p class="mt-2 text-base text-content">{result.excerpt}</p></Card>

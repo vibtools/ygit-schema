@@ -1,0 +1,6 @@
+---
+import { Search } from '@lucide/astro';
+type Props = Readonly<{ id?: string; value?: string; autofocus?: boolean }>;
+const { id = 'site-search', value = '', autofocus = false } = Astro.props;
+---
+<div class="relative"><label class="sr-only" for={id}>Search schemas, documentation, and examples</label><Search class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted" size={17} aria-hidden="true" /><input class="min-h-10 w-full rounded-button border border-border bg-background py-2 pl-10 pr-16 text-base text-text placeholder:text-muted focus:border-accent" id={id} name="q" type="search" value={value} placeholder="Search schemas, docs, examples..." autocomplete="off" autofocus={autofocus} data-pagefind-search-input /><kbd class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted">/</kbd></div>

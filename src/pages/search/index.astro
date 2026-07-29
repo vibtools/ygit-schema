@@ -1,0 +1,137 @@
+---
+import Card from '@/components/cards/Card';
+import EmptyState from '@/components/feedback/EmptyState';
+import SearchBox from '@/components/search/SearchBox';
+import SearchFilters from '@/components/search/SearchFilters';
+import SearchSummary from '@/components/search/SearchSummary';
+import SearchLayout from '@/layouts/SearchLayout.astro';
+const initialQuery = Astro.url.searchParams.get('q') ?? '';
+---
+<SearchLayout title="Search" description="Search YGit schemas, documentation, and examples.">
+  <div class="grid gap-5 lg:grid-cols-[240px_1fr]">
+    <aside><Card class="lg:sticky lg:top-20"><SearchFilters /></Card></aside>
+    <section class="min-w-0" data-search-root data-initial-query={initialQuery}><Card class="mb-5"><SearchBox id="search-page-input" value={initialQuery} autofocus /><div class="mt-3"><SearchSummary query={initialQuery} /></div></Card><div class="grid gap-4" data-search-results><EmptyState title="Search the registry" description="Enter a term to search schemas, documentation, examples, and release information." /></div></section>
+  </div>
+  <script>
+    type PagefindCategory = 'all' | 'schema' | 'documentation' | 'example';
+    type PagefindRecord = Readonly<{
+      url: string;
+      plain_excerpt?: string;
+      meta?: Readonly<Record<string, string>>;
+    }>;
+    type PagefindResult = Readonly<{ data: () => Promise<PagefindRecord> }>;
+    type PagefindResponse = Readonly<{ results: readonly PagefindResult[] }>;
+    type PagefindOptions = Readonly<{ filters?: Readonly<{ category: Exclude<PagefindCategory, 'all'> }> }>;
+    type PagefindApi = Readonly<{
+      init: () => Promise<void> | void;
+      debouncedSearch: (
+        query: string,
+        options?: PagefindOptions,
+        timeout?: number,
+      ) => Promise<PagefindResponse | null>;
+    }>;
+
+    const root = document.querySelector<HTMLElement>('[data-search-root]');
+    const input = document.querySelector<HTMLInputElement>('[data-pagefind-search-input]');
+    const results = document.querySelector<HTMLElement>('[data-search-results]');
+    const summary = document.querySelector<HTMLElement>('[data-search-summary]');
+    const filters = document.querySelectorAll<HTMLInputElement>('input[name="search-category"]');
+    const initialQuery = root?.dataset.initialQuery ?? '';
+    let pagefind: PagefindApi | undefined;
+    let currentCategory: PagefindCategory = 'all';
+
+    const entities: Readonly<Record<string, string>> = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;',
+    };
+
+    const escapeHtml = (value: unknown): string =>
+      String(value).replace(/[&<>'"]/g, (character) => entities[character] ?? character);
+
+    const safeInternalUrl = (value: string): string => {
+      try {
+        const url = new URL(value, window.location.origin);
+        if (url.origin !== window.location.origin) return '#';
+        return `${url.pathname}${url.search}${url.hash}`;
+      } catch {
+        return '#';
+      }
+    };
+
+    const setEmptyState = (title: string, description: string): void => {
+      if (!results) return;
+      results.innerHTML = `<div class="rounded-card border border-border bg-surface p-8 text-center"><h2 class="text-lg font-semibold text-text">${escapeHtml(title)}</h2><p class="mt-2 text-base text-content">${escapeHtml(description)}</p></div>`;
+    };
+
+    async function loadPagefind(): Promise<PagefindApi> {
+      if (!pagefind) {
+        const modulePath = '/pagefind/pagefind.js';
+        const loaded = (await import(/* @vite-ignore */ modulePath)) as unknown as PagefindApi;
+        await loaded.init();
+        pagefind = loaded;
+      }
+      return pagefind;
+    }
+
+    async function search(query: string): Promise<void> {
+      const normalized = query.trim();
+      if (!normalized) {
+        if (summary) summary.textContent = 'Enter a search term to begin.';
+        setEmptyState('Search the registry', 'Enter a term to search schemas, documentation, examples, and release information.');
+        return;
+      }
+
+      if (summary) summary.textContent = 'Searching…';
+      try {
+        const api = await loadPagefind();
+        const options: PagefindOptions =
+          currentCategory === 'all' ? {} : { filters: { category: currentCategory } };
+        const response = await api.debouncedSearch(normalized, options, 180);
+        if (!response) return;
+
+        const visibleResults = response.results.slice(0, 30);
+        const records = await Promise.all(visibleResults.map((item) => item.data()));
+        if (summary) {
+          const total = response.results.length;
+          const shown = visibleResults.length;
+          const countLabel = shown < total ? `${shown} of ${total}` : String(total);
+          summary.innerHTML = `Showing <strong class="text-text">${countLabel}</strong> results for <strong class="text-text">“${escapeHtml(normalized)}”</strong>`;
+        }
+        if (!records.length) {
+          setEmptyState('No results found', 'Try a broader term or a different filter.');
+          return;
+        }
+        if (!results) return;
+        results.innerHTML = records
+          .map((record) => {
+            const url = safeInternalUrl(record.url);
+            const title = record.meta?.title ?? record.url;
+            const category = record.meta?.category ?? 'documentation';
+            return `<article class="rounded-card border border-border bg-surface p-5 transition-colors duration-150 hover:bg-surface-hover"><span class="inline-flex rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">${escapeHtml(category)}</span><h2 class="mt-2 text-lg font-semibold"><a class="text-text" href="${escapeHtml(url)}">${escapeHtml(title)}</a></h2><p class="mt-1 font-mono text-sm text-accent">${escapeHtml(record.url)}</p><p class="mt-2 text-base text-content">${escapeHtml(record.plain_excerpt ?? '')}</p></article>`;
+          })
+          .join('');
+      } catch (error) {
+        console.error('Search initialization failed.', error);
+        if (summary) summary.textContent = 'Search is temporarily unavailable.';
+        setEmptyState('Search unavailable', 'The generated search index could not be loaded. Refresh the page or try again later.');
+      }
+    }
+
+    input?.addEventListener('focus', () => {
+      void loadPagefind().catch(() => undefined);
+    }, { once: true });
+    input?.addEventListener('input', () => {
+      void search(input.value);
+    });
+    filters.forEach((filter) => {
+      filter.addEventListener('change', () => {
+        currentCategory = filter.value as PagefindCategory;
+        void search(input?.value ?? '');
+      });
+    });
+    if (initialQuery) void search(initialQuery);
+  </script>
+</SearchLayout>

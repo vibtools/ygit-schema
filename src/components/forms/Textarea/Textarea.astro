@@ -1,0 +1,5 @@
+---
+type Props = Readonly<{ id: string; label: string; name?: string; placeholder?: string; required?: boolean }>;
+const { id, label, name = id, placeholder, required = false } = Astro.props;
+---
+<div><label class="mb-2 block text-md font-medium text-text" for={id}>{label}</label><textarea class="min-h-32 w-full resize-y rounded-button border border-border bg-background p-3 text-base text-text placeholder:text-muted focus:border-accent" id={id} name={name} placeholder={placeholder} required={required}><slot /></textarea></div>

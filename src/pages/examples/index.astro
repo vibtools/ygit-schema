@@ -1,0 +1,12 @@
+---
+import Button from '@/components/buttons/Button';
+import Card from '@/components/cards/Card';
+import Container from '@/components/common/Container';
+import Breadcrumb from '@/components/navigation/Breadcrumb';
+import CodeBlock from '@/components/documentation/CodeBlock';
+import PageHeader from '@/components/documentation/PageHeader';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { readFile } from 'node:fs/promises';
+const example = await readFile(new URL('../../../examples/vibproject-full-example.ygit', import.meta.url), 'utf-8');
+---
+<MainLayout category="example" title="Examples" description="Official valid VPMS Version 1 reference manifests."><Container class="py-5"><Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Examples' }]} /><PageHeader title="Examples" description="Production-oriented manifests synchronized with the official Version 1 schema." /><Card class="mb-5"><div class="flex flex-wrap items-center justify-between gap-3"><div><h2 class="text-h3 font-semibold text-text">Full project manifest</h2><p class="mt-1 text-base text-content">Demonstrates every supported root object and recommended property ordering.</p></div><Button href="/examples/vibproject-full-example.ygit" download>Download</Button></div></Card><CodeBlock code={example} language="json" title="vibproject-full-example.ygit" /></Container></MainLayout>

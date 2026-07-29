@@ -1,0 +1,57 @@
+---
+import BottomNavigation from '@/components/layout/BottomNavigation';
+import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
+import MobileDrawer from '@/components/layout/MobileDrawer';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/constants/config';
+import '@/styles/global.css';
+type SearchCategory = 'schema' | 'documentation' | 'example';
+type Props = Readonly<{ title?: string; description?: string; image?: string; noindex?: boolean; indexable?: boolean; category?: SearchCategory }>;
+const { title, description = SITE_DESCRIPTION, image = '/social-card.svg', noindex = false, indexable = true, category = 'documentation' } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE_NAME}` : `YGit Schema Registry | ${SITE_NAME}`;
+const canonical = new URL(Astro.url.pathname, SITE_URL);
+const structuredData = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'YGit Schema Registry', url: SITE_URL, description, potentialAction: { '@type': 'SearchAction', target: `${SITE_URL}/search/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } }).replaceAll('<', '\\u003c');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, SITE_URL)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {indexable && <meta data-pagefind-meta="category[content]" data-pagefind-filter="category[content]" content={category} />}
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={structuredData}></script>
+  </head>
+  <body>
+    <a class="sr-only z-[100] bg-primary p-3 text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3" href="#main-content">Skip to content</a>
+    <Header />
+    <MobileDrawer />
+    <main id="main-content" data-pagefind-body={indexable ? true : undefined}><slot /></main>
+    <Footer />
+    <BottomNavigation />
+    <script>
+      document.addEventListener('keydown', (event) => {
+        const target = event.target as HTMLElement | null;
+        const isTyping = target?.matches('input, textarea, select, [contenteditable="true"]');
+        if (event.key === '/' && !isTyping) {
+          event.preventDefault();
+          window.location.href = '/search/';
+        }
+      });
+    </script>
+  </body>
+</html>

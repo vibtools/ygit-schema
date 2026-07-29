@@ -1,0 +1,46 @@
+---
+title: Getting Started
+description: Create and validate a VPMS Version 1 manifest.
+order: 1
+---
+
+# Getting Started with VPMS
+
+VPMS is the **Vib Project Manifest Specification** used by YGit-compatible tools to describe projects in a predictable, machine-readable format.
+
+## Requirements
+
+- Python 3.11 or later for the repository validator.
+- Node.js 24.16.0 or later for the documentation portal.
+- A UTF-8 JSON file named `vibproject.ygit`.
+
+## Create the manifest
+
+Create `vibproject.ygit` in the repository root:
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+  "project": {
+    "id": "example-project",
+    "name": "Example Project",
+    "description": "A minimal valid VPMS manifest.",
+    "version": "1.0.0"
+  }
+}
+```
+
+## Validate the manifest
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/validate.py vibproject.ygit
+```
+
+A successful validation returns exit code `0`. Invalid JSON, schema errors, or constraint violations return a non-zero exit code.
+
+## Next steps
+
+Read the [schema reference](/docs/schema-reference/), review the [official example](/examples/), and add validation to continuous integration.

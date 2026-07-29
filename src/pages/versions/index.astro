@@ -1,0 +1,9 @@
+---
+import Card from '@/components/cards/Card';
+import Container from '@/components/common/Container';
+import Badge from '@/components/common/Badge';
+import Breadcrumb from '@/components/navigation/Breadcrumb';
+import PageHeader from '@/components/documentation/PageHeader';
+import MainLayout from '@/layouts/MainLayout.astro';
+---
+<MainLayout title="Versions" description="VPMS schema release lifecycle and compatibility status."><Container class="py-5"><Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Versions' }]} /><PageHeader title="Versions" description="Major schema generations are published in independent, stable directories." /><Card><div class="flex flex-wrap items-center justify-between gap-4"><div><div class="mb-2 flex items-center gap-2"><h2 class="text-lg font-semibold text-text">Version 1</h2><Badge variant="stable">stable</Badge></div><p class="text-base text-content">VPMS 1.0.0 · JSON Schema Draft 2020-12 · YGit v1 compatibility.</p></div><a class="font-mono text-md" href="/schemas/vibproject/">/vpms/v1/</a></div></Card></Container></MainLayout>

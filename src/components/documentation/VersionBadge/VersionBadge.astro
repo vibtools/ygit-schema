@@ -1,0 +1,6 @@
+---
+import Badge from '@/components/common/Badge';
+type Props = Readonly<{ version: string; status?: 'stable' | 'beta' | 'deprecated' | 'draft' }>;
+const { version, status = 'stable' } = Astro.props;
+---
+<Badge variant={status} class="font-mono">v{version}</Badge>

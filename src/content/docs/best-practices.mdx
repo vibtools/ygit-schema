@@ -1,0 +1,27 @@
+---
+title: Best Practices
+description: Keep VPMS manifests stable, readable, and automation-friendly.
+order: 6
+---
+
+# Best Practices
+
+## Keep identifiers stable
+
+Treat `project.id` as a permanent machine identifier. Use `displayName` for presentation changes.
+
+## Use canonical paths
+
+Store paths relative to the repository root and use forward slashes. Do not include operating-system-specific absolute paths.
+
+## Prefer explicit metadata
+
+Declare supported platforms, runtime constraints, build commands, and documentation locations when tools need to discover them.
+
+## Keep secrets out of manifests
+
+VPMS describes configuration and project structure. API keys, tokens, passwords, and private credentials must remain in environment variables or secret managers.
+
+## Validate every change
+
+Run `python scripts/validate.py --all` before committing and keep examples, tests, and documentation synchronized with schema changes.

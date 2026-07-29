@@ -354,7 +354,7 @@ Shadow নয়।
 | Warning | `#F59E0B` | Warning |
 | Danger | `#EF4444` | Error |
 
-এই palette Vib Tools Brand Specification-এর official interface color system অনুসরণ করবে। :contentReference[oaicite:0]{index=0}
+এই palette Vib Tools Brand Specification-এর official interface color system অনুসরণ করবে।
 
 ---
 
@@ -463,7 +463,7 @@ Usage
 - Version
 - Terminal
 
-এটি Vib Tools Brand Specification-এর typography নির্দেশনার সাথে সামঞ্জস্যপূর্ণ। :contentReference[oaicite:1]{index=1}
+এটি Vib Tools Brand Specification-এর typography নির্দেশনার সাথে সামঞ্জস্যপূর্ণ।
 
 ---
 
@@ -735,3 +735,8 @@ Registry
 - Compact typography (H1: 24px, Body: 14px) বজায় থাকবে।
 - Large hero, decorative animation, heavy shadow, glassmorphism বা marketing-style section ব্যবহার করা হবে না।
 - পুরো Website একই visual language অনুসরণ করবে।
+---
+
+# Implementation Reference
+
+The YGit-specific frozen values in this document take precedence over the general `Vib-Tools-Brand-Guidelines.pdf` when exact typography, focus, spacing, or container values differ.

@@ -1,0 +1,31 @@
+---
+title: FAQ
+description: Answers to common VPMS implementation and validation questions.
+order: 9
+---
+
+# Frequently Asked Questions
+
+## Is a `.ygit` file JSON?
+
+Yes. VPMS files use JSON syntax with the `.ygit` extension.
+
+## Which fields are required?
+
+At the root: `$schema`, `schemaVersion`, `manifestVersion`, and `project`. Inside `project`: `id`, `name`, `description`, and `version`.
+
+## Are unknown properties allowed?
+
+No. VPMS Version 1 rejects unknown properties at every defined object level.
+
+## Can the manifest contain secrets?
+
+No. Store secrets in environment variables or a dedicated secret manager.
+
+## How do I validate all repository fixtures?
+
+Run `python scripts/validate.py --all` after installing `requirements.txt`.
+
+## How is the website deployed?
+
+Cloudflare Pages uses Git integration with the `main` branch. GitHub Actions performs validation and build checks but does not perform production deployment.

@@ -711,4 +711,3 @@ Mobile
 - Navigation Compact থাকবে; Mega Menu ব্যবহার করা হবে না।
 - Search Bar, Breadcrumb এবং Right-side Table of Contents Documentation Page-এর Standard Layout-এর অংশ হবে।
 - Layout সর্বদা Documentation First নীতি অনুসরণ করবে।
-```

@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import Card from '@/components/cards/Card';
+import Breadcrumb from '@/components/navigation/Breadcrumb';
+import PageHeader from '@/components/documentation/PageHeader';
+import DocumentationLayout from '@/layouts/DocumentationLayout.astro';
+const docs = (await getCollection('docs')).sort((left, right) => left.data.order - right.data.order);
+---
+<DocumentationLayout title="Documentation" description="VPMS implementation, reference, validation, versioning, and migration documentation."><Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Documentation' }]} /><PageHeader title="Documentation" description="Read the VPMS Version 1 specification and practical implementation guides." /><div class="grid gap-4 sm:grid-cols-2">{docs.map((entry) => <Card as="article" hover><h2 class="text-h3 font-semibold"><a class="text-text" href={`/docs/${entry.id}/`}>{entry.data.title}</a></h2><p class="mt-2 text-base text-content">{entry.data.description}</p></Card>)}</div></DocumentationLayout>

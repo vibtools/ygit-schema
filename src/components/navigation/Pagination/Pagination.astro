@@ -1,0 +1,12 @@
+---
+type Props = Readonly<{ current?: number; total?: number }>;
+const { current = 1, total = 1 } = Astro.props;
+const pages = Array.from({ length: total }, (_, index) => index + 1);
+---
+{total > 1 && (
+  <nav aria-label="Pagination" class="flex justify-center gap-2">
+    {pages.map((page) => (
+      <a class:list={['inline-flex min-h-9 min-w-9 items-center justify-center rounded-button border text-md no-underline', page === current ? 'border-primary bg-primary text-white' : 'border-border text-content hover:bg-surface-hover']} href={`?page=${page}`} aria-current={page === current ? 'page' : undefined}>{page}</a>
+    ))}
+  </nav>
+)}

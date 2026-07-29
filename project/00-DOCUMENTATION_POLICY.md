@@ -1,7 +1,7 @@
 # Development → Documentation Synchronization Policy
 
-> **Status:** Frozen  
-> **Version:** v1  
+> **Status:** Frozen
+> **Version:** v1
 > **Applies To:** Entire YGit Schema Project
 
 ---

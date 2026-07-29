@@ -28,6 +28,7 @@ The documents are intended to be read in the following order.
 
 | Order | Document | Purpose |
 |-------:|----------|---------|
+| 00 | `00-DOCUMENTATION_POLICY.md` | Mandatory development-to-documentation synchronization policy. |
 | 01 | `01-BRAND_GUIDELINES.md` | Brand identity, visual language, colors, typography and design philosophy. |
 | 02 | `02-LAYOUT_SYSTEM.md` | Overall layout structure, navigation, header, sidebar, footer and spacing system. |
 | 03 | `03-COMPONENT_LIBRARY.md` | Official UI components and component specifications. |
@@ -64,8 +65,8 @@ They are **not** production code.
 
 | File | Purpose |
 |------|---------|
-| `Vib Tools Brand Identity & UI Design Specification.pdf` | Original branding and visual identity reference |
-| `archive-roadmap.md` | Archived planning document retained for historical reference |
+| `Vib-Tools-Brand-Guidelines.pdf` | Original branding and visual identity reference |
+| `99-ARCHIVE_ROADMAP.md` | Archived planning document retained for historical reference |
 
 ---
 
@@ -195,3 +196,8 @@ Official
 Maintained
 Implementation Ready
 ```
+---
+
+# Implementation Status
+
+The production implementation now lives at the repository root using the frozen Astro architecture. The `project/` HTML files remain reference prototypes only. YGit-specific specifications in `01` through `05` override the general Vib Tools PDF wherever exact values differ.

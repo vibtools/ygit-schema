@@ -1,0 +1,6 @@
+---
+import Button from '@/components/buttons/Button';
+import EmptyState from '@/components/feedback/EmptyState';
+import MobileLayout from '@/layouts/MobileLayout.astro';
+---
+<MobileLayout title="Page Not Found" noindex indexable={false}><EmptyState title="Page not found" description="The requested registry page does not exist or has moved."><Button href="/">Return home</Button></EmptyState></MobileLayout>
