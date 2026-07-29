@@ -1,21 +1,53 @@
 {
   "extends": "astro/tsconfigs/strict",
+
   "compilerOptions": {
     "baseUrl": ".",
+
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "noUncheckedIndexedAccess": true
+
+    "moduleResolution": "Bundler",
+
+    "resolveJsonModule": true,
+
+    "allowJs": false,
+
+    "checkJs": false,
+
+    "forceConsistentCasingInFileNames": true,
+
+    "noUncheckedIndexedAccess": true,
+
+    "exactOptionalPropertyTypes": true,
+
+    "noPropertyAccessFromIndexSignature": true,
+
+    "noImplicitOverride": true,
+
+    "noEmit": true,
+
+    "incremental": true,
+
+    "types": ["astro/client"]
   },
+
   "include": [
     ".astro/types.d.ts",
-    "**/*"
+    "src",
+    "scripts",
+    "astro.config.mjs",
+    "tailwind.config.ts",
+    "eslint.config.js"
   ],
+
   "exclude": [
     "dist",
     "node_modules",
-    "release"
+    "release",
+    ".git",
+    ".vscode",
+    "project/update"
   ]
 }

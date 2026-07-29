@@ -1,0 +1,239 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+
+  "project": {
+    "id": "ygit-schema",
+    "name": "ygit-schema",
+    "slug": "ygit-schema",
+    "displayName": "YGit Schema",
+    "description": "Official YGit Project Manifest Schema (VPMS) specification, validation framework, documentation website, and reference implementation for portable YGit project manifests.",
+    "summary": "The Official Project Manifest Specification for YGit.",
+    "version": "1.0.0",
+    "status": "development",
+    "visibility": "public",
+    "category": "developer-tool",
+    "keywords": [
+      "ygit",
+      "schema",
+      "vpms",
+      "manifest",
+      "json-schema",
+      "validation",
+      "documentation",
+      "developer-tools",
+      "open-source",
+      "project-management"
+    ],
+    "homepage": "https://schema.ygit.dev/",
+    "website": "https://vib.tools/"
+  },
+
+  "organization": {
+    "company": "Vib Tools",
+    "owner": "",
+    "maintainers": [],
+    "contributors": [],
+    "contact": {
+      "email": "",
+      "website": "https://vib.tools/"
+    }
+  },
+
+  "repository": {
+    "provider": "GitHub",
+    "url": "",
+    "branch": "main",
+    "defaultBranch": "main",
+    "issues": "",
+    "discussions": "",
+    "wiki": "",
+    "documentation": "https://schema.ygit.dev/"
+  },
+
+  "branding": {
+    "productName": "YGit Schema",
+    "shortName": "YGIT",
+    "logo": "assets/logo/logo-light.png",
+    "icon": "assets/icon/YGIT_Icon.png",
+    "banner": "public/social-card.svg",
+    "favicon": "public/favicon.svg",
+    "theme": "Dark"
+  },
+
+  "license": {
+    "name": "MIT License",
+    "spdx": "MIT",
+    "file": "LICENSE"
+  },
+
+  "technology": {
+    "languages": [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "HTML",
+      "CSS",
+      "Markdown",
+      "JSON",
+      "YAML"
+    ],
+    "frameworks": [
+      "Astro",
+      "Tailwind CSS"
+    ],
+    "libraries": [
+      "Zod",
+      "Lucide",
+      "Sharp"
+    ],
+    "packageManagers": [
+      "npm",
+      "pip"
+    ],
+    "databases": [],
+    "apis": []
+  },
+
+  "platform": {
+    "desktop": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "mobile": [],
+    "server": [],
+    "web": [
+      "Static Website"
+    ],
+    "operatingSystems": [
+      "Windows 10",
+      "Windows 11",
+      "Ubuntu",
+      "macOS"
+    ]
+  },
+
+  "runtime": {
+    "python": "3.12+",
+    "node": "22+",
+    "docker": false,
+    "container": "",
+    "distribution": "Static Site",
+    "browser": "Modern Browser",
+    "browserAutomation": "",
+    "browserProfile": "",
+    "browserExtensions": false,
+    "runtimeDirectory": ""
+  },
+
+  "entrypoints": {
+    "application": "src/pages/index.astro",
+    "cli": "",
+    "api": "",
+    "documentation": "docs/README.md",
+    "tests": "test/"
+  },
+
+  "paths": {
+    "source": "src/",
+    "tests": "test/",
+    "documentation": "docs/",
+    "scripts": "scripts/",
+    "assets": "assets/",
+    "examples": "examples/",
+    "configuration": "compatibility/",
+    "data": "src/data/",
+    "project": "project/"
+  },
+
+  "dependencies": {
+    "required": [
+      "astro",
+      "typescript",
+      "tailwindcss",
+      "eslint",
+      "python"
+    ],
+    "optional": [],
+    "externalServices": [
+      "GitHub",
+      "GitHub Actions"
+    ]
+  },
+
+  "documentation": {
+    "readme": "README.md",
+    "structure": "project/README.md",
+    "changelog": "CHANGELOG.md",
+    "license": "LICENSE",
+    "docsRoot": "docs/",
+    "website": "https://schema.ygit.dev/"
+  },
+
+  "build": {
+    "buildSystem": "Astro",
+    "packageFormat": [
+      "Static Website",
+      "ZIP"
+    ],
+    "commands": {
+      "install": "npm install",
+      "build": "npm run build",
+      "test": "python scripts/validate.py",
+      "lint": "npm run lint",
+      "format": "npm run format"
+    }
+  },
+
+  "release": {
+    "strategy": "GitHub Releases",
+    "versioning": "Semantic Versioning",
+    "latestVersion": "1.0.0",
+    "releaseNotes": "CHANGELOG.md"
+  },
+
+  "quality": {
+    "formatter": "Prettier",
+    "linter": "ESLint",
+    "testFramework": "Custom Validation Suite",
+    "coverage": "",
+    "security": [
+      "GitHub Actions Validation",
+      "Repository Integrity Verification",
+      "Forensic QA Policy"
+    ]
+  },
+
+  "automation": {
+    "ci": "GitHub Actions",
+    "cd": "GitHub Releases",
+    "workflows": [
+      "Validate",
+      "Build",
+      "Deploy"
+    ],
+    "scheduledTasks": []
+  },
+
+  "ai": {
+    "enabled": true,
+    "repositoryContext": true,
+    "documentationContext": true,
+    "projectStructure": true,
+    "codingGuidelines": true,
+    "architectureGuidelines": true,
+    "entrypointDiscovery": true
+  },
+
+  "metadata": {
+    "createdAt": "",
+    "updatedAt": "",
+    "manifestAuthor": "Vib Tools",
+    "generator": "YGit CLI",
+    "specification": "VPMS",
+    "specificationVersion": "1.0.0"
+  }
+}
