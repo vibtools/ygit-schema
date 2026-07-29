@@ -36,7 +36,7 @@ const initialQuery = Astro.url.searchParams.get('q') ?? '';
     const results = document.querySelector<HTMLElement>('[data-search-results]');
     const summary = document.querySelector<HTMLElement>('[data-search-summary]');
     const filters = document.querySelectorAll<HTMLInputElement>('input[name="search-category"]');
-    const initialQuery = root?.dataset.initialQuery ?? '';
+    const initialQuery = root?.dataset['initialQuery'] ?? '';
     let pagefind: PagefindApi | undefined;
     let currentCategory: PagefindCategory = 'all';
 
@@ -108,8 +108,8 @@ const initialQuery = Astro.url.searchParams.get('q') ?? '';
         results.innerHTML = records
           .map((record) => {
             const url = safeInternalUrl(record.url);
-            const title = record.meta?.title ?? record.url;
-            const category = record.meta?.category ?? 'documentation';
+            const title = record.meta?.['title'] ?? record.url;
+            const category = record.meta?.['category'] ?? 'documentation';
             return `<article class="rounded-card border border-border bg-surface p-5 transition-colors duration-150 hover:bg-surface-hover"><span class="inline-flex rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">${escapeHtml(category)}</span><h2 class="mt-2 text-lg font-semibold"><a class="text-text" href="${escapeHtml(url)}">${escapeHtml(title)}</a></h2><p class="mt-1 font-mono text-sm text-accent">${escapeHtml(record.url)}</p><p class="mt-2 text-base text-content">${escapeHtml(record.plain_excerpt ?? '')}</p></article>`;
           })
           .join('');

@@ -6,7 +6,14 @@ import MobileDrawer from '@/components/layout/MobileDrawer';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/constants/config';
 import '@/styles/global.css';
 type SearchCategory = 'schema' | 'documentation' | 'example';
-type Props = Readonly<{ title?: string; description?: string; image?: string; noindex?: boolean; indexable?: boolean; category?: SearchCategory }>;
+type Props = Readonly<{
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
+  noindex?: boolean | undefined;
+  indexable?: boolean | undefined;
+  category?: SearchCategory | undefined;
+}>;
 const { title, description = SITE_DESCRIPTION, image = '/social-card.svg', noindex = false, indexable = true, category = 'documentation' } = Astro.props;
 const pageTitle = title ? `${title} | ${SITE_NAME}` : `YGit Schema Registry | ${SITE_NAME}`;
 const canonical = new URL(Astro.url.pathname, SITE_URL);
@@ -34,7 +41,7 @@ const structuredData = JSON.stringify({ '@context': 'https://schema.org', '@type
     <meta name="twitter:card" content="summary_large_image" />
     {indexable && <meta data-pagefind-meta="category[content]" data-pagefind-filter="category[content]" content={category} />}
     <title>{pageTitle}</title>
-    <script type="application/ld+json" set:html={structuredData}></script>
+    <script is:inline type="application/ld+json" set:html={structuredData}></script>
   </head>
   <body>
     <a class="sr-only z-[100] bg-primary p-3 text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3" href="#main-content">Skip to content</a>

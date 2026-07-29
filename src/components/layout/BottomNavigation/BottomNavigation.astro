@@ -1,11 +1,11 @@
 ---
-import { BookOpen, FileJson, Home, Search } from '@lucide/astro';
 import { ROUTES } from '@/constants/routes';
 import { getActivePath } from '@/utils/getActivePath';
+import { BookOpen, FileBraces, House, Search } from '@lucide/astro';
 const currentPath = Astro.url.pathname;
 const items = [
-  { label: 'Home', href: ROUTES.home, icon: Home },
-  { label: 'Schemas', href: ROUTES.schemas, icon: FileJson },
+  { label: 'Home', href: ROUTES.home, icon: House },
+  { label: 'Schemas', href: ROUTES.schemas, icon: FileBraces },
   { label: 'Docs', href: ROUTES.documentation, icon: BookOpen },
   { label: 'Search', href: ROUTES.search, icon: Search },
 ];

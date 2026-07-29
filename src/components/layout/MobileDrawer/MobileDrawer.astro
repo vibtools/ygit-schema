@@ -1,5 +1,5 @@
 ---
-import { Code2, X } from '@lucide/astro';
+import { CodeXml, X } from '@lucide/astro';
 import { GITHUB_URL } from '@/constants/config';
 import { ROUTES } from '@/constants/routes';
 
@@ -12,16 +12,16 @@ const items = [
   ['Search', ROUTES.search],
 ] as const;
 ---
-<div id="mobile-drawer-root" class="pointer-events-none fixed inset-0 z-[70] hidden lg:hidden" aria-hidden="true">
+<div id="mobile-drawer-root" class="pointer-events-none fixed inset-0 z-70 hidden lg:hidden" aria-hidden="true">
   <button id="mobile-drawer-backdrop" class="absolute inset-0 cursor-default bg-black/70 opacity-0 transition-opacity duration-150" type="button" aria-label="Close navigation"></button>
   <aside id="mobile-drawer" class="absolute inset-y-0 left-0 flex w-[min(86vw,320px)] -translate-x-full flex-col border-r border-border bg-background shadow-2xl transition-transform duration-200" role="dialog" aria-modal="true" aria-labelledby="mobile-drawer-title" tabindex="-1">
-    <div class="flex min-h-[var(--header-mobile-height)] items-center justify-between border-b border-border px-4">
+    <div class="flex min-h-(--header-mobile-height) items-center justify-between border-b border-border px-4">
       <h2 id="mobile-drawer-title" class="text-h3 font-semibold text-text">Navigation</h2>
       <button id="mobile-drawer-close" class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-button border border-border text-content hover:bg-surface-hover" type="button" aria-label="Close navigation"><X size={19} aria-hidden="true" /></button>
     </div>
     <nav class="flex flex-1 flex-col gap-1 overflow-y-auto p-4" aria-label="Mobile navigation">
       {items.map(([label, href]) => <a class="flex min-h-11 items-center rounded-button px-3 text-base font-medium text-content no-underline hover:bg-surface-hover hover:text-text" href={href}>{label}</a>)}
-      <a class="mt-3 flex min-h-11 items-center gap-2 rounded-button border border-border px-3 text-base font-medium text-content no-underline hover:bg-surface-hover hover:text-text" href={GITHUB_URL} rel="noreferrer"><Code2 size={18} aria-hidden="true" />GitHub</a>
+      <a class="mt-3 flex min-h-11 items-center gap-2 rounded-button border border-border px-3 text-base font-medium text-content no-underline hover:bg-surface-hover hover:text-text" href={GITHUB_URL} rel="noreferrer"><CodeXml size={18} aria-hidden="true" />GitHub</a>
     </nav>
   </aside>
 </div>

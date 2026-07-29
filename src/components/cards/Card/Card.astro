@@ -1,5 +1,23 @@
 ---
-type Props = Readonly<{ as?: 'article' | 'section' | 'div'; class?: string; hover?: boolean }>;
-const { as: Tag = 'div', class: className = '', hover = false } = Astro.props;
+interface Props {
+  readonly as?: 'article' | 'section' | 'div';
+  readonly class?: string;
+  readonly hover?: boolean;
+}
+
+const {
+  as: Tag = 'div',
+  class: className = '',
+  hover = false,
+}: Props = Astro.props;
 ---
-<Tag class:list={['rounded-card border border-border bg-surface p-4 md:p-5', hover && 'transition-colors duration-150 hover:bg-surface-hover', className]}><slot /></Tag>
+
+<Tag
+  class:list={[
+    'rounded-card border border-border bg-surface p-4 md:p-5',
+    hover && 'transition-colors duration-150 hover:bg-surface-hover',
+    className,
+  ]}
+>
+  <slot />
+</Tag>

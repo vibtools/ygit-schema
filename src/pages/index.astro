@@ -1,16 +1,16 @@
 ---
-import { BookOpen, Code2, Layers3 } from '@lucide/astro';
 import Button from '@/components/buttons/Button';
 import Card from '@/components/cards/Card';
 import SchemaCard from '@/components/cards/SchemaCard';
-import Container from '@/components/common/Container';
 import Badge from '@/components/common/Badge';
+import Container from '@/components/common/Container';
 import CodeBlock from '@/components/documentation/CodeBlock';
 import SearchBox from '@/components/search/SearchBox';
 import { GITHUB_URL } from '@/constants/config';
 import { ROUTES } from '@/constants/routes';
 import MainLayout from '@/layouts/MainLayout.astro';
 import { getSchemas } from '@/services/schema.service';
+import { BookOpen, CodeXml, Layers } from '@lucide/astro';
 const schemas = getSchemas();
 const quickStart = `{
   "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
@@ -24,10 +24,10 @@ const quickStart = `{
   }
 }`;
 const actions = [
-  { title: 'Browse Schemas', description: 'Inspect official versions, properties, and constraints.', href: ROUTES.schemas, icon: Layers3 },
+  { title: 'Browse Schemas', description: 'Inspect official versions, properties, and constraints.', href: ROUTES.schemas, icon: Layers },
   { title: 'Documentation', description: 'Create, validate, version, and maintain manifests.', href: ROUTES.documentation, icon: BookOpen },
-  { title: 'Examples', description: 'Use production-oriented reference manifests.', href: ROUTES.examples, icon: Code2 },
-  { title: 'GitHub', description: 'Review source, issues, releases, and contribution rules.', href: GITHUB_URL, icon: Code2 },
+  { title: 'Examples', description: 'Use production-oriented reference manifests.', href: ROUTES.examples, icon: CodeXml },
+  { title: 'GitHub', description: 'Review source, issues, releases, and contribution rules.', href: GITHUB_URL, icon: CodeXml },
 ];
 ---
 <MainLayout>

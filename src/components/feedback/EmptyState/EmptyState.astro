@@ -1,6 +1,6 @@
 ---
-import { FileQuestion } from '@lucide/astro';
+import { FileQuestionMark } from '@lucide/astro';
 type Props = Readonly<{ title: string; description: string }>;
 const { title, description } = Astro.props;
 ---
-<div class="rounded-card border border-border bg-surface p-8 text-center"><FileQuestion class="mx-auto mb-3 text-muted" size={28} aria-hidden="true" /><h2 class="text-lg font-semibold text-text">{title}</h2><p class="mt-2 text-base text-content">{description}</p><div class="mt-4"><slot /></div></div>
+<div class="rounded-card border border-border bg-surface p-8 text-center"><FileQuestionMark class="mx-auto mb-3 text-muted" size={28} aria-hidden="true" /><h2 class="text-lg font-semibold text-text">{title}</h2><p class="mt-2 text-base text-content">{description}</p><div class="mt-4"><slot /></div></div>
