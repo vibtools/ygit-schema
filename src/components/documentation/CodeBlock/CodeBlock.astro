@@ -12,7 +12,7 @@ const { code, language = 'text', title } = Astro.props;
 <script>
   document.querySelectorAll<HTMLButtonElement>('.copy-code').forEach((button) => {
     button.addEventListener('click', async () => {
-      const code = button.dataset.code ?? '';
+      const code = button.dataset['code'] ?? '';
       try {
         await navigator.clipboard.writeText(code);
         button.textContent = 'Copied';
