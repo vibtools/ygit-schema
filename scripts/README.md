@@ -39,6 +39,16 @@ python scripts/audit.py
 python scripts/audit.py --format-only
 ```
 
-The audit is dependency-free and verifies UTF-8/LF text hygiene, final newlines,
-JSON parsing, Markdown fences, required files, local source imports, component
-size/index rules, and unfinished implementation markers.
+The audit is dependency-free and verifies UTF-8/LF text hygiene, final newlines, JSON parsing, Markdown fences and relative links, required files, case-insensitive path safety, local source imports, unsupported Lucide brand imports, component size/index rules, package/runtime synchronization, published-copy integrity, manifest paths, secret patterns, conflict markers, and unfinished implementation markers.
+
+
+## `sourcegenerate.py`
+
+Creates a deterministic direct-replacement source ZIP and SHA-256 checksum while excluding Git metadata, dependency directories, caches, build output, update workspaces, and generated archives.
+
+```bash
+python scripts/sourcegenerate.py --dry-run
+python scripts/sourcegenerate.py --output ../ygit-schema-source.zip
+```
+
+The archive preserves repository-relative paths and intentional empty directories.

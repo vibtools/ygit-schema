@@ -93,3 +93,23 @@ ci: strengthen build validation
 - The production build contains `dist/index.html` and the Pagefind index.
 
 By contributing, you agree that your contribution is licensed under the MIT License.
+
+
+## Security reports
+
+Do not disclose vulnerabilities in issues or pull requests. Follow [SECURITY.md](SECURITY.md) and use a private GitHub Security Advisory.
+
+## Required verification
+
+Before opening a pull request, run:
+
+```bash
+python scripts/audit.py
+python scripts/validate.py --all
+python -m unittest discover -s test -p "test_*.py"
+npm run format:check
+npm run check
+npm run build
+```
+
+Update the schema, fixtures, examples, registry content, architecture documentation, and changelog together whenever behavior changes.

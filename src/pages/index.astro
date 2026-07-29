@@ -1,5 +1,5 @@
 ---
-import { BookOpen, Code2, Github, Layers3 } from '@lucide/astro';
+import { BookOpen, Code2, Layers3 } from '@lucide/astro';
 import Button from '@/components/buttons/Button';
 import Card from '@/components/cards/Card';
 import SchemaCard from '@/components/cards/SchemaCard';
@@ -27,7 +27,7 @@ const actions = [
   { title: 'Browse Schemas', description: 'Inspect official versions, properties, and constraints.', href: ROUTES.schemas, icon: Layers3 },
   { title: 'Documentation', description: 'Create, validate, version, and maintain manifests.', href: ROUTES.documentation, icon: BookOpen },
   { title: 'Examples', description: 'Use production-oriented reference manifests.', href: ROUTES.examples, icon: Code2 },
-  { title: 'GitHub', description: 'Review source, issues, releases, and contribution rules.', href: GITHUB_URL, icon: Github },
+  { title: 'GitHub', description: 'Review source, issues, releases, and contribution rules.', href: GITHUB_URL, icon: Code2 },
 ];
 ---
 <MainLayout>

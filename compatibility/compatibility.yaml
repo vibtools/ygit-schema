@@ -6,11 +6,9 @@
 # Status : Frozen Structure
 # Version: 1.0
 #
-# This file is the single source of truth for all officially supported
-# dependency versions used by the project.
-#
-# Any dependency update MUST update this file first.
-#
+# This file is the single source of truth for officially supported runtime,
+# framework, toolchain, and CI compatibility ranges. Any dependency update
+# must update this matrix and the corresponding package manifest first.
 # ============================================================================
 
 project:
@@ -19,171 +17,129 @@ project:
   compatibility_version: 1.0
 
 platform:
-
   operating_system:
     windows:
       supported: true
-
     linux:
       supported: true
-
     macos:
       supported: true
 
 runtime:
-
   node:
-    version: ">=22.0.0"
-
+    version: ">=24.16.0"
   npm:
-    version: ">=10.0.0"
-
+    version: ">=11.0.0"
   python:
     version: ">=3.12"
 
 framework:
-
   astro:
-    version: "5.x"
+    version: "7.x"
 
 language:
-
   typescript:
-    version: "5.x"
+    version: "5.9.x"
 
 css:
-
   tailwindcss:
-    version: "4.x"
+    version: "4.3.x"
 
 linting:
-
   eslint:
-    version: "9.x"
+    version: "10.x"
+  eslint_plugin_astro:
+    version: "3.0.x"
 
 formatting:
-
   prettier:
-    version: "3.x"
+    version: "3.9.x"
 
 search:
-
   pagefind:
-    version: "1.x"
+    version: "1.5.x"
 
 icons:
-
   lucide_astro:
-    version: "latest-compatible"
+    version: "1.27.x"
+    brand_icons_supported: false
 
 validation:
-
   json_schema:
     draft: "2020-12"
+  jsonschema_python:
+    version: ">=4.23,<5"
 
 testing:
-
-  pytest:
-    version: "8.x"
+  python_unittest:
+    version: "standard-library"
 
 documentation:
-
   astro_content:
-    version: "compatible"
+    version: "7.x-compatible"
 
 ci:
-
   github_actions:
-    version: "latest-compatible"
+    checkout: "v6"
+    setup_node: "v6"
+    setup_python: "v6"
+    upload_artifact: "v7"
 
 build:
-
   vite:
-    version: "compatible"
+    version: "Astro-managed"
 
 package_manager:
-
+  name: npm
   lockfile:
     required: true
+    file: package-lock.json
 
 verification:
-
   type_check:
     required: true
-
   lint:
     required: true
-
   validation:
     required: true
-
   production_build:
     required: true
-
   github_actions:
     required: true
-
   forensic_audit:
     required: true
 
 rules:
-
   allow_unverified_upgrade: false
-
   allow_unverified_downgrade: false
-
   allow_dependency_conflicts: false
-
   allow_build_failure: false
-
   allow_ci_failure: false
-
   allow_missing_imports: false
-
   allow_missing_exports: false
-
   allow_type_errors: false
-
   allow_lint_errors: false
-
   allow_documentation_desynchronization: false
-
   allow_release_without_verification: false
 
 policy:
-
   update_process:
-
     - Review Release Notes
-
     - Review Breaking Changes
-
     - Review Migration Guide
-
     - Update compatibility.yaml
-
+    - Update package manifest and lock file
     - Install Dependencies
-
     - Type Check
-
     - Lint
-
     - Validation
-
     - Production Build
-
     - GitHub Actions
-
     - Forensic Audit
-
     - Documentation Update
-
     - Release
 
 status:
-
   frozen_structure: true
-
   editable_versions: true
-
   single_source_of_truth: true

@@ -6,6 +6,8 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Astro](https://img.shields.io/badge/docs-Astro-ff5d01.svg)](package.json)
 [![Cloudflare Pages](https://img.shields.io/badge/deploy-Cloudflare%20Pages-f38020.svg)](project/10-DEPLOYMENT.md)
+[![Validate](https://github.com/vibtools/ygit-schema/actions/workflows/validate.yml/badge.svg)](https://github.com/vibtools/ygit-schema/actions/workflows/validate.yml)
+[![Build Readiness](https://github.com/vibtools/ygit-schema/actions/workflows/deploy.yml/badge.svg)](https://github.com/vibtools/ygit-schema/actions/workflows/deploy.yml)
 
 ## Overview
 
@@ -19,6 +21,7 @@ The Version 1 schema validates `vibproject.ygit` files using JSON Schema Draft 2
 ygit-schema/
 ├── .github/workflows/     CI validation and build-readiness checks
 ├── assets/                Source brand assets
+├── compatibility/         Supported runtime and dependency matrix
 ├── docs/                  Repository documentation
 ├── examples/              Official valid manifests
 ├── project/               Frozen architecture, design, and workflow specifications
@@ -27,6 +30,14 @@ ygit-schema/
 ├── src/                   Astro application source
 ├── test/                  Positive, negative, and Python regression tests
 ├── v1/                    VPMS Version 1 schema
+├── v2/                    Reserved future-major-version boundary
+├── SECURITY.md            Private vulnerability reporting policy
+├── SUPPORT.md             Support scope and channels
+├── CODE_OF_CONDUCT.md     Community participation standards
+├── FORENSIC_AUDIT_REPORT.md
+├── .gitattributes
+├── .editorconfig
+├── .gitignore
 ├── astro.config.mjs
 ├── package.json
 ├── tailwind.config.ts
@@ -70,7 +81,7 @@ python scripts/validate.py --all
 
 ### Registry portal
 
-Node.js 24.16.0 or later is required.
+Node.js 24.16.0 or later and npm 11 or later are required. The `.nvmrc` file pins the supported Node.js major version.
 
 ```bash
 npm install
@@ -94,7 +105,7 @@ npm run build
 
 The validator enforces the following expectations:
 
-- Every manifest in `examples/` and `test/valid/` passes.
+- The repository root `vibproject.ygit`, every manifest in `examples/`, every published example, and every manifest in `test/valid/` pass.
 - Every manifest in `test/invalid/` fails.
 - Unknown root and nested properties are rejected.
 - Required fields, types, semantic versions, paths, URLs, email addresses, and timestamps are checked.
@@ -111,7 +122,7 @@ python scripts/validate.py path/to/vibproject.ygit
 python scripts/release.py --version 1.0.0
 ```
 
-The release script requires a clean worktree, runs validation, tests, frontend checks, and the production build, then creates a deterministic ZIP plus SHA-256 checksum in `release/`.
+The release script verifies version synchronization, requires a clean worktree when Git metadata is present, runs the forensic audit, validation, tests, frontend checks, and production build, then creates a deterministic ZIP plus SHA-256 checksum in `release/`. Tagged releases are verified and published by `.github/workflows/release.yml`.
 
 ## Deployment
 
@@ -145,6 +156,23 @@ GitHub Actions validates quality and build readiness. It does not perform produc
 | CI quality checks | Implemented |
 | Cloudflare Pages configuration | Ready |
 | Production deployment | Requires repository-to-Cloudflare connection |
+
+## Source snapshot
+
+Create a deterministic direct-replacement source archive without generated caches or build output:
+
+```bash
+python scripts/sourcegenerate.py --output ../ygit-schema-source.zip
+```
+
+The command writes a matching `.zip.sha256` checksum file.
+
+## Security and support
+
+- Vulnerabilities: [SECURITY.md](SECURITY.md)
+- Usage and defect support: [SUPPORT.md](SUPPORT.md)
+- Community expectations: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- Latest repository verification: [FORENSIC_AUDIT_REPORT.md](FORENSIC_AUDIT_REPORT.md)
 
 ## License
 

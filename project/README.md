@@ -40,6 +40,14 @@ The documents are intended to be read in the following order.
 | 09 | `09-COMPONENT_GUIDE.md` | Component implementation rules and reusable component architecture. |
 | 10 | `10-DEPLOYMENT.md` | GitHub → Cloudflare Pages deployment workflow and CI/CD specification. |
 | 11 | `11-ROADMAP.md` | Official development roadmap and implementation phases. |
+| 12 | `12-FORENSIC_QUALITY_ASSURANCE_POLICY.md` | Mandatory repository-wide verification policy. |
+| 13 | `13-DEPENDENCY_MANAGEMENT_POLICY.md` | Dependency selection, update, and integrity requirements. |
+| 14 | `14-CI_CD_VERIFICATION_POLICY.md` | Clean-environment CI/CD and release verification requirements. |
+| 15A | `15-COMPATIBILITY_POLICY.md` | Cross-platform and runtime compatibility requirements. |
+| 15B | `15-DEPENDENCY_COMPATIBILITY_MATRIX.md` | Human-readable dependency compatibility policy. |
+| 16 | `16-PRE_RELEASE_CHECKLIST.md` | Mandatory pre-release acceptance checklist. |
+| 17 | `17-AI_DEVELOPMENT_VERIFICATION_PROTOCOL.md` | Verification protocol for AI-assisted changes. |
+| AI | `AI_DEVELOPMENT_PROMPT.md` | Repository-specific AI development contract. |
 
 ---
 

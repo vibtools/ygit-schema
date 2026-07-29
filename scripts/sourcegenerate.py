@@ -1,211 +1,153 @@
 #!/usr/bin/env python3
-"""
-Generate a complete source ZIP of the repository.
-
-Policy
-------
-Included:
-    ✓ Everything in the repository
-
-Excluded:
-    ✗ .git/
-    ✗ project/update/
-    ✗ Generated *.zip
-    ✗ Generated *.sha256
-
-Features
---------
-- Complete source snapshot
-- Preserves folder structure
-- Preserves empty directories
-- SHA256 checksum generation
-- Compression Level 9
-- --dry-run
-- --verbose
-- Statistics
-- Cross-platform
-"""
+"""Generate a complete, deterministic source ZIP and SHA-256 checksum."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import os
+import stat
 import time
-from datetime import datetime
+import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
-from zipfile import ZIP_DEFLATED, ZipFile
+from typing import Iterable
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-
-timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-
-zip_name = f"{PROJECT_ROOT.name}-source-{timestamp}.zip"
-zip_path = PROJECT_ROOT / zip_name
-sha_path = zip_path.with_suffix(".zip.sha256")
-
-EXCLUDED = [
-    Path(".git"),
-    Path("project/update"),
-]
-
-
-def is_excluded(path: Path) -> bool:
-    rel = path.relative_to(PROJECT_ROOT)
-
-    for excluded in EXCLUDED:
-        if rel == excluded or excluded in rel.parents:
-            return True
-
-    if path == zip_path:
-        return True
-
-    if path == sha_path:
-        return True
-
-    if path.suffix.lower() == ".zip":
-        return True
-
-    if path.suffix.lower() == ".sha256":
-        return True
-
-    return False
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+EXCLUDED_DIRECTORIES = {
+  '.git',
+  '.astro',
+  '.venv',
+  'dist',
+  'node_modules',
+  'project/update',
+  'release',
+  'venv',
+  '__pycache__',
+}
+EXCLUDED_SUFFIXES = {'.pyc', '.pyo', '.zip', '.sha256'}
 
 
-def sha256(file: Path) -> str:
-    h = hashlib.sha256()
-
-    with file.open("rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            h.update(chunk)
-
-    return h.hexdigest()
+def relative(path: Path) -> Path:
+  return path.relative_to(PROJECT_ROOT)
 
 
-def collect_items():
-
-    files = []
-    empty_dirs = []
-
-    for item in PROJECT_ROOT.rglob("*"):
-
-        if is_excluded(item):
-            continue
-
-        if item.is_dir():
-
-            try:
-                next(item.iterdir())
-            except StopIteration:
-                empty_dirs.append(item)
-
-        elif item.is_file():
-            files.append(item)
-
-    return files, empty_dirs
+def is_excluded(path: Path, output_zip: Path, checksum_path: Path) -> bool:
+  resolved = path.resolve()
+  if resolved in {output_zip.resolve(), checksum_path.resolve()}:
+    return True
+  rel = relative(path)
+  rel_text = rel.as_posix()
+  if any(part in EXCLUDED_DIRECTORIES for part in rel.parts):
+    return True
+  if rel_text.startswith('project/update/'):
+    return True
+  return path.suffix.lower() in EXCLUDED_SUFFIXES
 
 
-def create_zip(files, empty_dirs, verbose=False):
-
-    with ZipFile(
-        zip_path,
-        "w",
-        compression=ZIP_DEFLATED,
-        compresslevel=9,
-    ) as archive:
-
-        for d in empty_dirs:
-
-            rel = d.relative_to(PROJECT_ROOT).as_posix() + "/"
-
-            archive.writestr(rel, "")
-
-            if verbose:
-                print(f"[DIR ] {rel}")
-
-        for f in files:
-
-            rel = f.relative_to(PROJECT_ROOT)
-
-            archive.write(f, rel)
-
-            if verbose:
-                print(f"[FILE] {rel}")
+def sha256(path: Path) -> str:
+  digest = hashlib.sha256()
+  with path.open('rb') as stream:
+    for chunk in iter(lambda: stream.read(1024 * 1024), b''):
+      digest.update(chunk)
+  return digest.hexdigest()
 
 
-def main():
+def collect_items(output_zip: Path, checksum_path: Path) -> tuple[list[Path], list[Path]]:
+  files: list[Path] = []
+  empty_directories: list[Path] = []
+  for item in sorted(PROJECT_ROOT.rglob('*'), key=lambda path: relative(path).as_posix()):
+    if is_excluded(item, output_zip, checksum_path):
+      continue
+    if item.is_symlink():
+      raise RuntimeError(f'Symbolic links are not supported in source packages: {relative(item)}')
+    if item.is_dir():
+      children = [child for child in item.iterdir() if not is_excluded(child, output_zip, checksum_path)]
+      if not children:
+        empty_directories.append(item)
+    elif item.is_file():
+      files.append(item)
+  return files, empty_directories
 
-    parser = argparse.ArgumentParser()
 
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Show files without creating ZIP",
-    )
+def zip_timestamp() -> tuple[int, int, int, int, int, int]:
+  epoch = int(os.environ.get('SOURCE_DATE_EPOCH', '315532800'))
+  value = datetime.fromtimestamp(epoch, tz=timezone.utc)
+  return (max(value.year, 1980), value.month, value.day, value.hour, value.minute, value.second)
 
-    parser.add_argument(
-        "--verbose",
-        action="store_true",
-        help="Print every file",
-    )
 
-    args = parser.parse_args()
+def write_directory(archive: zipfile.ZipFile, path: Path, timestamp: tuple[int, ...]) -> None:
+  info = zipfile.ZipInfo(relative(path).as_posix().rstrip('/') + '/', timestamp)
+  info.external_attr = (stat.S_IFDIR | 0o755) << 16
+  archive.writestr(info, b'')
 
-    start = time.perf_counter()
 
-    files, empty_dirs = collect_items()
+def write_file(archive: zipfile.ZipFile, path: Path, timestamp: tuple[int, ...]) -> None:
+  info = zipfile.ZipInfo(relative(path).as_posix(), timestamp)
+  info.compress_type = zipfile.ZIP_DEFLATED
+  mode = 0o755 if os.access(path, os.X_OK) else 0o644
+  info.external_attr = (stat.S_IFREG | mode) << 16
+  archive.writestr(info, path.read_bytes())
 
+
+def create_zip(output_zip: Path, files: list[Path], empty_directories: list[Path], verbose: bool) -> None:
+  output_zip.parent.mkdir(parents=True, exist_ok=True)
+  timestamp = zip_timestamp()
+  with zipfile.ZipFile(output_zip, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+    for directory in empty_directories:
+      write_directory(archive, directory, timestamp)
+      if verbose:
+        print(f'[DIR ] {relative(directory).as_posix()}/')
+    for path in files:
+      write_file(archive, path, timestamp)
+      if verbose:
+        print(f'[FILE] {relative(path).as_posix()}')
+
+
+def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
+  timestamp = datetime.now(tz=timezone.utc).strftime('%Y%m%d-%H%M%S')
+  parser = argparse.ArgumentParser(description=__doc__)
+  parser.add_argument('--dry-run', action='store_true', help='List package contents without writing files.')
+  parser.add_argument('--verbose', action='store_true', help='Print every packaged path.')
+  parser.add_argument(
+    '--output',
+    type=Path,
+    default=PROJECT_ROOT / f'{PROJECT_ROOT.name}-source-{timestamp}.zip',
+    help='Destination ZIP path.',
+  )
+  return parser.parse_args(argv)
+
+
+def main(argv: Iterable[str] | None = None) -> int:
+  args = parse_args(argv)
+  output_zip = args.output.resolve()
+  checksum_path = output_zip.with_suffix('.zip.sha256')
+  start = time.perf_counter()
+  try:
+    files, empty_directories = collect_items(output_zip, checksum_path)
     if args.dry_run:
+      for directory in empty_directories:
+        print(f'[DIR ] {relative(directory).as_posix()}/')
+      for path in files:
+        print(f'[FILE] {relative(path).as_posix()}')
+      print(f'Directories: {len(empty_directories)}')
+      print(f'Files: {len(files)}')
+      return 0
+    output_zip.unlink(missing_ok=True)
+    checksum_path.unlink(missing_ok=True)
+    create_zip(output_zip, files, empty_directories, args.verbose)
+    digest = sha256(output_zip)
+    checksum_path.write_text(f'{digest}  {output_zip.name}\n', encoding='utf-8', newline='\n')
+  except (OSError, RuntimeError, zipfile.BadZipFile, ValueError) as error:
+    print(f'ERROR: Source package generation failed: {error}')
+    return 1
 
-        print("\nDirectories")
-        print("-" * 60)
-
-        for d in empty_dirs:
-            print(d.relative_to(PROJECT_ROOT))
-
-        print("\nFiles")
-        print("-" * 60)
-
-        for f in files:
-            print(f.relative_to(PROJECT_ROOT))
-
-        print("\nSummary")
-        print("-" * 60)
-        print(f"Directories : {len(empty_dirs)}")
-        print(f"Files       : {len(files)}")
-
-        return
-
-    if zip_path.exists():
-        zip_path.unlink()
-
-    if sha_path.exists():
-        sha_path.unlink()
-
-    create_zip(files, empty_dirs, args.verbose)
-
-    digest = sha256(zip_path)
-
-    sha_path.write_text(
-        f"{digest}  {zip_path.name}\n",
-        encoding="utf-8",
-    )
-
-    elapsed = time.perf_counter() - start
-
-    size = zip_path.stat().st_size / (1024 * 1024)
-
-    print("=" * 70)
-    print("Source package created successfully")
-    print("=" * 70)
-    print(f"Project      : {PROJECT_ROOT.name}")
-    print(f"Directories  : {len(empty_dirs)}")
-    print(f"Files        : {len(files)}")
-    print(f"ZIP          : {zip_path.name}")
-    print(f"SHA256       : {sha_path.name}")
-    print(f"Size         : {size:.2f} MB")
-    print(f"Time         : {elapsed:.2f} sec")
-    print("=" * 70)
+  elapsed = time.perf_counter() - start
+  print(f'Source ZIP: {output_zip}')
+  print(f'SHA-256: {checksum_path}')
+  print(f'Files: {len(files)}; empty directories: {len(empty_directories)}; elapsed: {elapsed:.2f}s')
+  return 0
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+  raise SystemExit(main())

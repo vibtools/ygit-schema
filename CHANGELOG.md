@@ -19,6 +19,11 @@ The project follows [Semantic Versioning](https://semver.org/) for the VPMS form
 
 ### Fixed
 
+- Repaired GitHub Actions failures caused by removed Lucide `Github` exports and missing final newlines.
+- Validated and synchronized the repository root `vibproject.ygit` manifest.
+- Updated GitHub Actions to Node 24-compatible action majors and added deterministic release automation.
+- Hardened repository auditing, source packaging, release checks, security headers, and cross-platform text handling.
+- Added security, support, conduct, ownership, issue, pull request, dependency update, and future-version governance files.
 - Synchronized the official full example with the Version 1 schema.
 - Corrected schema URLs, example filenames, version types, project reference filenames, and documentation status statements.
 - Standardized text files on UTF-8, LF line endings, and two-space indentation where applicable.

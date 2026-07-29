@@ -1,6 +1,6 @@
 # Test Suite
 
-The test suite verifies that VPMS Version 1 accepts valid manifests and rejects invalid manifests.
+The test suite verifies the Draft 2020-12 schema itself, the repository root manifest, official and published examples, positive fixtures, negative fixtures, source/public synchronization, and validator CLI behavior.
 
 ## Structure
 
@@ -13,7 +13,7 @@ test/
 
 ## Positive fixtures
 
-Every `.ygit` file under `test/valid/` must pass schema validation.
+The root `vibproject.ygit`, every official example, every published example, and every `.ygit` file under `test/valid/` must pass schema validation.
 
 ## Negative fixtures
 
@@ -32,4 +32,4 @@ python scripts/validate.py --all
 python -m unittest discover -s test -p "test_*.py"
 ```
 
-Unexpected passes and unexpected failures both fail CI.
+Every negative fixture must also produce at least one diagnostic. Unexpected passes, unexpected failures, schema drift, published-copy drift, or CLI failures all fail CI.

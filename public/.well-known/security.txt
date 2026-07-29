@@ -1,0 +1,5 @@
+Contact: mailto:opensource@vib.tools
+Expires: 2027-07-28T23:59:59Z
+Preferred-Languages: en
+Canonical: https://schema.ygit.dev/.well-known/security.txt
+Policy: https://github.com/vibtools/ygit-schema/security/policy

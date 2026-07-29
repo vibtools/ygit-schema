@@ -1,0 +1,49 @@
+name: Scoped improvement request
+description: Propose an improvement that remains within the frozen YGit Schema roadmap and architecture.
+title: '[Enhancement]: '
+body:
+  - type: markdown
+    attributes:
+      value: Requests must preserve the documented scope, architecture, schema compatibility, and technology choices.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - VPMS schema
+        - Validation tooling
+        - Documentation
+        - Registry website
+        - CI/CD or release tooling
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: Describe the in-scope problem without prescribing an architectural redesign.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Required outcome
+      description: State the observable result and compatibility requirements.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Specification references
+      description: Cite the relevant project, schema, roadmap, or documentation files.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Scope confirmation
+      options:
+        - label: This request does not redesign the architecture or replace the selected technology stack.
+          required: true
+        - label: This request preserves existing features and backward compatibility.
+          required: true

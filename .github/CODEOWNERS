@@ -1,0 +1,8 @@
+# Default code owner for the YGit Schema repository.
+* @vib-tools
+
+# Schema, validation, release, and CI changes require maintainer review.
+/v1/ @vib-tools
+/scripts/ @vib-tools
+/test/ @vib-tools
+/.github/ @vib-tools
