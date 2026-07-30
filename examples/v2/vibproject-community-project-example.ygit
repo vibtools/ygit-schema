@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0",
+  "project": {
+    "id": "ygit-community-hub",
+    "name": "YGit Community Hub",
+    "description": "Community-maintained portal for YGit resources and discussions.",
+    "version": "1.0.0",
+    "status": "stable",
+    "visibility": "public"
+  },
+  "classification": {
+    "ownerType": "community",
+    "productType": "community-project",
+    "applicationType": "website",
+    "distribution": "open-source",
+    "lifecycle": "stable"
+  },
+  "organization": {
+    "owner": "YGit Community",
+    "maintainers": [
+      "Community Maintainers"
+    ],
+    "contributors": [
+      "YGit Contributors"
+    ],
+    "contact": {
+      "email": "community@vib.tools",
+      "website": "https://vib.tools/"
+    }
+  },
+  "links": {
+    "website": "https://community.ygit.dev/",
+    "documentation": "https://schema.ygit.dev/",
+    "community": "https://github.com/vibtools/ygit-schema/discussions",
+    "github": "https://github.com/vibtools/ygit-community-hub"
+  },
+  "support": {
+    "email": "community@vib.tools",
+    "community": "https://github.com/vibtools/ygit-schema/discussions",
+    "issues": "https://github.com/vibtools/ygit-community-hub/issues",
+    "discussions": "https://github.com/vibtools/ygit-community-hub/discussions"
+  },
+  "funding": {
+    "github": "https://github.com/sponsors/vibtools",
+    "custom": "https://vib.tools/sponsor/"
+  },
+  "metadata": {
+    "specification": "VPMS",
+    "specificationVersion": "2.0.0"
+  }
+}

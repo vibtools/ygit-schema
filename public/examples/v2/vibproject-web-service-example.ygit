@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0",
+  "project": {
+    "id": "vib-api-service",
+    "name": "Vib API Service",
+    "description": "Containerized API service for Vib Tools integrations.",
+    "version": "3.1.2",
+    "status": "stable",
+    "visibility": "internal"
+  },
+  "classification": {
+    "ownerType": "organization",
+    "productType": "internal-tool",
+    "applicationType": "web-service",
+    "distribution": "private",
+    "lifecycle": "stable"
+  },
+  "repository": {
+    "provider": "GitHub",
+    "url": "https://github.com/vibtools/vib-api-service",
+    "defaultBranch": "main"
+  },
+  "technology": {
+    "languages": [
+      "Python"
+    ],
+    "frameworks": [
+      "FastAPI"
+    ],
+    "libraries": [
+      "Pydantic"
+    ],
+    "packageManagers": [
+      "pip"
+    ],
+    "databases": [
+      "PostgreSQL"
+    ]
+  },
+  "platform": {
+    "server": [
+      "Docker",
+      "Linux"
+    ],
+    "web": [
+      "HTTP API"
+    ],
+    "operatingSystems": [
+      "Ubuntu"
+    ]
+  },
+  "runtime": {
+    "python": ">=3.12",
+    "docker": true,
+    "container": "Docker"
+  },
+  "entrypoints": {
+    "application": "src/main.py",
+    "api": "src/api.py",
+    "tests": "tests/"
+  },
+  "security": {
+    "policy": "https://github.com/vibtools/vib-api-service/security/policy",
+    "sbom": "dist/sbom.cdx.json",
+    "signing": "Sigstore keyless signing",
+    "vulnerabilityReporting": "https://github.com/vibtools/vib-api-service/security/advisories/new"
+  },
+  "automation": {
+    "ci": "GitHub Actions",
+    "cd": "Container registry deployment",
+    "workflows": [
+      "Validation",
+      "Tests",
+      "Container build",
+      "Deployment"
+    ]
+  },
+  "metadata": {
+    "specification": "VPMS",
+    "specificationVersion": "2.0.0"
+  }
+}

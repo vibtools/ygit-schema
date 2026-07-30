@@ -1,0 +1,287 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0",
+  "project": {
+    "id": "vib-universal-toolkit",
+    "name": "vib-universal-toolkit",
+    "slug": "vib-universal-toolkit",
+    "displayName": "Vib Universal Toolkit",
+    "description": "Cross-platform developer automation toolkit maintained by Vib Tools.",
+    "summary": "A production-oriented reference project demonstrating every field supported by VPMS Version 2.",
+    "version": "2.4.1",
+    "status": "stable",
+    "visibility": "public",
+    "category": "developer-tool",
+    "keywords": [
+      "automation",
+      "developer-tools",
+      "open-source",
+      "python",
+      "typescript",
+      "cross-platform"
+    ],
+    "homepage": "https://vib.tools/",
+    "website": "https://example.vib.tools/"
+  },
+  "classification": {
+    "ownerType": "organization",
+    "productType": "official-product",
+    "applicationType": "desktop-app",
+    "distribution": "open-source",
+    "lifecycle": "stable"
+  },
+  "organization": {
+    "company": "Vib Tools",
+    "owner": "Vib Tools",
+    "maintainers": [
+      "Vib Tools Core Team"
+    ],
+    "contributors": [
+      "Open Source Community"
+    ],
+    "contact": {
+      "email": "opensource@vib.tools",
+      "website": "https://vib.tools/"
+    }
+  },
+  "repository": {
+    "provider": "GitHub",
+    "url": "https://github.com/vibtools/vib-universal-toolkit",
+    "branch": "main",
+    "defaultBranch": "main",
+    "issues": "https://github.com/vibtools/vib-universal-toolkit/issues",
+    "discussions": "https://github.com/vibtools/vib-universal-toolkit/discussions",
+    "wiki": "https://github.com/vibtools/vib-universal-toolkit/wiki",
+    "documentation": "https://docs.example.vib.tools/"
+  },
+  "links": {
+    "website": "https://example.vib.tools/",
+    "documentation": "https://docs.example.vib.tools/",
+    "blog": "https://vib.tools/blog/",
+    "community": "https://github.com/vibtools/vib-universal-toolkit/discussions",
+    "youtube": "https://www.youtube.com/@vibtools",
+    "linkedin": "https://www.linkedin.com/company/vib-tools/",
+    "x": "https://x.com/vibtools",
+    "github": "https://github.com/vibtools/vib-universal-toolkit"
+  },
+  "branding": {
+    "productName": "Vib Universal Toolkit",
+    "shortName": "VUT",
+    "logo": "assets/logo/logo-dark.png",
+    "icon": "assets/icon/app-icon.png",
+    "banner": "assets/banner/social-card.png",
+    "favicon": "assets/icon/favicon.svg",
+    "theme": "dark"
+  },
+  "license": {
+    "name": "MIT License",
+    "spdx": "MIT",
+    "file": "LICENSE"
+  },
+  "technology": {
+    "languages": [
+      "Python",
+      "TypeScript",
+      "HTML",
+      "CSS"
+    ],
+    "frameworks": [
+      "FastAPI",
+      "CustomTkinter"
+    ],
+    "libraries": [
+      "Playwright",
+      "Pydantic"
+    ],
+    "packageManagers": [
+      "pip",
+      "npm"
+    ],
+    "databases": [
+      "SQLite",
+      "PostgreSQL"
+    ],
+    "apis": [
+      "GitHub API",
+      "OpenAI API"
+    ]
+  },
+  "platform": {
+    "desktop": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "mobile": [
+      "Android",
+      "iOS"
+    ],
+    "server": [
+      "Docker",
+      "Linux"
+    ],
+    "web": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "operatingSystems": [
+      "Windows 10",
+      "Windows 11",
+      "Ubuntu",
+      "macOS"
+    ]
+  },
+  "runtime": {
+    "python": ">=3.12",
+    "node": ">=24.16.0",
+    "docker": true,
+    "container": "Docker"
+  },
+  "entrypoints": {
+    "application": "src/main.py",
+    "cli": "src/cli.py",
+    "gui": "src/gui.py",
+    "api": "src/api.py",
+    "documentation": "docs/README.md",
+    "tests": "tests/"
+  },
+  "paths": {
+    "source": "src/",
+    "tests": "tests/",
+    "documentation": "docs/",
+    "scripts": "scripts/",
+    "assets": "assets/",
+    "examples": "examples/",
+    "configuration": "config/",
+    "data": "data/",
+    "project": "project/"
+  },
+  "dependencies": {
+    "required": [
+      "Python",
+      "Node.js",
+      "SQLite"
+    ],
+    "optional": [
+      "Docker",
+      "PostgreSQL"
+    ],
+    "externalServices": [
+      "GitHub",
+      "Cloudflare",
+      "OpenAI"
+    ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "structure": "docs/developer/architecture.md",
+    "changelog": "CHANGELOG.md",
+    "license": "LICENSE",
+    "docsRoot": "docs/",
+    "website": "https://docs.example.vib.tools/"
+  },
+  "support": {
+    "email": "support@vib.tools",
+    "documentation": "https://docs.example.vib.tools/",
+    "community": "https://github.com/vibtools/vib-universal-toolkit/discussions",
+    "security": "https://github.com/vibtools/vib-universal-toolkit/security/policy",
+    "issues": "https://github.com/vibtools/vib-universal-toolkit/issues",
+    "discussions": "https://github.com/vibtools/vib-universal-toolkit/discussions"
+  },
+  "build": {
+    "buildSystem": "Python and Node.js",
+    "packageFormat": [
+      "wheel",
+      "sdist",
+      "zip",
+      "docker"
+    ],
+    "commands": {
+      "install": "python -m pip install -r requirements.txt",
+      "build": "python -m build",
+      "test": "python -m pytest",
+      "lint": "ruff check .",
+      "format": "ruff format ."
+    }
+  },
+  "release": {
+    "strategy": "GitHub Releases",
+    "versioning": "Semantic Versioning",
+    "latestVersion": "2.4.1",
+    "releaseNotes": "docs/release-notes/"
+  },
+  "distribution": {
+    "githubReleases": "https://github.com/vibtools/vib-universal-toolkit/releases",
+    "dockerHub": "https://hub.docker.com/r/vibtools/vib-universal-toolkit",
+    "npm": "https://www.npmjs.com/package/@vibtools/universal-toolkit",
+    "pypi": "https://pypi.org/project/vib-universal-toolkit/",
+    "winget": "https://github.com/microsoft/winget-pkgs",
+    "homebrew": "https://github.com/vibtools/homebrew-tap",
+    "snap": "https://snapcraft.io/vib-universal-toolkit",
+    "flatpak": "https://flathub.org/apps/tools.vib.UniversalToolkit",
+    "chocolatey": "https://community.chocolatey.org/packages/vib-universal-toolkit",
+    "scoop": "https://github.com/vibtools/scoop-bucket",
+    "crates": "https://crates.io/crates/vib-universal-toolkit",
+    "nuget": "https://www.nuget.org/packages/VibTools.UniversalToolkit",
+    "maven": "https://central.sonatype.com/artifact/tools.vib/universal-toolkit"
+  },
+  "funding": {
+    "github": "https://github.com/sponsors/vibtools",
+    "openCollective": "https://opencollective.com/vib-tools",
+    "patreon": "https://www.patreon.com/vibtools",
+    "custom": "https://vib.tools/sponsor/"
+  },
+  "quality": {
+    "formatter": "Ruff and Prettier",
+    "linter": "Ruff and ESLint",
+    "testFramework": "Pytest and Playwright",
+    "coverage": "Coverage.py",
+    "security": [
+      "Dependabot",
+      "CodeQL",
+      "pip-audit",
+      "npm audit"
+    ]
+  },
+  "security": {
+    "policy": "https://github.com/vibtools/vib-universal-toolkit/security/policy",
+    "sbom": "dist/sbom.cdx.json",
+    "signing": "Sigstore keyless signing",
+    "vulnerabilityReporting": "https://github.com/vibtools/vib-universal-toolkit/security/advisories/new"
+  },
+  "automation": {
+    "ci": "GitHub Actions",
+    "cd": "Cloudflare Pages and GitHub Releases",
+    "workflows": [
+      "Validation",
+      "Tests",
+      "Build",
+      "Release",
+      "Documentation"
+    ],
+    "scheduledTasks": [
+      "Dependency updates",
+      "Security scanning"
+    ]
+  },
+  "ai": {
+    "enabled": true,
+    "repositoryContext": true,
+    "documentationContext": true,
+    "projectStructure": true,
+    "codingGuidelines": true,
+    "architectureGuidelines": true,
+    "entrypointDiscovery": true
+  },
+  "metadata": {
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-07-29T00:00:00Z",
+    "manifestAuthor": "Vib Tools",
+    "generator": "YGit CLI",
+    "specification": "VPMS",
+    "specificationVersion": "2.0.0"
+  }
+}

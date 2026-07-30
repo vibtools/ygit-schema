@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0",
+  "project": {
+    "id": "vib-edge-worker",
+    "name": "Vib Edge Worker",
+    "description": "Edge worker for schema redirects and registry health checks.",
+    "version": "1.1.0",
+    "status": "stable",
+    "visibility": "public"
+  },
+  "classification": {
+    "ownerType": "organization",
+    "productType": "official-product",
+    "applicationType": "worker",
+    "distribution": "open-source",
+    "lifecycle": "stable"
+  },
+  "technology": {
+    "languages": [
+      "TypeScript"
+    ],
+    "frameworks": [
+      "Cloudflare Workers"
+    ],
+    "packageManagers": [
+      "npm"
+    ],
+    "apis": [
+      "Cloudflare API"
+    ]
+  },
+  "runtime": {
+    "node": ">=24.16.0",
+    "docker": false
+  },
+  "entrypoints": {
+    "application": "src/index.ts",
+    "tests": "test/"
+  },
+  "automation": {
+    "ci": "GitHub Actions",
+    "cd": "Cloudflare Workers",
+    "workflows": [
+      "Validation",
+      "Tests",
+      "Deployment"
+    ]
+  },
+  "metadata": {
+    "specification": "VPMS",
+    "specificationVersion": "2.0.0"
+  }
+}

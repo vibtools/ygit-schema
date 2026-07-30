@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0",
+  "project": {
+    "id": "example-project",
+    "name": "Example Project",
+    "description": "A minimal valid VPMS Version 2 manifest.",
+    "version": "1.0.0"
+  }
+}

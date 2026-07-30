@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0",
+  "project": {
+    "id": "vib-desktop-automator",
+    "name": "Vib Desktop Automator",
+    "description": "Cross-platform desktop automation utility.",
+    "version": "1.3.0",
+    "status": "stable",
+    "visibility": "public"
+  },
+  "classification": {
+    "ownerType": "organization",
+    "productType": "official-product",
+    "applicationType": "desktop-app",
+    "distribution": "open-source",
+    "lifecycle": "stable"
+  },
+  "technology": {
+    "languages": [
+      "Python"
+    ],
+    "frameworks": [
+      "CustomTkinter"
+    ],
+    "libraries": [
+      "Playwright"
+    ],
+    "packageManagers": [
+      "pip"
+    ]
+  },
+  "platform": {
+    "desktop": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "operatingSystems": [
+      "Windows 10",
+      "Windows 11",
+      "Ubuntu",
+      "macOS"
+    ]
+  },
+  "runtime": {
+    "python": ">=3.12",
+    "docker": false
+  },
+  "entrypoints": {
+    "application": "src/main.py",
+    "gui": "src/ui/app.py",
+    "tests": "tests/"
+  },
+  "build": {
+    "buildSystem": "Python",
+    "packageFormat": [
+      "wheel",
+      "zip"
+    ],
+    "commands": {
+      "install": "python -m pip install -r requirements.txt",
+      "build": "python -m build",
+      "test": "python -m pytest"
+    }
+  },
+  "metadata": {
+    "specification": "VPMS",
+    "specificationVersion": "2.0.0"
+  }
+}
