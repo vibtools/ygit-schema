@@ -1,9 +1,48 @@
 ---
 import Card from '@/components/cards/Card';
-import Container from '@/components/common/Container';
 import Badge from '@/components/common/Badge';
-import Breadcrumb from '@/components/navigation/Breadcrumb';
+import Container from '@/components/common/Container';
 import PageHeader from '@/components/documentation/PageHeader';
+import Breadcrumb from '@/components/navigation/Breadcrumb';
 import MainLayout from '@/layouts/MainLayout.astro';
+import { getSchemas } from '@/services/schema.service';
+
+const schemas = [...getSchemas()].sort((left, right) => right.schemaVersion - left.schemaVersion);
 ---
-<MainLayout title="Versions" description="VPMS schema release lifecycle and compatibility status."><Container class="py-5"><Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Versions' }]} /><PageHeader title="Versions" description="Major schema generations are published in independent, stable directories." /><Card><div class="flex flex-wrap items-center justify-between gap-4"><div><div class="mb-2 flex items-center gap-2"><h2 class="text-lg font-semibold text-text">Version 1</h2><Badge variant="stable">stable</Badge></div><p class="text-base text-content">VPMS 1.0.0 · JSON Schema Draft 2020-12 · YGit v1 compatibility.</p></div><a class="font-mono text-md" href="/schemas/vibproject/">/vpms/v1/</a></div></Card></Container></MainLayout>
+
+<MainLayout title="Versions" description="VPMS schema release lifecycle and compatibility status.">
+  <Container class="py-5">
+    <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Versions' }]} />
+
+    <PageHeader
+      title="Versions"
+      description="Major schema generations are published in independent, stable directories."
+    />
+
+    <div class="grid gap-5">
+      {
+        schemas.map((schema) => (
+          <Card>
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <div class="mb-2 flex items-center gap-2">
+                  <h2 class="text-lg font-semibold text-text">Version {schema.schemaVersion}</h2>
+
+                  <Badge variant={schema.status}>{schema.status}</Badge>
+                </div>
+
+                <p class="text-base text-content">
+                  VPMS {schema.version} · JSON Schema Draft {schema.draft} · {schema.compatibility}.
+                </p>
+              </div>
+
+              <a class="font-mono text-md" href={`/schemas/${schema.slug}/`}>
+                /vpms/v{schema.schemaVersion}/
+              </a>
+            </div>
+          </Card>
+        ))
+      }
+    </div>
+  </Container>
+</MainLayout>

@@ -11,6 +11,7 @@
     "title": "Reference",
     "items": [
       { "label": "Schema Reference", "href": "/docs/schema-reference/" },
+      { "label": "VPMS Version 2", "href": "/docs/vpms-v2/" },
       { "label": "Validation", "href": "/docs/validation/" },
       { "label": "Versioning", "href": "/docs/versioning/" }
     ]

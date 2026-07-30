@@ -2,11 +2,134 @@
 import Button from '@/components/buttons/Button';
 import Card from '@/components/cards/Card';
 import Container from '@/components/common/Container';
-import Breadcrumb from '@/components/navigation/Breadcrumb';
 import CodeBlock from '@/components/documentation/CodeBlock';
 import PageHeader from '@/components/documentation/PageHeader';
+import Breadcrumb from '@/components/navigation/Breadcrumb';
 import MainLayout from '@/layouts/MainLayout.astro';
 import { readFile } from 'node:fs/promises';
-const example = await readFile(new URL('../../../examples/vibproject-full-example.ygit', import.meta.url), 'utf-8');
+
+const v1Example = await readFile(
+  new URL('../../../examples/vibproject-full-example.ygit', import.meta.url),
+  'utf-8',
+);
+
+const v2Example = await readFile(
+  new URL('../../../examples/v2/vibproject-full-example.ygit', import.meta.url),
+  'utf-8',
+);
+
+const v2Examples = [
+  {
+    title: 'Minimal manifest',
+    description: 'The smallest valid VPMS Version 2 manifest.',
+    path: '/examples/v2/vibproject-minimal-example.ygit',
+  },
+  {
+    title: 'Full manifest',
+    description: 'Every supported VPMS Version 2 root section and property.',
+    path: '/examples/v2/vibproject-full-example.ygit',
+  },
+  {
+    title: 'Desktop application',
+    description: 'A cross-platform desktop application manifest.',
+    path: '/examples/v2/vibproject-desktop-app-example.ygit',
+  },
+  {
+    title: 'Web service',
+    description: 'A containerized API and web-service manifest.',
+    path: '/examples/v2/vibproject-web-service-example.ygit',
+  },
+  {
+    title: 'Software library',
+    description: 'A reusable package and library manifest.',
+    path: '/examples/v2/vibproject-library-example.ygit',
+  },
+  {
+    title: 'Community project',
+    description: 'A community-owned open-source project manifest.',
+    path: '/examples/v2/vibproject-community-project-example.ygit',
+  },
+  {
+    title: 'Edge worker',
+    description: 'A TypeScript edge-worker application manifest.',
+    path: '/examples/v2/vibproject-worker-example.ygit',
+  },
+] as const;
 ---
-<MainLayout category="example" title="Examples" description="Official valid VPMS Version 1 reference manifests."><Container class="py-5"><Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Examples' }]} /><PageHeader title="Examples" description="Production-oriented manifests synchronized with the official Version 1 schema." /><Card class="mb-5"><div class="flex flex-wrap items-center justify-between gap-3"><div><h2 class="text-h3 font-semibold text-text">Full project manifest</h2><p class="mt-1 text-base text-content">Demonstrates every supported root object and recommended property ordering.</p></div><Button href="/examples/vibproject-full-example.ygit" download>Download</Button></div></Card><CodeBlock code={example} language="json" title="vibproject-full-example.ygit" /></Container></MainLayout>
+
+<MainLayout
+  category="example"
+  title="Examples"
+  description="Official valid VPMS Version 1 and Version 2 reference manifests."
+>
+  <Container class="py-5">
+    <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Examples' }]} />
+
+    <PageHeader
+      title="Examples"
+      description="Production-oriented manifests synchronized with the official versioned VPMS schemas."
+    />
+
+    <section class="mb-8" aria-labelledby="version-2-examples">
+      <div class="mb-4">
+        <h2 id="version-2-examples" class="text-lg font-semibold text-text">VPMS Version 2</h2>
+
+        <p class="mt-2 text-base text-content">
+          Frozen Version 2 reference manifests for common project types.
+        </p>
+      </div>
+
+      <div class="mb-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          v2Examples.map((example) => (
+            <Card as="article" hover class="flex h-full flex-col">
+              <h3 class="text-h3 font-semibold text-text">{example.title}</h3>
+
+              <p class="mt-2 mb-4 flex-1 text-base text-content">{example.description}</p>
+
+              <div>
+                <Button href={example.path} variant="secondary" download>
+                  Download
+                </Button>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+
+      <CodeBlock
+        code={v2Example}
+        language="json"
+        title="vibproject-full-example.ygit — VPMS Version 2"
+      />
+    </section>
+
+    <section aria-labelledby="version-1-example">
+      <div class="mb-4">
+        <h2 id="version-1-example" class="text-lg font-semibold text-text">VPMS Version 1</h2>
+
+        <p class="mt-2 text-base text-content">Original stable Version 1 reference manifest.</p>
+      </div>
+
+      <Card class="mb-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 class="text-h3 font-semibold text-text">Full Version 1 manifest</h3>
+
+            <p class="mt-1 text-base text-content">
+              Demonstrates every Version 1 root object and recommended property ordering.
+            </p>
+          </div>
+
+          <Button href="/examples/vibproject-full-example.ygit" download> Download </Button>
+        </div>
+      </Card>
+
+      <CodeBlock
+        code={v1Example}
+        language="json"
+        title="vibproject-full-example.ygit — VPMS Version 1"
+      />
+    </section>
+  </Container>
+</MainLayout>

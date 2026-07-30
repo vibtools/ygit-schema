@@ -141,5 +141,184 @@
         "description": "Manifest timestamps, author, generator, and specification metadata."
       }
     ]
+  },
+  {
+    "slug": "vibproject-v2",
+    "acronym": "VPMS v2",
+    "name": "Vib Project Manifest Schema Version 2",
+    "description": "Frozen Version 2 schema for vibproject.ygit manifests with expanded project classification, links, support, distribution, funding, and security metadata.",
+    "version": "2.0.0",
+    "schemaVersion": 2,
+    "status": "stable",
+    "draft": "2020-12",
+    "license": "MIT",
+    "compatibility": "YGit v2",
+    "schemaPath": "/vpms/v2/vibproject.schema.json",
+    "examplePath": "/examples/v2/vibproject-full-example.ygit",
+    "updatedAt": "2026-07-29",
+    "properties": [
+      {
+        "name": "$schema",
+        "type": "string (URI)",
+        "required": true,
+        "description": "Canonical VPMS Version 2 schema URL."
+      },
+      {
+        "name": "schemaVersion",
+        "type": "integer",
+        "required": true,
+        "description": "Schema major version; must equal 2."
+      },
+      {
+        "name": "manifestVersion",
+        "type": "string (SemVer)",
+        "required": true,
+        "description": "VPMS Version 2 manifest format version."
+      },
+      {
+        "name": "project",
+        "type": "object",
+        "required": true,
+        "description": "Project identity and general metadata."
+      },
+      {
+        "name": "classification",
+        "type": "object",
+        "required": false,
+        "description": "Project ownership, product type, application type, distribution model, and lifecycle."
+      },
+      {
+        "name": "organization",
+        "type": "object",
+        "required": false,
+        "description": "Organization, ownership, maintainers, contributors, and contact information."
+      },
+      {
+        "name": "repository",
+        "type": "object",
+        "required": false,
+        "description": "Repository hosting and source-control information."
+      },
+      {
+        "name": "links",
+        "type": "object",
+        "required": false,
+        "description": "Official website, documentation, community, social, and repository links."
+      },
+      {
+        "name": "branding",
+        "type": "object",
+        "required": false,
+        "description": "Product names, visual assets, and preferred theme."
+      },
+      {
+        "name": "license",
+        "type": "object",
+        "required": false,
+        "description": "Project license name, SPDX identifier, and license file."
+      },
+      {
+        "name": "technology",
+        "type": "object",
+        "required": false,
+        "description": "Languages, frameworks, libraries, package managers, databases, and APIs."
+      },
+      {
+        "name": "platform",
+        "type": "object",
+        "required": false,
+        "description": "Supported desktop, mobile, server, web, and operating-system platforms."
+      },
+      {
+        "name": "runtime",
+        "type": "object",
+        "required": false,
+        "description": "Python, Node.js, Docker, and container runtime requirements."
+      },
+      {
+        "name": "entrypoints",
+        "type": "object",
+        "required": false,
+        "description": "Application, CLI, GUI, API, documentation, and test entry points."
+      },
+      {
+        "name": "paths",
+        "type": "object",
+        "required": false,
+        "description": "Canonical repository file and directory locations."
+      },
+      {
+        "name": "dependencies",
+        "type": "object",
+        "required": false,
+        "description": "Required, optional, and external-service dependencies."
+      },
+      {
+        "name": "documentation",
+        "type": "object",
+        "required": false,
+        "description": "Documentation files, roots, and published website."
+      },
+      {
+        "name": "support",
+        "type": "object",
+        "required": false,
+        "description": "Support email, documentation, community, issues, discussions, and security links."
+      },
+      {
+        "name": "build",
+        "type": "object",
+        "required": false,
+        "description": "Build system, package formats, and build commands."
+      },
+      {
+        "name": "release",
+        "type": "object",
+        "required": false,
+        "description": "Release strategy, versioning standard, latest version, and release notes."
+      },
+      {
+        "name": "distribution",
+        "type": "object",
+        "required": false,
+        "description": "Official package registries, application stores, and release channels."
+      },
+      {
+        "name": "funding",
+        "type": "object",
+        "required": false,
+        "description": "Funding and sponsorship links."
+      },
+      {
+        "name": "quality",
+        "type": "object",
+        "required": false,
+        "description": "Formatting, linting, testing, coverage, and security tooling."
+      },
+      {
+        "name": "security",
+        "type": "object",
+        "required": false,
+        "description": "Security policy, SBOM, signing, and vulnerability-reporting metadata."
+      },
+      {
+        "name": "automation",
+        "type": "object",
+        "required": false,
+        "description": "CI/CD systems, workflows, and scheduled automation."
+      },
+      {
+        "name": "ai",
+        "type": "object",
+        "required": false,
+        "description": "AI repository-context and project-discovery capabilities."
+      },
+      {
+        "name": "metadata",
+        "type": "object",
+        "required": false,
+        "description": "Manifest timestamps, author, generator, and VPMS specification information."
+      }
+    ]
   }
 ]
