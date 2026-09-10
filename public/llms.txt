@@ -1,0 +1,41 @@
+# YGit Schema Registry
+
+> Official JSON Schema registry, documentation, examples, and validation reference for the YGit ecosystem, VPMS (Vib Project Manifest Specification), DPMS (Documentation Package Manifest Specification), and VibTools product catalog manifests.
+
+The YGit Schema Registry provides versioned, machine-verifiable JSON Schema Draft 2020-12 specifications for structuring project metadata, documentation packages, and software catalogs.
+
+## Schemas
+
+- [VPMS Version 1](https://schema.ygit.dev/schemas/vibproject/): Vib Project Manifest Specification Version 1 for software project metadata.
+- [VPMS Version 2](https://schema.ygit.dev/schemas/vibproject-v2/): Frozen Version 2 specification for project manifests.
+- [DPMS Version 1](https://schema.ygit.dev/schemas/dpms/): Documentation Package Manifest Specification for multi-version documentation trees.
+- [VibTools Manifest](https://schema.ygit.dev/schemas/vibtools/): Product catalog manifest for 1-click GitHub repository import.
+- [All Schemas](https://schema.ygit.dev/schemas/): Complete index of all supported JSON Schemas.
+
+## Core Documentation
+
+- [Getting Started](https://schema.ygit.dev/docs/getting-started/): Overview of YGit manifests, canonical schema URIs, and basic workflows.
+- [Installation](https://schema.ygit.dev/docs/installation/): Setup instructions for schema validation tooling in Python and Node.js.
+- [Create a Manifest](https://schema.ygit.dev/docs/create-manifest/): Step-by-step guide to authoring your first manifest.
+- [Schema Reference](https://schema.ygit.dev/docs/schema-reference/): Complete property definitions, nested types, and constraints.
+- [Validation](https://schema.ygit.dev/docs/validation/): Validating manifests using jsonschema, Python test suites, and CI pipelines.
+- [Versioning](https://schema.ygit.dev/docs/versioning/): Strict semantic versioning rules, compatibility policies, and immutable URIs.
+
+## Specifications & Guides
+
+- [VPMS Version 2 Specification](https://schema.ygit.dev/docs/vpms-v2/): Exhaustive technical specification of VPMS v2.
+- [DPMS Version 1 Specification](https://schema.ygit.dev/docs/dpms-v1/): Exhaustive technical specification of DPMS v1.
+- [VibTools Manifest Guide](https://schema.ygit.dev/docs/vibtools-v1/): Catalog specification and automated GitHub import script.
+- [Best Practices](https://schema.ygit.dev/docs/best-practices/): Production recommendations for authoring and maintaining manifests.
+- [Migration Guide](https://schema.ygit.dev/docs/migration/): Guide for upgrading between specification versions.
+- [FAQ](https://schema.ygit.dev/docs/faq/): Frequently asked questions about VPMS and YGit.
+
+## Examples & Registry
+
+- [Examples Gallery](https://schema.ygit.dev/examples/): Minimal and full reference manifests for VPMS, DPMS, and VibTools.
+- [Versions Matrix](https://schema.ygit.dev/versions/): Version history, draft standards, and lifecycle statuses.
+- [Changelog](https://schema.ygit.dev/changelog/): Release notes and schema evolution history.
+
+## Optional
+
+- [Full Context Documentation](https://schema.ygit.dev/llms-full.txt): Aggregated complete text content of all schemas, specifications, guides, and manifest examples for direct LLM ingestion.

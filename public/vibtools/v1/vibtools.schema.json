@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.ygit.dev/vibtools/v1/vibtools.schema.json",
+  "title": "VibTools Product Catalog Manifest Specification",
+  "description": "Schema for vibtools.json manifests used for auto-discovering and importing projects into VibTools catalog portals.",
+  "$comment": "https://schema.ygit.dev/",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "$schema",
+    "name",
+    "slug"
+  ],
+
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical schema URI."
+    },
+
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "default": 1,
+      "description": "VibTools manifest schema major version."
+    },
+
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product display name (e.g. 'Session Manager Pro')."
+    },
+
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Unique URL-friendly slug identifier (e.g. 'session-manager-pro')."
+    },
+
+    "category": {
+      "type": "string",
+      "enum": [
+        "Desktop Apps",
+        "Web Apps & Scripts",
+        "Browser Extensions",
+        "Open Source Projects",
+        "Developer Tools",
+        "Templates",
+        "Roadmap & Status",
+        "Utilities",
+        "Other"
+      ],
+      "default": "Desktop Apps",
+      "description": "Catalog category."
+    },
+
+    "status": {
+      "type": "string",
+      "enum": [
+        "Available",
+        "In Development",
+        "Beta",
+        "Preview",
+        "Archived",
+        "Coming Soon"
+      ],
+      "default": "Available",
+      "description": "Current release or availability status."
+    },
+
+    "version": {
+      "type": "string",
+      "description": "Current release version (e.g. '1.0.0' or 'v1.0.0')."
+    },
+
+    "subtitle": {
+      "type": "string",
+      "description": "Short primary tag or subtitle (e.g. 'Windows, Automation, Utility')."
+    },
+
+    "repository": {
+      "type": "string",
+      "description": "GitHub repository path or URL (e.g. 'vibtools/session-manager-pro')."
+    },
+
+    "description": {
+      "type": "string",
+      "description": "Comprehensive explanation of what the tool or product does."
+    },
+
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logoUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Square logo image URL."
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Banner or social preview thumbnail image URL."
+        },
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "description": "Array of screenshot image URLs."
+        }
+      },
+      "description": "Visual branding and media assets."
+    },
+
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "liveDemo": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to live demo or hosted web app."
+        },
+        "download": {
+          "type": "string",
+          "format": "uri",
+          "description": "Direct download link or release installer URL."
+        },
+        "docs": {
+          "type": "string",
+          "format": "uri",
+          "description": "Documentation site or guide URL."
+        },
+        "github": {
+          "type": "string",
+          "format": "uri",
+          "description": "GitHub repository web URL."
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "Official product landing page URL."
+        }
+      },
+      "description": "External resource links and download locations."
+    },
+
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "Keywords and filter tags (e.g. ['Desktop', 'Automation', 'Free'])."
+    },
+
+    "flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "isActive": {
+          "type": "boolean",
+          "default": true,
+          "description": "Active in public website catalog."
+        },
+        "isOpenSource": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open source repository flag."
+        },
+        "isFeatured": {
+          "type": "boolean",
+          "default": false,
+          "description": "Featured highlight on homepage or top rankings."
+        }
+      },
+      "description": "Catalog display and visibility toggles."
+    },
+
+    "custom": {
+      "type": "object",
+      "additionalProperties": true,
+      "default": {},
+      "description": "Custom vendor-specific or portal-specific metadata."
+    }
+  }
+}

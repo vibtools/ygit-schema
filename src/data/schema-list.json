@@ -320,5 +320,171 @@
         "description": "Manifest timestamps, author, generator, and VPMS specification information."
       }
     ]
+  },
+  {
+    "slug": "dpms",
+    "acronym": "DPMS",
+    "name": "Documentation Package Manifest Specification",
+    "description": "Official schema for docs.manifest.ygit documentation package manifests.",
+    "version": "1.0.0",
+    "schemaVersion": 1,
+    "status": "stable",
+    "draft": "2020-12",
+    "license": "MIT",
+    "compatibility": "DPMS v1",
+    "schemaPath": "/dpms/v1/docs.manifest.schema.json",
+    "examplePath": "/examples/v1/dpms/docs.full.manifest.ygit",
+    "updatedAt": "2026-09-09",
+    "properties": [
+      {
+        "name": "$schema",
+        "type": "string (URI)",
+        "required": true,
+        "description": "Canonical DPMS Version 1 schema URL."
+      },
+      {
+        "name": "schemaVersion",
+        "type": "integer",
+        "required": true,
+        "description": "Schema major version; must equal 1."
+      },
+      {
+        "name": "manifestVersion",
+        "type": "string (SemVer)",
+        "required": true,
+        "description": "DPMS Version 1 manifest format version."
+      },
+      {
+        "name": "documentation",
+        "type": "object",
+        "required": true,
+        "description": "Documentation package identity, title, root directory, and default document."
+      },
+      {
+        "name": "discovery",
+        "type": "object",
+        "required": true,
+        "description": "Automatic discovery rules, file patterns, and extension filters."
+      },
+      {
+        "name": "structure",
+        "type": "object",
+        "required": true,
+        "description": "Documentation logical structure, sections, navigation order, and hierarchy."
+      },
+      {
+        "name": "versions",
+        "type": "object",
+        "required": false,
+        "description": "Documentation multi-versioning, version list, and release strategy."
+      },
+      {
+        "name": "custom",
+        "type": "object",
+        "required": false,
+        "description": "Vendor-specific and platform extensions."
+      }
+    ]
+  },
+  {
+    "slug": "vibtools",
+    "acronym": "VibTools",
+    "name": "VibTools Product Catalog Manifest Specification",
+    "description": "Official schema for vibtools.json manifests to automate project imports, catalogs, and GitHub repository synchronization.",
+    "version": "1.0.0",
+    "schemaVersion": 1,
+    "status": "stable",
+    "draft": "2020-12",
+    "license": "MIT",
+    "compatibility": "VibTools v1",
+    "schemaPath": "/vibtools/v1/vibtools.schema.json",
+    "examplePath": "/examples/v1/vibtools/vibtools.json",
+    "updatedAt": "2026-09-09",
+    "properties": [
+      {
+        "name": "$schema",
+        "type": "string (URI)",
+        "required": true,
+        "description": "Canonical VibTools Version 1 schema URL."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Product display name."
+      },
+      {
+        "name": "slug",
+        "type": "string",
+        "required": true,
+        "description": "Unique URL slug identifier."
+      },
+      {
+        "name": "category",
+        "type": "string",
+        "required": false,
+        "description": "Product catalog category."
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false,
+        "description": "Release or availability status."
+      },
+      {
+        "name": "version",
+        "type": "string",
+        "required": false,
+        "description": "Current release version."
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "description": "Primary tag or subtitle summary."
+      },
+      {
+        "name": "repository",
+        "type": "string",
+        "required": false,
+        "description": "GitHub repository path or URL."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "Comprehensive product description."
+      },
+      {
+        "name": "assets",
+        "type": "object",
+        "required": false,
+        "description": "Logos, banner thumbnails, and screenshots."
+      },
+      {
+        "name": "links",
+        "type": "object",
+        "required": false,
+        "description": "Download link, live demo, docs, and repo links."
+      },
+      {
+        "name": "tags",
+        "type": "array",
+        "required": false,
+        "description": "Keywords and filter tags array."
+      },
+      {
+        "name": "flags",
+        "type": "object",
+        "required": false,
+        "description": "Active, open-source, and featured highlight flags."
+      },
+      {
+        "name": "custom",
+        "type": "object",
+        "required": false,
+        "description": "Custom vendor-specific extensions."
+      }
+    ]
   }
 ]

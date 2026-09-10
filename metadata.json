@@ -1,6 +1,6 @@
 {
   "name": "YGit Schema Registry",
-  "description": "Official YGit Schema Registry and VPMS documentation portal.",
+  "description": "Official YGit Schema Registry, VPMS, and DPMS documentation portal.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

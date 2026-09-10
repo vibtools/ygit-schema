@@ -18,6 +18,37 @@ const v2Example = await readFile(
   'utf-8',
 );
 
+const dpmsFullExample = await readFile(
+  new URL('../../../examples/v1/dpms/docs.full.manifest.ygit', import.meta.url),
+  'utf-8',
+);
+
+const vibtoolsExample = await readFile(
+  new URL('../../../examples/v1/vibtools/vibtools.json', import.meta.url),
+  'utf-8',
+);
+
+const vibtoolsExamples = [
+  {
+    title: 'Product Catalog Manifest',
+    description: 'Complete vibtools.json manifest with assets, download and demo links, tags, and catalog flags for 1-click GitHub import.',
+    path: '/examples/v1/vibtools/vibtools.json',
+  },
+] as const;
+
+const dpmsExamples = [
+  {
+    title: 'Minimal manifest',
+    description: 'The smallest valid DPMS Version 1 documentation manifest.',
+    path: '/examples/v1/dpms/docs.manifest.ygit',
+  },
+  {
+    title: 'Full manifest',
+    description: 'Every supported DPMS Version 1 section, discovery rules, versions, and vendor extensions.',
+    path: '/examples/v1/dpms/docs.full.manifest.ygit',
+  },
+] as const;
+
 const v2Examples = [
   {
     title: 'Minimal manifest',
@@ -60,15 +91,83 @@ const v2Examples = [
 <MainLayout
   category="example"
   title="Examples"
-  description="Official valid VPMS Version 1 and Version 2 reference manifests."
+  description="Official valid VPMS and DPMS reference manifests."
 >
   <Container class="py-5">
     <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Examples' }]} />
 
     <PageHeader
       title="Examples"
-      description="Production-oriented manifests synchronized with the official versioned VPMS schemas."
+      description="Production-oriented manifests synchronized with official versioned schemas."
     />
+
+    <section class="mb-8" aria-labelledby="dpms-examples">
+      <div class="mb-4">
+        <h2 id="dpms-examples" class="text-lg font-semibold text-text">DPMS Version 1</h2>
+
+        <p class="mt-2 text-base text-content">
+          Reference manifests for the Documentation Package Manifest Specification (<code>docs.manifest.ygit</code>).
+        </p>
+      </div>
+
+      <div class="mb-5 grid gap-4 sm:grid-cols-2">
+        {
+          dpmsExamples.map((example) => (
+            <Card as="article" hover class="flex h-full flex-col">
+              <h3 class="text-h3 font-semibold text-text">{example.title}</h3>
+
+              <p class="mt-2 mb-4 flex-1 text-base text-content">{example.description}</p>
+
+              <div>
+                <Button href={example.path} variant="secondary" download>
+                  Download
+                </Button>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+
+      <CodeBlock
+        code={dpmsFullExample}
+        language="json"
+        title="docs.full.manifest.ygit — DPMS Version 1"
+      />
+    </section>
+
+    <section class="mb-8" aria-labelledby="vibtools-examples">
+      <div class="mb-4">
+        <h2 id="vibtools-examples" class="text-lg font-semibold text-text">VibTools Catalog Manifest</h2>
+
+        <p class="mt-2 text-base text-content">
+          Official manifest format (<code>vibtools.json</code>) placed at project root for automated catalog discovery and 1-click GitHub import.
+        </p>
+      </div>
+
+      <div class="mb-5 grid gap-4">
+        {
+          vibtoolsExamples.map((example) => (
+            <Card as="article" hover class="flex h-full flex-col">
+              <h3 class="text-h3 font-semibold text-text">{example.title}</h3>
+
+              <p class="mt-2 mb-4 flex-1 text-base text-content">{example.description}</p>
+
+              <div>
+                <Button href={example.path} variant="secondary" download>
+                  Download
+                </Button>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+
+      <CodeBlock
+        code={vibtoolsExample}
+        language="json"
+        title="vibtools.json — Product Catalog Manifest"
+      />
+    </section>
 
     <section class="mb-8" aria-labelledby="version-2-examples">
       <div class="mb-4">

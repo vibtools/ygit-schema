@@ -1,0 +1,35 @@
+# INSTALLATION Documentation
+
+Canonical Source: https://schema.ygit.dev/docs/installation/
+Raw Markdown: https://schema.ygit.dev/docs/installation.md
+
+# Installation
+
+## Validator
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python scripts/validate.py --all
+```
+
+On Windows PowerShell, activate the environment with `.venv\Scripts\Activate.ps1`.
+
+## Documentation portal
+
+Use Node.js 24.16.0 or later:
+
+```bash
+npm install
+npm run dev
+```
+
+The development server prints the local URL. The production build is created with:
+
+```bash
+npm run build
+```
+
+The build output is written to `dist/`, then Pagefind creates the static search index.

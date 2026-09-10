@@ -13,11 +13,155 @@ type Props = Readonly<{
   noindex?: boolean | undefined;
   indexable?: boolean | undefined;
   category?: SearchCategory | undefined;
+  markdownHref?: string | undefined;
+  structuredDataOverride?: Record<string, unknown> | readonly Record<string, unknown>[] | undefined;
 }>;
-const { title, description = SITE_DESCRIPTION, image = '/social-card.svg', noindex = false, indexable = true, category = 'documentation' } = Astro.props;
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  image = '/social-card.svg',
+  noindex = false,
+  indexable = true,
+  category = 'documentation',
+  markdownHref,
+  structuredDataOverride,
+} = Astro.props;
 const pageTitle = title ? `${title} | ${SITE_NAME}` : `YGit Schema Registry | ${SITE_NAME}`;
 const canonical = new URL(Astro.url.pathname, SITE_URL);
-const structuredData = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'YGit Schema Registry', url: SITE_URL, description, potentialAction: { '@type': 'SearchAction', target: `${SITE_URL}/search/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } }).replaceAll('<', '\\u003c');
+
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const isFaq = Astro.url.pathname.includes('/faq');
+const isDocOrSchema = Astro.url.pathname.startsWith('/docs/') || Astro.url.pathname.startsWith('/schemas/');
+
+let schemaGraph: Record<string, unknown> | Record<string, unknown>[];
+
+if (structuredDataOverride) {
+  schemaGraph = structuredDataOverride as Record<string, unknown>;
+} else if (isHome) {
+  schemaGraph = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'YGit Schema Registry',
+      url: SITE_URL,
+      description,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Vib Tools',
+        url: SITE_URL,
+        logo: `${SITE_URL}/favicon.svg`,
+      },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${SITE_URL}/search/?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Vib Tools',
+      url: SITE_URL,
+      logo: `${SITE_URL}/favicon.svg`,
+      sameAs: [
+        'https://github.com/vibtools',
+        'https://github.com/vibtools/ygit-schema',
+      ],
+    },
+  ];
+} else if (isFaq) {
+  schemaGraph = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is a .ygit file JSON?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. VPMS files use JSON syntax with the .ygit extension.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Which fields are required?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'At the root: $schema, schemaVersion, manifestVersion, and project. Inside project: id, name, description, and version.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Are unknown properties allowed?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. VPMS Version 1 rejects unknown properties at every defined object level.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can the manifest contain secrets?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Store secrets in environment variables or a dedicated secret manager.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I validate all repository fixtures?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Run python scripts/validate.py --all after installing requirements.txt.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How is the website deployed?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Cloudflare Pages uses Git integration with the main branch. GitHub Actions performs validation and build checks but does not perform production deployment.',
+        },
+      },
+    ],
+  };
+} else if (isDocOrSchema) {
+  schemaGraph = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: pageTitle,
+    description,
+    url: canonical.toString(),
+    inLanguage: 'en',
+    datePublished: '2026-07-28',
+    dateModified: '2026-09-09',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Vib Tools',
+      url: SITE_URL,
+      logo: `${SITE_URL}/favicon.svg`,
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'Vib Tools',
+      url: SITE_URL,
+    },
+  };
+} else {
+  schemaGraph = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: pageTitle,
+    description,
+    url: canonical.toString(),
+    publisher: {
+      '@type': 'Organization',
+      name: 'Vib Tools',
+      url: SITE_URL,
+    },
+  };
+}
+
+const structuredData = JSON.stringify(schemaGraph).replaceAll('<', '\\u003c');
 ---
 <!doctype html>
 <html lang="en">
@@ -32,7 +176,11 @@ const structuredData = JSON.stringify({ '@context': 'https://schema.org', '@type
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context summary" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLM context" />
+    {markdownHref && <link rel="alternate" type="text/markdown" href={markdownHref} />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />

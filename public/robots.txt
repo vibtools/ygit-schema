@@ -1,4 +1,46 @@
+# ==============================================================================
+# Robots.txt for YGit Schema Registry (https://schema.ygit.dev)
+# ==============================================================================
+
 User-agent: *
 Allow: /
 
+# Explicit scrape and crawl permissions for major AI & LLM Search Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemaps
+Sitemap: https://schema.ygit.dev/sitemap.xml
 Sitemap: https://schema.ygit.dev/sitemap-index.xml
+
+# LLM Machine-Readable Index
+# https://llmstxt.org
+# llms.txt: https://schema.ygit.dev/llms.txt
+# llms-full.txt: https://schema.ygit.dev/llms-full.txt

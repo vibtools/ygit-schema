@@ -28,21 +28,107 @@ type Props = Readonly<{
 
 const { schema }: Props = Astro.props;
 
-const example = JSON.stringify(
-  {
-    $schema: `https://schema.ygit.dev/vpms/v${schema.schemaVersion}/vibproject.schema.json`,
-    schemaVersion: schema.schemaVersion,
-    manifestVersion: `${schema.schemaVersion}.0.0`,
-    project: {
-      id: 'example-project',
-      name: 'Example Project',
-      description: `A minimal valid VPMS Version ${schema.schemaVersion} manifest.`,
-      version: '1.0.0',
-    },
-  },
-  null,
-  2,
-);
+const isDpms = schema.slug === 'dpms';
+const isVibtools = schema.slug === 'vibtools';
+
+const example = isVibtools
+  ? JSON.stringify(
+      {
+        $schema: 'https://schema.ygit.dev/vibtools/v1/vibtools.schema.json',
+        schemaVersion: 1,
+        name: 'Session Manager Pro',
+        slug: 'session-manager-pro',
+        category: 'Desktop Apps',
+        status: 'Available',
+        version: '1.0.0',
+        subtitle: 'Windows, Automation, Utility',
+        repository: 'vibtools/session-manager-pro',
+        description: 'A powerful session and workspace management utility for Windows power users.',
+        assets: {
+          logoUrl: 'https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/logo.png',
+          thumbnailUrl: 'https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/banner.png',
+        },
+        links: {
+          liveDemo: 'https://demo.vib.tools',
+          download: 'https://vib.tools/downloads/v1.0.0.exe',
+        },
+        tags: ['Desktop', 'Automation', 'Free', 'Open Source'],
+        flags: {
+          isActive: true,
+          isOpenSource: true,
+          isFeatured: false,
+        },
+      },
+      null,
+      2,
+    )
+  : isDpms
+  ? JSON.stringify(
+      {
+        $schema: 'https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json',
+        schemaVersion: 1,
+        manifestVersion: '1.0.0',
+        documentation: {
+          id: 'vib-tools-image-converter',
+          title: 'Vib Tools Image Converter Documentation',
+          description: 'Official user documentation for Vib Tools Image Converter.',
+          docsRoot: 'docs/',
+          defaultDocument: 'getting-started/introduction.md',
+          defaultLanguage: 'en',
+          status: 'published',
+          tags: ['image', 'converter', 'desktop', 'windows'],
+        },
+        discovery: {
+          enabled: true,
+          recursive: true,
+          include: ['**/*.md'],
+          exclude: ['assets/**', 'images/**', 'drafts/**'],
+          extensions: ['md'],
+          ignoreHidden: true,
+          followSymlink: false,
+        },
+        structure: {
+          autoGenerate: true,
+          sort: 'manual',
+          maxDepth: 10,
+          sections: [
+            {
+              id: 'getting-started',
+              title: 'Getting Started',
+              description: 'Initial setup and first steps.',
+              icon: 'rocket',
+              path: 'getting-started/',
+              order: 1,
+              hidden: false,
+              collapsed: false,
+            },
+          ],
+        },
+      },
+      null,
+      2,
+    )
+  : JSON.stringify(
+      {
+        $schema: `https://schema.ygit.dev/vpms/v${schema.schemaVersion}/vibproject.schema.json`,
+        schemaVersion: schema.schemaVersion,
+        manifestVersion: `${schema.schemaVersion}.0.0`,
+        project: {
+          id: 'example-project',
+          name: 'Example Project',
+          description: `A minimal valid VPMS Version ${schema.schemaVersion} manifest.`,
+          version: '1.0.0',
+        },
+      },
+      null,
+      2,
+    );
+
+const exampleTitle = isVibtools
+  ? 'vibtools.json'
+  : isDpms
+  ? 'Minimal docs.manifest.ygit'
+  : 'Minimal vibproject.ygit';
 
 const headings = [
   {
@@ -105,7 +191,7 @@ const headings = [
   <section id="example" class="mb-7">
     <h2 class="mb-3 text-lg font-semibold text-text">Example</h2>
 
-    <CodeBlock code={example} language="json" title="Minimal vibproject.ygit" />
+    <CodeBlock code={example} language="json" title={exampleTitle} />
   </section>
 
   <section id="downloads">
@@ -113,7 +199,7 @@ const headings = [
 
     <Card>
       <p class="mb-4 text-base text-content">
-        Use the immutable Version {schema.schemaVersion} URL in manifests and automation.
+        Use the immutable {schema.acronym} Version {schema.schemaVersion} URL in manifests and automation.
       </p>
 
       <div class="flex flex-wrap gap-3">

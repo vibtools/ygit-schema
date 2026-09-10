@@ -10,7 +10,7 @@ import { getSchemas } from '@/services/schema.service';
 const schemas = [...getSchemas()].sort((left, right) => right.schemaVersion - left.schemaVersion);
 ---
 
-<MainLayout title="Versions" description="VPMS schema release lifecycle and compatibility status.">
+<MainLayout title="Versions" description="Official schema release lifecycle and compatibility status.">
   <Container class="py-5">
     <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Versions' }]} />
 
@@ -26,18 +26,18 @@ const schemas = [...getSchemas()].sort((left, right) => right.schemaVersion - le
             <div class="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <div class="mb-2 flex items-center gap-2">
-                  <h2 class="text-lg font-semibold text-text">Version {schema.schemaVersion}</h2>
+                  <h2 class="text-lg font-semibold text-text">{schema.name}</h2>
 
                   <Badge variant={schema.status}>{schema.status}</Badge>
                 </div>
 
                 <p class="text-base text-content">
-                  VPMS {schema.version} · JSON Schema Draft {schema.draft} · {schema.compatibility}.
+                  {schema.acronym} v{schema.version} · JSON Schema Draft {schema.draft} · {schema.compatibility}.
                 </p>
               </div>
 
               <a class="font-mono text-md" href={`/schemas/${schema.slug}/`}>
-                /vpms/v{schema.schemaVersion}/
+                {schema.schemaPath}
               </a>
             </div>
           </Card>

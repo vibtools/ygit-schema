@@ -1,0 +1,131 @@
+---
+title: DPMS Version 1
+description: Documentation Package Manifest Specification (DPMS) schema, discovery workflow, and reference manifest.
+order: 10
+---
+
+# Documentation Package Manifest Specification (DPMS)
+
+**Version:** 1.0.0 (Stable)
+
+The Documentation Package Manifest Specification (DPMS) defines a standardized manifest format for documentation packages (`docs.manifest.ygit`).
+
+Its purpose is to allow documentation platforms to automatically discover, identify, organize, and publish documentation directly from a project repository without manual configuration.
+
+## Canonical schema
+
+Use this immutable schema URL in DPMS Version 1 manifests:
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0"
+}
+```
+
+[View the full DPMS Schema Reference](/schemas/dpms/) or [download DPMS examples](/examples/).
+
+## Purpose
+
+The primary purpose of DPMS is to make project documentation portable, discoverable, and machine-readable.
+
+Instead of manually copying documentation into a separate documentation portal, the documentation platform reads a project's documentation manifest and automatically imports the package.
+
+## Typical Workflow
+
+A project repository contains:
+
+```text
+Repository
+│
+├── vibproject.ygit
+│
+└── docs/
+    │
+    ├── docs.manifest.ygit
+    ├── getting-started/
+    ├── installation/
+    ├── api/
+    ├── faq/
+    └── assets/
+```
+
+A documentation platform registers the repository once and executes the discovery pipeline:
+
+1. Reads the repository.
+2. Locates the `docs/` directory.
+3. Reads `docs.manifest.ygit`.
+4. Discovers documentation files according to glob patterns.
+5. Organizes the documentation structure.
+6. Builds the documentation registry.
+7. Makes the documentation searchable.
+8. Publishes the documentation automatically.
+
+## Scope
+
+DPMS is responsible for describing a documentation package:
+
+- **Identity**: `id`, `title`, `description`, `status`, `tags`.
+- **Paths**: `docsRoot`, `defaultDocument`, `defaultLanguage`.
+- **Discovery**: `include`, `exclude`, `extensions`, `ignoreHidden`, `followSymlink`.
+- **Structure**: `sections` hierarchy, `sort` order, `maxDepth`.
+- **Versions**: Multi-version support, `current`, `latest`, `available`, `strategy`.
+- **Extensions**: `custom` vendor-specific extensions.
+
+DPMS intentionally does **not** describe website themes, UI styling, search engine internals, or portal branding. Those remain the responsibility of the documentation platform.
+
+## Relationship with vibproject.ygit
+
+The project manifest and documentation manifest serve complementary purposes:
+
+| Manifest | File | Primary Responsibility |
+| --- | --- | --- |
+| **VPMS** | `vibproject.ygit` | Project identity, technology stack, licensing, builds, platforms, and release metadata. |
+| **DPMS** | `docs.manifest.ygit` | Documentation package root, discovery rules, sections, and multi-version navigation. |
+
+## Quick Example
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+  "documentation": {
+    "id": "vib-tools-image-converter",
+    "title": "Vib Tools Image Converter Documentation",
+    "description": "Official user documentation for Vib Tools Image Converter.",
+    "docsRoot": "docs/",
+    "defaultDocument": "getting-started/introduction.md",
+    "defaultLanguage": "en",
+    "status": "published",
+    "tags": ["image", "converter", "desktop", "windows"]
+  },
+  "discovery": {
+    "enabled": true,
+    "recursive": true,
+    "include": ["**/*.md"],
+    "exclude": ["assets/**", "images/**", "drafts/**"],
+    "extensions": ["md"],
+    "ignoreHidden": true,
+    "followSymlink": false
+  },
+  "structure": {
+    "autoGenerate": true,
+    "sort": "manual",
+    "maxDepth": 10,
+    "sections": [
+      {
+        "id": "getting-started",
+        "title": "Getting Started",
+        "description": "Initial setup and first steps.",
+        "icon": "rocket",
+        "path": "getting-started/",
+        "order": 1,
+        "hidden": false,
+        "collapsed": false
+      }
+    ]
+  }
+}
+```

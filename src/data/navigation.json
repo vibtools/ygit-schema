@@ -12,6 +12,8 @@
     "items": [
       { "label": "Schema Reference", "href": "/docs/schema-reference/" },
       { "label": "VPMS Version 2", "href": "/docs/vpms-v2/" },
+      { "label": "DPMS Version 1", "href": "/docs/dpms-v1/" },
+      { "label": "VibTools Manifest", "href": "/docs/vibtools-v1/" },
       { "label": "Validation", "href": "/docs/validation/" },
       { "label": "Versioning", "href": "/docs/versioning/" }
     ]

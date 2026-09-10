@@ -1,0 +1,1205 @@
+# YGit Schema Registry — Full LLM Knowledge Base
+Domain: https://schema.ygit.dev
+Generated: 2026-09-10T03:11:54.035Z
+License: MIT
+Description: Complete aggregated text content, schema definitions, implementation guides, and manifest examples.
+
+---
+
+
+# Page: Home
+URL: https://schema.ygit.dev/
+Description: Build, validate, and version YGit manifests.
+Content:
+The YGit Schema Registry provides versioned JSON Schema specifications, documentation, and validation tooling for YGit projects.
+Canonical schema domain: https://schema.ygit.dev/
+Supported specifications:
+1. VPMS (Vib Project Manifest Specification): Manifests for projects and desktop utilities (vibproject.ygit).
+2. DPMS (Documentation Package Manifest Specification): Documentation package discovery and structure (docs.manifest.ygit).
+3. VibTools Product Catalog Manifest: Automated project discovery and 1-click GitHub import (vibtools.json).
+
+
+---
+
+
+# Page: Schema - Vib Project Manifest Schema (VPMS)
+URL: https://schema.ygit.dev/schemas/vibproject/
+Schema URI: https://schema.ygit.dev/vpms/v1/vibproject.schema.json
+Version: 1.0.0 (Draft 2020-12)
+Status: stable
+Description: Official schema for vibproject.ygit project manifests.
+Properties:
+  - $schema (string (URI), required): Canonical VPMS Version 1 schema URL.
+  - schemaVersion (integer, required): Schema major version; must equal 1.
+  - manifestVersion (string (SemVer), required): VPMS Version 1 manifest format version.
+  - project (object, required): Project identity and core metadata.
+  - organization (object): Ownership, maintainers, contributors, and contact details.
+  - repository (object): Repository provider, URLs, and branches.
+  - branding (object): Product naming and branding asset paths.
+  - license (object): License name, SPDX identifier, and file.
+  - technology (object): Languages, frameworks, libraries, databases, and APIs.
+  - platform (object): Supported desktop, mobile, server, web, and operating systems.
+  - runtime (object): Runtime version constraints and container requirements.
+  - entrypoints (object): Application, CLI, GUI, API, documentation, and test entry points.
+  - paths (object): Canonical repository paths.
+  - dependencies (object): Required, optional, and external service dependencies.
+  - documentation (object): Documentation files, roots, and website.
+  - build (object): Build system, package formats, and commands.
+  - release (object): Release strategy and latest version.
+  - quality (object): Formatter, linter, tests, coverage, and security tooling.
+  - automation (object): CI/CD workflows and scheduled tasks.
+  - ai (object): AI repository-context capabilities.
+  - metadata (object): Manifest timestamps, author, generator, and specification metadata.
+
+
+---
+
+
+# Page: Schema - Vib Project Manifest Schema Version 2 (VPMS v2)
+URL: https://schema.ygit.dev/schemas/vibproject-v2/
+Schema URI: https://schema.ygit.dev/vpms/v2/vibproject.schema.json
+Version: 2.0.0 (Draft 2020-12)
+Status: stable
+Description: Frozen Version 2 schema for vibproject.ygit manifests with expanded project classification, links, support, distribution, funding, and security metadata.
+Properties:
+  - $schema (string (URI), required): Canonical VPMS Version 2 schema URL.
+  - schemaVersion (integer, required): Schema major version; must equal 2.
+  - manifestVersion (string (SemVer), required): VPMS Version 2 manifest format version.
+  - project (object, required): Project identity and general metadata.
+  - classification (object): Project ownership, product type, application type, distribution model, and lifecycle.
+  - organization (object): Organization, ownership, maintainers, contributors, and contact information.
+  - repository (object): Repository hosting and source-control information.
+  - links (object): Official website, documentation, community, social, and repository links.
+  - branding (object): Product names, visual assets, and preferred theme.
+  - license (object): Project license name, SPDX identifier, and license file.
+  - technology (object): Languages, frameworks, libraries, package managers, databases, and APIs.
+  - platform (object): Supported desktop, mobile, server, web, and operating-system platforms.
+  - runtime (object): Python, Node.js, Docker, and container runtime requirements.
+  - entrypoints (object): Application, CLI, GUI, API, documentation, and test entry points.
+  - paths (object): Canonical repository file and directory locations.
+  - dependencies (object): Required, optional, and external-service dependencies.
+  - documentation (object): Documentation files, roots, and published website.
+  - support (object): Support email, documentation, community, issues, discussions, and security links.
+  - build (object): Build system, package formats, and build commands.
+  - release (object): Release strategy, versioning standard, latest version, and release notes.
+  - distribution (object): Official package registries, application stores, and release channels.
+  - funding (object): Funding and sponsorship links.
+  - quality (object): Formatting, linting, testing, coverage, and security tooling.
+  - security (object): Security policy, SBOM, signing, and vulnerability-reporting metadata.
+  - automation (object): CI/CD systems, workflows, and scheduled automation.
+  - ai (object): AI repository-context and project-discovery capabilities.
+  - metadata (object): Manifest timestamps, author, generator, and VPMS specification information.
+
+
+---
+
+
+# Page: Schema - Documentation Package Manifest Specification (DPMS)
+URL: https://schema.ygit.dev/schemas/dpms/
+Schema URI: https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json
+Version: 1.0.0 (Draft 2020-12)
+Status: stable
+Description: Official schema for docs.manifest.ygit documentation package manifests.
+Properties:
+  - $schema (string (URI), required): Canonical DPMS Version 1 schema URL.
+  - schemaVersion (integer, required): Schema major version; must equal 1.
+  - manifestVersion (string (SemVer), required): DPMS Version 1 manifest format version.
+  - documentation (object, required): Documentation package identity, title, root directory, and default document.
+  - discovery (object, required): Automatic discovery rules, file patterns, and extension filters.
+  - structure (object, required): Documentation logical structure, sections, navigation order, and hierarchy.
+  - versions (object): Documentation multi-versioning, version list, and release strategy.
+  - custom (object): Vendor-specific and platform extensions.
+
+
+---
+
+
+# Page: Schema - VibTools Product Catalog Manifest Specification (VibTools)
+URL: https://schema.ygit.dev/schemas/vibtools/
+Schema URI: https://schema.ygit.dev/vibtools/v1/vibtools.schema.json
+Version: 1.0.0 (Draft 2020-12)
+Status: stable
+Description: Official schema for vibtools.json manifests to automate project imports, catalogs, and GitHub repository synchronization.
+Properties:
+  - $schema (string (URI), required): Canonical VibTools Version 1 schema URL.
+  - name (string, required): Product display name.
+  - slug (string, required): Unique URL slug identifier.
+  - category (string): Product catalog category.
+  - status (string): Release or availability status.
+  - version (string): Current release version.
+  - subtitle (string): Primary tag or subtitle summary.
+  - repository (string): GitHub repository path or URL.
+  - description (string): Comprehensive product description.
+  - assets (object): Logos, banner thumbnails, and screenshots.
+  - links (object): Download link, live demo, docs, and repo links.
+  - tags (array): Keywords and filter tags array.
+  - flags (object): Active, open-source, and featured highlight flags.
+  - custom (object): Custom vendor-specific extensions.
+
+
+---
+
+
+# Page: Documentation - Best Practices
+URL: https://schema.ygit.dev/docs/best-practices/
+Raw Markdown: https://schema.ygit.dev/docs/best-practices.md
+Description: Keep VPMS manifests stable, readable, and automation-friendly.
+Content:
+# Best Practices
+
+## Keep identifiers stable
+
+Treat `project.id` as a permanent machine identifier. Use `displayName` for presentation changes.
+
+## Use canonical paths
+
+Store paths relative to the repository root and use forward slashes. Do not include operating-system-specific absolute paths.
+
+## Prefer explicit metadata
+
+Declare supported platforms, runtime constraints, build commands, and documentation locations when tools need to discover them.
+
+## Keep secrets out of manifests
+
+VPMS describes configuration and project structure. API keys, tokens, passwords, and private credentials must remain in environment variables or secret managers.
+
+## Validate every change
+
+Run `python scripts/validate.py --all` before committing and keep examples, tests, and documentation synchronized with schema changes.
+
+
+---
+
+
+# Page: Documentation - Create a Manifest
+URL: https://schema.ygit.dev/docs/create-manifest/
+Raw Markdown: https://schema.ygit.dev/docs/create-manifest.md
+Description: Author a project manifest using the official property order.
+Content:
+# Create a Manifest
+
+The recommended property order is:
+
+1. `$schema`
+2. `schemaVersion`
+3. `manifestVersion`
+4. `project`
+5. `organization`
+6. `repository`
+7. `branding`
+8. `license`
+9. `technology`
+10. `platform`
+11. `runtime`
+12. `entrypoints`
+13. `paths`
+14. `dependencies`
+15. `documentation`
+16. `build`
+17. `release`
+18. `quality`
+19. `automation`
+20. `ai`
+21. `metadata`
+
+Only `$schema`, `schemaVersion`, `manifestVersion`, and `project` are required at the root. The `project` object requires `id`, `name`, `description`, and `version`.
+
+Use repository-relative paths. Absolute paths and parent-directory traversal are rejected for path properties.
+
+
+---
+
+
+# Page: Documentation - DPMS Version 1
+URL: https://schema.ygit.dev/docs/dpms-v1/
+Raw Markdown: https://schema.ygit.dev/docs/dpms-v1.md
+Description: Documentation Package Manifest Specification (DPMS) schema, discovery workflow, and reference manifest.
+Content:
+# Documentation Package Manifest Specification (DPMS)
+
+**Version:** 1.0.0 (Stable)
+
+The Documentation Package Manifest Specification (DPMS) defines a standardized manifest format for documentation packages (`docs.manifest.ygit`).
+
+Its purpose is to allow documentation platforms to automatically discover, identify, organize, and publish documentation directly from a project repository without manual configuration.
+
+## Canonical schema
+
+Use this immutable schema URL in DPMS Version 1 manifests:
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0"
+}
+```
+
+[View the full DPMS Schema Reference](/schemas/dpms/) or [download DPMS examples](/examples/).
+
+## Purpose
+
+The primary purpose of DPMS is to make project documentation portable, discoverable, and machine-readable.
+
+Instead of manually copying documentation into a separate documentation portal, the documentation platform reads a project's documentation manifest and automatically imports the package.
+
+## Typical Workflow
+
+A project repository contains:
+
+```text
+Repository
+│
+├── vibproject.ygit
+│
+└── docs/
+    │
+    ├── docs.manifest.ygit
+    ├── getting-started/
+    ├── installation/
+    ├── api/
+    ├── faq/
+    └── assets/
+```
+
+A documentation platform registers the repository once and executes the discovery pipeline:
+
+1. Reads the repository.
+2. Locates the `docs/` directory.
+3. Reads `docs.manifest.ygit`.
+4. Discovers documentation files according to glob patterns.
+5. Organizes the documentation structure.
+6. Builds the documentation registry.
+7. Makes the documentation searchable.
+8. Publishes the documentation automatically.
+
+## Scope
+
+DPMS is responsible for describing a documentation package:
+
+- **Identity**: `id`, `title`, `description`, `status`, `tags`.
+- **Paths**: `docsRoot`, `defaultDocument`, `defaultLanguage`.
+- **Discovery**: `include`, `exclude`, `extensions`, `ignoreHidden`, `followSymlink`.
+- **Structure**: `sections` hierarchy, `sort` order, `maxDepth`.
+- **Versions**: Multi-version support, `current`, `latest`, `available`, `strategy`.
+- **Extensions**: `custom` vendor-specific extensions.
+
+DPMS intentionally does **not** describe website themes, UI styling, search engine internals, or portal branding. Those remain the responsibility of the documentation platform.
+
+## Relationship with vibproject.ygit
+
+The project manifest and documentation manifest serve complementary purposes:
+
+| Manifest | File | Primary Responsibility |
+| --- | --- | --- |
+| **VPMS** | `vibproject.ygit` | Project identity, technology stack, licensing, builds, platforms, and release metadata. |
+| **DPMS** | `docs.manifest.ygit` | Documentation package root, discovery rules, sections, and multi-version navigation. |
+
+## Quick Example
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+  "documentation": {
+    "id": "vib-tools-image-converter",
+    "title": "Vib Tools Image Converter Documentation",
+    "description": "Official user documentation for Vib Tools Image Converter.",
+    "docsRoot": "docs/",
+    "defaultDocument": "getting-started/introduction.md",
+    "defaultLanguage": "en",
+    "status": "published",
+    "tags": ["image", "converter", "desktop", "windows"]
+  },
+  "discovery": {
+    "enabled": true,
+    "recursive": true,
+    "include": ["**/*.md"],
+    "exclude": ["assets/**", "images/**", "drafts/**"],
+    "extensions": ["md"],
+    "ignoreHidden": true,
+    "followSymlink": false
+  },
+  "structure": {
+    "autoGenerate": true,
+    "sort": "manual",
+    "maxDepth": 10,
+    "sections": [
+      {
+        "id": "getting-started",
+        "title": "Getting Started",
+        "description": "Initial setup and first steps.",
+        "icon": "rocket",
+        "path": "getting-started/",
+        "order": 1,
+        "hidden": false,
+        "collapsed": false
+      }
+    ]
+  }
+}
+```
+
+
+---
+
+
+# Page: Documentation - FAQ
+URL: https://schema.ygit.dev/docs/faq/
+Raw Markdown: https://schema.ygit.dev/docs/faq.md
+Description: Answers to common VPMS implementation and validation questions.
+Content:
+# Frequently Asked Questions
+
+## Is a `.ygit` file JSON?
+
+Yes. VPMS files use JSON syntax with the `.ygit` extension.
+
+## Which fields are required?
+
+At the root: `$schema`, `schemaVersion`, `manifestVersion`, and `project`. Inside `project`: `id`, `name`, `description`, and `version`.
+
+## Are unknown properties allowed?
+
+No. VPMS Version 1 rejects unknown properties at every defined object level.
+
+## Can the manifest contain secrets?
+
+No. Store secrets in environment variables or a dedicated secret manager.
+
+## How do I validate all repository fixtures?
+
+Run `python scripts/validate.py --all` after installing `requirements.txt`.
+
+## How is the website deployed?
+
+Cloudflare Pages uses Git integration with the `main` branch. GitHub Actions performs validation and build checks but does not perform production deployment.
+
+
+---
+
+
+# Page: Documentation - Getting Started
+URL: https://schema.ygit.dev/docs/getting-started/
+Raw Markdown: https://schema.ygit.dev/docs/getting-started.md
+Description: Create and validate a VPMS Version 1 manifest.
+Content:
+# Getting Started with VPMS
+
+VPMS is the **Vib Project Manifest Specification** used by YGit-compatible tools to describe projects in a predictable, machine-readable format.
+
+## Requirements
+
+- Python 3.11 or later for the repository validator.
+- Node.js 24.16.0 or later for the documentation portal.
+- A UTF-8 JSON file named `vibproject.ygit`.
+
+## Create the manifest
+
+Create `vibproject.ygit` in the repository root:
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+  "project": {
+    "id": "example-project",
+    "name": "Example Project",
+    "description": "A minimal valid VPMS manifest.",
+    "version": "1.0.0"
+  }
+}
+```
+
+## Validate the manifest
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/validate.py vibproject.ygit
+```
+
+A successful validation returns exit code `0`. Invalid JSON, schema errors, or constraint violations return a non-zero exit code.
+
+## Next steps
+
+Read the [schema reference](/docs/schema-reference/), review the [official example](/examples/), and add validation to continuous integration.
+
+
+---
+
+
+# Page: Documentation - Installation
+URL: https://schema.ygit.dev/docs/installation/
+Raw Markdown: https://schema.ygit.dev/docs/installation.md
+Description: Install the validator and run the schema registry locally.
+Content:
+# Installation
+
+## Validator
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python scripts/validate.py --all
+```
+
+On Windows PowerShell, activate the environment with `.venv\Scripts\Activate.ps1`.
+
+## Documentation portal
+
+Use Node.js 24.16.0 or later:
+
+```bash
+npm install
+npm run dev
+```
+
+The development server prints the local URL. The production build is created with:
+
+```bash
+npm run build
+```
+
+The build output is written to `dist/`, then Pagefind creates the static search index.
+
+
+---
+
+
+# Page: Documentation - Migration
+URL: https://schema.ygit.dev/docs/migration/
+Raw Markdown: https://schema.ygit.dev/docs/migration.md
+Description: Migration policy for future VPMS major versions.
+Content:
+# Migration
+
+VPMS Version 1 is the first published schema generation, so no earlier migration is required.
+
+When a future major version is introduced, this section will document:
+
+- Added, removed, and renamed properties.
+- Required manifest transformations.
+- Compatibility implications.
+- Before-and-after examples.
+- Validator and tool upgrade requirements.
+
+Version 1 manifests remain valid against the Version 1 schema and are not automatically rewritten.
+
+
+---
+
+
+# Page: Documentation - Schema Reference
+URL: https://schema.ygit.dev/docs/schema-reference/
+Raw Markdown: https://schema.ygit.dev/docs/schema-reference.md
+Description: VPMS Version 1 objects, required properties, and validation constraints.
+Content:
+# Schema Reference
+
+The Version 1 schema uses JSON Schema Draft 2020-12 and rejects unknown root and nested properties.
+
+## Root properties
+
+| Property | Type | Required | Purpose |
+| --- | --- | --- | --- |
+| `$schema` | URI string | Yes | Canonical schema identifier. |
+| `schemaVersion` | Integer | Yes | Must equal `1`. |
+| `manifestVersion` | Semantic version | Yes | Must be a Version 1 release such as `1.0.0`. |
+| `project` | Object | Yes | Project identity and version. |
+| Other objects | Object | No | Optional metadata defined by the schema. |
+
+## Project object
+
+The following fields are required:
+
+- `id`: lowercase kebab-case identifier.
+- `name`: canonical project name.
+- `description`: concise description, at most 240 characters.
+- `version`: semantic version.
+
+Optional `status` values are `draft`, `alpha`, `beta`, `stable`, `deprecated`, and `archived`.
+
+## Strict object validation
+
+Every defined object uses `additionalProperties: false`. Unsupported fields fail validation rather than being silently ignored.
+
+## Formats
+
+The schema validates URI, email, and date-time formats. Semantic versions are validated with explicit patterns.
+
+
+---
+
+
+# Page: Documentation - Validation Guide
+URL: https://schema.ygit.dev/docs/validation/
+Raw Markdown: https://schema.ygit.dev/docs/validation.md
+Description: Validate individual manifests, examples, and regression fixtures.
+Content:
+# Validation Guide
+
+## Validate one or more manifests
+
+```bash
+python scripts/validate.py path/to/vibproject.ygit
+python scripts/validate.py first.ygit second.ygit
+```
+
+## Validate the repository
+
+```bash
+python scripts/validate.py --all
+```
+
+This checks:
+
+- Every file under `examples/` must pass.
+- Every file under `test/valid/` must pass.
+- Every file under `test/invalid/` must fail.
+
+## Run regression tests
+
+```bash
+python -m unittest discover -s test -p "test_*.py"
+```
+
+## Exit codes
+
+- `0`: all requested validation checks passed.
+- `1`: one or more manifests produced an unexpected result.
+- `2`: schema loading or command configuration failed.
+
+## Common errors
+
+An error includes the exact JSON path and the failed constraint. Correct the manifest rather than disabling validation.
+
+
+---
+
+
+# Page: Documentation - Versioning
+URL: https://schema.ygit.dev/docs/versioning/
+Raw Markdown: https://schema.ygit.dev/docs/versioning.md
+Description: Understand schema, manifest, and project version fields.
+Content:
+# Versioning
+
+VPMS uses three distinct version concepts.
+
+## Schema version
+
+`schemaVersion` is the major schema generation. Version 1 manifests use the integer `1`.
+
+## Manifest version
+
+`manifestVersion` identifies the VPMS format release within the Version 1 compatibility line. It must start with major version `1` and use semantic version syntax.
+
+## Project version
+
+`project.version` is the version of the described project. It follows semantic versioning independently from VPMS.
+
+## Compatibility policy
+
+Released major schema directories are immutable with respect to breaking changes. Backward-compatible refinements may be released within the same major format only when existing valid manifests remain valid. Breaking changes require a new schema directory such as `v2/` and a migration guide.
+
+
+---
+
+
+# Page: Documentation - VibTools Manifest (v1)
+URL: https://schema.ygit.dev/docs/vibtools-v1/
+Raw Markdown: https://schema.ygit.dev/docs/vibtools-v1.md
+Description: Official specification for vibtools.json manifests to automate project imports, catalogs, and GitHub repository synchronization.
+Content:
+# VibTools Product Manifest Specification
+
+**Version:** 1.0.0 (Stable)
+
+The **VibTools Product Manifest Specification** defines the standard `vibtools.json` format placed in the root directory of applications, packages, and open-source tools.
+
+Instead of manually typing product descriptions, download URLs, versions, categories, and image links into multiple website databases, placing `vibtools.json` in your repository enables **1-Click Import from GitHub**.
+
+## Canonical Schema URL
+
+Add this `$schema` property to your `vibtools.json` for IDE autocomplete and schema validation in VS Code, JetBrains, or automated CI tools:
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/vibtools/v1/vibtools.schema.json",
+  "schemaVersion": 1,
+  "name": "Session Manager Pro",
+  "slug": "session-manager-pro"
+}
+```
+
+[View the Schema Reference](/schemas/vibtools/) or [Download Sample Manifest](/examples/).
+
+## How GitHub Import Works
+
+When managing a catalog website or app directory:
+
+1. **Project Root**: The developer places `vibtools.json` at the root of the repository alongside the source code.
+2. **Import Trigger**: In your catalog website admin panel, click **"Import with GitHub Repo"** and enter the repository name (e.g. `vibtools/session-manager-pro` or full GitHub URL).
+3. **Automated Fetch**: Your website fetches `https://raw.githubusercontent.com/{owner}/{repo}/main/vibtools.json`.
+4. **Instant Form Population**: All form inputs—product name, slug, subtitle, description, category, tags, links, flags, and assets—fill automatically.
+
+## Field Specification
+
+| Property | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `$schema` | `string (URI)` | **Yes** | `https://schema.ygit.dev/vibtools/v1/vibtools.schema.json` |
+| `schemaVersion` | `integer` | No | Major version number (must equal `1`). |
+| `name` | `string` | **Yes** | Product name (e.g. `Session Manager Pro`). |
+| `slug` | `string` | **Yes** | URL identifier (e.g. `session-manager-pro`). |
+| `category` | `string` | No | Catalog category (`Desktop Apps`, `Web Apps & Scripts`, `Browser Extensions`, etc.). |
+| `status` | `string` | No | Availability status (`Available`, `In Development`, `Beta`, `Preview`, `Archived`). |
+| `version` | `string` | No | Current release version (e.g. `1.0.0`). |
+| `subtitle` | `string` | No | Primary tag or subtitle summary. |
+| `repository` | `string` | No | GitHub repository path (`owner/repo`). |
+| `description` | `string` | No | Markdown or plain text description. |
+| `assets.logoUrl` | `string (URI)` | No | Square logo or icon image URL. |
+| `assets.thumbnailUrl` | `string (URI)` | No | Banner or social preview thumbnail image URL. |
+| `assets.screenshots` | `array` | No | Array of screenshot image URLs. |
+| `links.liveDemo` | `string (URI)` | No | Web demo or preview URL. |
+| `links.download` | `string (URI)` | No | Release download or installer URL. |
+| `links.docs` | `string (URI)` | No | Documentation website URL. |
+| `tags` | `array` | No | Keywords and filter tags list. |
+| `flags.isActive` | `boolean` | No | Visible in public catalog (`true`/`false`). |
+| `flags.isOpenSource` | `boolean` | No | Open source repository flag (`true`/`false`). |
+| `flags.isFeatured` | `boolean` | No | Featured highlight toggle (`true`/`false`). |
+
+## Reference Manifest (`vibtools.json`)
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/vibtools/v1/vibtools.schema.json",
+  "schemaVersion": 1,
+  "name": "Session Manager Pro",
+  "slug": "session-manager-pro",
+  "category": "Desktop Apps",
+  "status": "Available",
+  "version": "1.0.0",
+  "subtitle": "Windows, Automation, Utility",
+  "repository": "vibtools/session-manager-pro",
+  "description": "A powerful session and workspace management utility for Windows power users. Automates window positioning, workspace state saving, and instant multi-monitor workspace restoration.",
+  "assets": {
+    "logoUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/logo.png",
+    "thumbnailUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/banner.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/screenshot-main.png"
+    ]
+  },
+  "links": {
+    "liveDemo": "https://demo.vib.tools",
+    "download": "https://vib.tools/downloads/v1.0.0.exe",
+    "docs": "https://docs.vib.tools/session-manager-pro",
+    "github": "https://github.com/vibtools/session-manager-pro"
+  },
+  "tags": [
+    "Desktop",
+    "Automation",
+    "Free",
+    "Open Source"
+  ],
+  "flags": {
+    "isActive": true,
+    "isOpenSource": true,
+    "isFeatured": false
+  }
+}
+```
+
+## Website Implementation Snippet
+
+Here is an example client-side function to implement the **"Import with GitHub Repo"** feature in your catalog admin modal:
+
+```typescript
+async function importFromGitHub(repoInput: string) {
+  // Normalize input: handles "vibtools/session-manager-pro" or "https://github.com/vibtools/session-manager-pro"
+  const cleanRepo = repoInput.replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '');
+  const url = `https://raw.githubusercontent.com/${cleanRepo}/main/vibtools.json`;
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Could not find vibtools.json at ${url}`);
+  }
+
+  const manifest = await response.json();
+
+  // Auto-fill form fields
+  return {
+    name: manifest.name ?? '',
+    slug: manifest.slug ?? '',
+    category: manifest.category ?? 'Desktop Apps',
+    status: manifest.status ?? 'Available',
+    version: manifest.version ?? '1.0.0',
+    subtitle: manifest.subtitle ?? '',
+    repository: manifest.repository ?? cleanRepo,
+    description: manifest.description ?? '',
+    downloadUrl: manifest.links?.download ?? '',
+    liveDemoUrl: manifest.links?.liveDemo ?? '',
+    filterTags: Array.isArray(manifest.tags) ? manifest.tags.join(', ') : '',
+    isActive: manifest.flags?.isActive ?? true,
+    isOpenSource: manifest.flags?.isOpenSource ?? true,
+    isFeatured: manifest.flags?.isFeatured ?? false,
+    logoUrl: manifest.assets?.logoUrl ?? '',
+    thumbnailUrl: manifest.assets?.thumbnailUrl ?? '',
+  };
+}
+```
+
+
+---
+
+
+# Page: Documentation - VPMS Version 2
+URL: https://schema.ygit.dev/docs/vpms-v2/
+Raw Markdown: https://schema.ygit.dev/docs/vpms-v2.md
+Description: Frozen Version 2 schema contract, canonical URLs, examples, and compatibility rules.
+Content:
+# VPMS Version 2
+
+VPMS Version 2 is the frozen `2.0.0` generation of the Vib Project Manifest Specification.
+
+## Canonical schema
+
+Use this immutable schema URL in Version 2 manifests:
+
+```json
+{
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0"
+}
+```
+
+
+---
+
+
+# Page: Reference Manifest Examples
+URL: https://schema.ygit.dev/examples/
+
+## Example: VPMS Version 1 (vibproject.ygit)
+```json
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+
+  "project": {
+    "id": "contextvault",
+    "name": "ContextVault",
+    "slug": "contextvault",
+    "displayName": "ContextVault",
+    "description": "Lossless AI Conversation Archive Engine.",
+    "summary": "An open-source platform for archiving, organizing and preserving AI conversations.",
+    "version": "1.0.0",
+    "status": "stable",
+    "visibility": "public",
+    "category": "Open Source",
+    "keywords": [
+      "ai",
+      "chatgpt",
+      "gemini",
+      "archive",
+      "memory",
+      "rag",
+      "conversation",
+      "context"
+    ],
+    "homepage": "https://contextvault.dev",
+    "website": "https://contextvault.dev"
+  },
+
+  "organization": {
+    "company": "Vib Tools",
+    "owner": "Raj",
+    "maintainers": [
+      "Raj"
+    ],
+    "contributors": [
+      "Open Source Community"
+    ],
+    "contact": {
+      "email": "opensource@vib.tools",
+      "website": "https://vib.tools"
+    }
+  },
+
+  "repository": {
+    "provider": "GitHub",
+    "url": "https://github.com/vibtools/contextvault",
+    "branch": "main",
+    "defaultBranch": "main",
+    "issues": "https://github.com/vibtools/contextvault/issues",
+    "discussions": "https://github.com/vibtools/contextvault/discussions",
+    "wiki": "https://github.com/vibtools/contextvault/wiki",
+    "documentation": "https://docs.contextvault.dev"
+  },
+
+  "branding": {
+    "productName": "ContextVault",
+    "shortName": "CV",
+    "logo": "assets/images/logo.svg",
+    "icon": "assets/icons/icon.svg",
+    "banner": "assets/images/banner.png",
+    "favicon": "assets/icons/favicon.ico",
+    "theme": "dark"
+  },
+
+  "license": {
+    "name": "MIT License",
+    "spdx": "MIT",
+    "file": "LICENSE"
+  },
+
+  "technology": {
+    "languages": [
+      "Python",
+      "JavaScript"
+    ],
+    "frameworks": [
+      "FastAPI"
+    ],
+    "libraries": [
+      "Playwright"
+    ],
+    "packageManagers": [
+      "pip",
+      "npm"
+    ],
+    "databases": [
+      "SQLite"
+    ],
+    "apis": [
+      "OpenAI API",
+      "Google Gemini API"
+    ]
+  },
+
+  "platform": {
+    "desktop": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "mobile": [],
+    "server": [
+      "Docker"
+    ],
+    "web": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "operatingSystems": [
+      "Windows",
+      "Ubuntu",
+      "macOS"
+    ]
+  },
+
+  "runtime": {
+    "python": ">=3.12",
+    "node": ">=22",
+    "docker": true,
+    "container": "Docker"
+  },
+
+  "entrypoints": {
+    "application": "src/main.py",
+    "cli": "src/cli.py",
+    "api": "src/api.py",
+    "documentation": "README.md",
+    "tests": "tests/"
+  },
+
+  "paths": {
+    "source": "src/",
+    "tests": "tests/",
+    "documentation": "docs/",
+    "scripts": "scripts/",
+    "assets": "assets/",
+    "examples": "examples/",
+    "configuration": "config/",
+    "data": "data/",
+    "project": "project/"
+  },
+
+  "dependencies": {
+    "required": [
+      "Python",
+      "Node.js"
+    ],
+    "optional": [
+      "Docker"
+    ],
+    "externalServices": [
+      "GitHub",
+      "OpenAI",
+      "Google AI Studio"
+    ]
+  },
+
+  "documentation": {
+    "readme": "README.md",
+    "structure": "PROJECT_STRUCTURE.md",
+    "changelog": "CHANGELOG.md",
+    "license": "LICENSE",
+    "docsRoot": "docs/",
+    "website": "https://docs.contextvault.dev"
+  },
+
+  "build": {
+    "buildSystem": "Python",
+    "packageFormat": [
+      "wheel",
+      "docker"
+    ],
+    "commands": {
+      "install": "pip install -r requirements.txt",
+      "build": "python -m build",
+      "test": "pytest",
+      "lint": "ruff check .",
+      "format": "ruff format ."
+    }
+  },
+
+  "release": {
+    "strategy": "Semantic Versioning",
+    "versioning": "SemVer",
+    "latestVersion": "1.0.0",
+    "releaseNotes": "docs/release-notes/"
+  },
+
+  "quality": {
+    "formatter": "Ruff",
+    "linter": "Ruff",
+    "testFramework": "Pytest",
+    "coverage": "Coverage.py",
+    "security": [
+      "Dependabot",
+      "CodeQL"
+    ]
+  },
+
+  "automation": {
+    "ci": "GitHub Actions",
+    "cd": "GitHub Actions",
+    "workflows": [
+      "CI",
+      "Release",
+      "Documentation"
+    ],
+    "scheduledTasks": [
+      "Dependency Updates"
+    ]
+  },
+
+  "ai": {
+    "enabled": true,
+    "repositoryContext": true,
+    "documentationContext": true,
+    "projectStructure": true,
+    "codingGuidelines": true,
+    "architectureGuidelines": true,
+    "entrypointDiscovery": true
+  },
+
+  "metadata": {
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-07-28T00:00:00Z",
+    "manifestAuthor": "Vib Tools",
+    "generator": "YGit CLI",
+    "specification": "VPMS",
+    "specificationVersion": "1.0.0"
+  }
+}
+
+```
+
+## Example: DPMS Version 1 (docs.manifest.ygit)
+```json
+{
+  "$schema": "https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json",
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+
+  "documentation": {
+    "id": "vib-tools-image-converter",
+    "title": "Vib Tools Image Converter Documentation",
+    "description": "Official documentation for Vib Tools Image Converter covering installation, usage, troubleshooting, and API reference.",
+    "docsRoot": "docs/",
+    "defaultDocument": "getting-started/introduction.md",
+    "defaultLanguage": "en",
+    "status": "published",
+    "tags": [
+      "image",
+      "converter",
+      "desktop",
+      "windows",
+      "documentation"
+    ]
+  },
+
+  "discovery": {
+    "enabled": true,
+    "recursive": true,
+    "include": [
+      "**/*.md"
+    ],
+    "exclude": [
+      "archive/**",
+      "drafts/**",
+      "assets/**",
+      "images/**"
+    ],
+    "extensions": [
+      "md",
+      "mdx"
+    ],
+    "ignoreHidden": true,
+    "followSymlink": false
+  },
+
+  "structure": {
+    "autoGenerate": true,
+    "sort": "manual",
+    "maxDepth": 10,
+    "sections": [
+      {
+        "id": "getting-started",
+        "title": "Getting Started",
+        "description": "Learn the basics before using the application.",
+        "icon": "rocket",
+        "path": "getting-started/",
+        "order": 1,
+        "hidden": false,
+        "collapsed": false
+      },
+      {
+        "id": "installation",
+        "title": "Installation",
+        "description": "Platform-specific installation guides.",
+        "icon": "download",
+        "path": "installation/",
+        "order": 2,
+        "hidden": false,
+        "collapsed": false
+      },
+      {
+        "id": "user-guide",
+        "title": "User Guide",
+        "description": "Detailed feature documentation.",
+        "icon": "book-open",
+        "path": "user-guide/",
+        "order": 3,
+        "hidden": false,
+        "collapsed": false
+      },
+      {
+        "id": "api",
+        "title": "API Reference",
+        "description": "Public API documentation.",
+        "icon": "code",
+        "path": "api/",
+        "order": 4,
+        "hidden": false,
+        "collapsed": true
+      },
+      {
+        "id": "faq",
+        "title": "FAQ",
+        "description": "Frequently asked questions.",
+        "icon": "circle-help",
+        "path": "faq/",
+        "order": 5,
+        "hidden": false,
+        "collapsed": true
+      },
+      {
+        "id": "troubleshooting",
+        "title": "Troubleshooting",
+        "description": "Common issues and their solutions.",
+        "icon": "wrench",
+        "path": "troubleshooting/",
+        "order": 6,
+        "hidden": false,
+        "collapsed": true
+      }
+    ]
+  },
+
+  "versions": {
+    "enabled": true,
+    "current": "1.4.0",
+    "latest": "1.4.0",
+    "available": [
+      "1.2.0",
+      "1.3.0",
+      "1.4.0"
+    ],
+    "strategy": "directory"
+  },
+
+  "custom": {
+    "vendor": "Vib Tools",
+    "registry": {
+      "category": "Desktop Applications",
+      "featured": true
+    },
+    "ui": {
+      "preferredIconSet": "lucide"
+    }
+  }
+}
+
+```
+
+## Example: VibTools Catalog Manifest (vibtools.json)
+```json
+{
+  "$schema": "https://schema.ygit.dev/vibtools/v1/vibtools.schema.json",
+  "schemaVersion": 1,
+  "name": "Session Manager Pro",
+  "slug": "session-manager-pro",
+  "category": "Desktop Apps",
+  "status": "Available",
+  "version": "1.0.0",
+  "subtitle": "Windows, Automation, Utility",
+  "repository": "vibtools/session-manager-pro",
+  "description": "A powerful session and workspace management utility for Windows power users. Automates window positioning, workspace state saving, and instant multi-monitor workspace restoration.",
+  "assets": {
+    "logoUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/logo.png",
+    "thumbnailUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/banner.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/screenshot-main.png"
+    ]
+  },
+  "links": {
+    "liveDemo": "https://demo.vib.tools",
+    "download": "https://vib.tools/downloads/v1.0.0.exe",
+    "docs": "https://docs.vib.tools/session-manager-pro",
+    "github": "https://github.com/vibtools/session-manager-pro"
+  },
+  "tags": [
+    "Desktop",
+    "Automation",
+    "Free",
+    "Open Source"
+  ],
+  "flags": {
+    "isActive": true,
+    "isOpenSource": true,
+    "isFeatured": false
+  },
+  "custom": {}
+}
+
+```

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.ygit.dev/vibtools/v1/vibtools.schema.json",
+  "schemaVersion": 1,
+  "name": "Session Manager Pro",
+  "slug": "session-manager-pro",
+  "category": "Desktop Apps",
+  "status": "Available",
+  "version": "1.0.0",
+  "subtitle": "Windows, Automation, Utility",
+  "repository": "vibtools/session-manager-pro",
+  "description": "A powerful session and workspace management utility for Windows power users. Automates window positioning, workspace state saving, and instant multi-monitor workspace restoration.",
+  "assets": {
+    "logoUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/logo.png",
+    "thumbnailUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/banner.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/screenshot-main.png"
+    ]
+  },
+  "links": {
+    "liveDemo": "https://demo.vib.tools",
+    "download": "https://vib.tools/downloads/v1.0.0.exe",
+    "docs": "https://docs.vib.tools/session-manager-pro",
+    "github": "https://github.com/vibtools/session-manager-pro"
+  },
+  "tags": [
+    "Desktop",
+    "Automation",
+    "Free",
+    "Open Source"
+  ],
+  "flags": {
+    "isActive": true,
+    "isOpenSource": true,
+    "isFeatured": false
+  },
+  "custom": {}
+}
