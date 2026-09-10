@@ -17,14 +17,18 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCHEMA = ROOT / 'v1' / 'vibproject.schema.json'
 ROOT_MANIFEST = ROOT / 'vibproject.ygit'
 
-SCHEMA_PATHS: Mapping[int, Path] = {
+SCHEMA_PATHS: Mapping[int | str, Path] = {
   1: DEFAULT_SCHEMA,
   2: ROOT / 'v2' / 'vibproject.schema.json',
+  'dpms-1': ROOT / 'v1' / 'dpms' / 'docs.manifest.schema.json',
+  'vibtools-1': ROOT / 'v1' / 'vibtools' / 'vibtools.schema.json',
 }
 
-SCHEMA_URLS: Mapping[str, int] = {
+SCHEMA_URLS: Mapping[str, int | str] = {
   'https://schema.ygit.dev/vpms/v1/vibproject.schema.json': 1,
   'https://schema.ygit.dev/vpms/v2/vibproject.schema.json': 2,
+  'https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json': 'dpms-1',
+  'https://schema.ygit.dev/vibtools/v1/vibtools.schema.json': 'vibtools-1',
 }
 
 
@@ -66,21 +70,38 @@ def create_validator(schema_path: Path) -> Draft202012Validator:
   )
 
 
-def create_validators() -> dict[int, Draft202012Validator]:
+def create_validators() -> dict[int | str, Draft202012Validator]:
   return {
     version: create_validator(path)
     for version, path in SCHEMA_PATHS.items()
   }
 
 
-def select_schema_version(manifest: Any) -> int:
+def select_schema_version(manifest: Any) -> int | str:
   if not isinstance(manifest, dict):
     raise RuntimeError('Manifest root must be a JSON object.')
 
   schema_url = manifest.get('$schema')
 
-  if isinstance(schema_url, str) and schema_url in SCHEMA_URLS:
-    return SCHEMA_URLS[schema_url]
+  if isinstance(schema_url, str):
+    cleaned = schema_url.rstrip('/')
+    if cleaned in SCHEMA_URLS:
+      return SCHEMA_URLS[cleaned]
+    if 'dpms' in cleaned:
+      return 'dpms-1'
+    if 'vibtools' in cleaned:
+      return 'vibtools-1'
+    if 'vpms/v2' in cleaned:
+      return 2
+    if 'vpms' in cleaned:
+      return 1
+
+  # Heuristic fallback based on root properties if $schema is not recognized
+  if 'documentation' in manifest:
+    return 'dpms-1'
+
+  if 'tools' in manifest:
+    return 'vibtools-1'
 
   schema_version = manifest.get('schemaVersion')
 
@@ -93,12 +114,12 @@ def select_schema_version(manifest: Any) -> int:
 
   supported = ', '.join(
     str(version)
-    for version in sorted(SCHEMA_PATHS)
+    for version in sorted(str(v) for v in SCHEMA_PATHS)
   )
 
   raise RuntimeError(
-    'Unable to select a VPMS schema. Expected a recognized $schema URL or '
-    f'a supported integer schemaVersion ({supported}).'
+    'Unable to select a schema. Expected a recognized $schema URL or '
+    f'a supported schemaVersion ({supported}).'
   )
 
 
@@ -106,7 +127,7 @@ def validate_file(
   path: Path,
   validator: Draft202012Validator | None = None,
   *,
-  validators: Mapping[int, Draft202012Validator] | None = None,
+  validators: Mapping[int | str, Draft202012Validator] | None = None,
 ) -> ValidationResult:
   try:
     manifest = load_json(path)
@@ -122,7 +143,7 @@ def validate_file(
         selected_validator = validators[schema_version]
       except KeyError as error:
         raise RuntimeError(
-          f'No validator is configured for schemaVersion {schema_version}.'
+          f'No validator is configured for schema {schema_version}.'
         ) from error
 
   except RuntimeError as error:
@@ -210,7 +231,7 @@ def _require_discovery(
 
 
 def validate_repository(
-  validators: Mapping[int, Draft202012Validator],
+  validators: Mapping[int | str, Draft202012Validator],
   validator: Draft202012Validator | None = None,
 ) -> bool:
   checks: list[bool] = []

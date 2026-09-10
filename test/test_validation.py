@@ -34,7 +34,12 @@ class ValidationSuiteTests(unittest.TestCase):
     )
 
   def test_schemas_are_valid_draft_2020_12(self) -> None:
-    for version, schema_path in self.schema_paths.items():
+    all_schemas: dict[int | str, Path] = {
+      **self.schema_paths,
+      'dpms-1': ROOT / 'v1' / 'dpms' / 'docs.manifest.schema.json',
+      'vibtools-1': ROOT / 'v1' / 'vibtools' / 'vibtools.schema.json',
+    }
+    for version, schema_path in all_schemas.items():
       with self.subTest(version=version):
         schema = json.loads(
           schema_path.read_text(
@@ -128,6 +133,15 @@ class ValidationSuiteTests(unittest.TestCase):
           schema_path.read_bytes(),
           published_path.read_bytes(),
         )
+
+    self.assertEqual(
+      (ROOT / 'v1' / 'dpms' / 'docs.manifest.schema.json').read_bytes(),
+      (ROOT / 'public' / 'dpms' / 'v1' / 'docs.manifest.schema.json').read_bytes(),
+    )
+    self.assertEqual(
+      (ROOT / 'v1' / 'vibtools' / 'vibtools.schema.json').read_bytes(),
+      (ROOT / 'public' / 'vibtools' / 'v1' / 'vibtools.schema.json').read_bytes(),
+    )
 
   def test_published_examples_match_sources(
     self,
