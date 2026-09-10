@@ -6,6 +6,10 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://schema.ygit.dev',
   output: 'static',
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+  },
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
