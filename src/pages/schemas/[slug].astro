@@ -43,14 +43,25 @@ const example = isVibtools
         version: '1.0.0',
         subtitle: 'Windows, Automation, Utility',
         repository: 'vibtools/session-manager-pro',
-        description: 'A powerful session and workspace management utility for Windows power users.',
+        description:
+          'A powerful session and workspace management utility for Windows power users. Automates window positioning, workspace state saving, and instant multi-monitor workspace restoration.',
         assets: {
-          logoUrl: 'https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/logo.png',
-          thumbnailUrl: 'https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/banner.png',
+          logoUrl: 'vibtools/assets/logo.png',
+          thumbnailUrl: 'vibtools/assets/thumbnail.png',
+          ogImageUrl: 'vibtools/assets/og-image.png',
+          screenshots: ['vibtools/assets/screenshot.png'],
+        },
+        documents: {
+          quickStart: 'vibtools/quick-start.md',
+          features: 'vibtools/features.md',
+          faq: 'vibtools/faq.md',
+          whatsNew: 'vibtools/whats-new.md',
         },
         links: {
           liveDemo: 'https://demo.vib.tools',
           download: 'https://vib.tools/downloads/v1.0.0.exe',
+          docs: 'https://docs.vib.tools/session-manager-pro',
+          github: 'https://github.com/vibtools/session-manager-pro',
         },
         tags: ['Desktop', 'Automation', 'Free', 'Open Source'],
         flags: {
@@ -130,28 +141,66 @@ const exampleTitle = isVibtools
   ? 'Minimal docs.manifest.ygit'
   : 'Minimal vibproject.ygit';
 
-const headings = [
-  {
-    depth: 2,
-    slug: 'overview',
-    text: 'Overview',
-  },
-  {
-    depth: 2,
-    slug: 'properties',
-    text: 'Properties',
-  },
-  {
-    depth: 2,
-    slug: 'example',
-    text: 'Example',
-  },
-  {
-    depth: 2,
-    slug: 'downloads',
-    text: 'Downloads',
-  },
-];
+const headings = isVibtools
+  ? [
+      {
+        depth: 2,
+        slug: 'overview',
+        text: 'Overview',
+      },
+      {
+        depth: 2,
+        slug: 'properties',
+        text: 'Properties',
+      },
+      {
+        depth: 2,
+        slug: 'social-og',
+        text: 'Social OG Previews',
+      },
+      {
+        depth: 2,
+        slug: 'user-guides',
+        text: 'Non-Technical Guides',
+      },
+      {
+        depth: 2,
+        slug: 'vibtools-folder',
+        text: 'VibTools Workspace',
+      },
+      {
+        depth: 2,
+        slug: 'example',
+        text: 'Example',
+      },
+      {
+        depth: 2,
+        slug: 'downloads',
+        text: 'Downloads',
+      },
+    ]
+  : [
+      {
+        depth: 2,
+        slug: 'overview',
+        text: 'Overview',
+      },
+      {
+        depth: 2,
+        slug: 'properties',
+        text: 'Properties',
+      },
+      {
+        depth: 2,
+        slug: 'example',
+        text: 'Example',
+      },
+      {
+        depth: 2,
+        slug: 'downloads',
+        text: 'Downloads',
+      },
+    ];
 ---
 
 <DocumentationLayout
@@ -187,6 +236,215 @@ const headings = [
 
     <PropertyTable properties={schema.properties} />
   </section>
+
+  {
+    isVibtools && (
+      <>
+        <section id="social-og" class="mb-7">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-text">Social OG Previews (1200x630)</h2>
+            <Badge variant="stable">New Feature</Badge>
+          </div>
+          <Card>
+            <p class="mb-4 text-base text-content">
+              VibTools manifests now support automated OpenGraph preview cards via{' '}
+              <code>assets.ogImageUrl</code> (or <code>assets.ogImage</code>). When sharing tool
+              links on Twitter/X, Discord, LinkedIn, or Slack, social platforms automatically display
+              a high-definition 1200×630 branded card.
+            </p>
+
+            <div class="overflow-hidden rounded-lg border border-border bg-background">
+              <div class="flex items-center justify-between border-b border-border bg-surface px-4 py-2 font-mono text-xs text-muted">
+                <span>Social Share Card Preview (1200×630)</span>
+                <span class="text-accent">ogImageUrl: /vibtools/assets/og-image.png</span>
+              </div>
+              <div class="bg-surface/50 p-3">
+                <img
+                  src="/vibtools/assets/og-image.png"
+                  alt="VibTools OpenGraph Social Preview Card"
+                  class="aspect-[1200/630] w-full rounded border border-border object-cover shadow-md"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-content">
+              <span class="font-medium text-text">Specifications:</span>
+              <span class="rounded bg-surface px-2 py-0.5 font-mono text-xs text-muted">
+                1200×630 Resolution
+              </span>
+              <span class="rounded bg-surface px-2 py-0.5 font-mono text-xs text-muted">
+                16:9 / 1.91:1 Aspect Ratio
+              </span>
+              <span class="rounded bg-surface px-2 py-0.5 font-mono text-xs text-muted">
+                Local Relative Paths & Remote URLs
+              </span>
+            </div>
+          </Card>
+        </section>
+
+        <section id="user-guides" class="mb-7">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-text">Non-Technical User Guides</h2>
+            <Badge variant="stable">documents</Badge>
+          </div>
+          <Card>
+            <p class="mb-4 text-base text-content">
+              For everyday users, creators, and non-developers, the manifest provides a dedicated{' '}
+              <code>documents</code> mapping with plain-language Markdown guides requiring zero
+              terminal commands:
+            </p>
+
+            <div class="grid gap-3 sm:grid-cols-2">
+              <div class="flex flex-col justify-between rounded-lg border border-border bg-background p-4">
+                <div>
+                  <div class="mb-2 flex items-center gap-2">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 text-sm font-bold text-accent">
+                      ⚡
+                    </span>
+                    <h3 class="font-semibold text-text">Quick Start</h3>
+                  </div>
+                  <p class="text-sm text-content">
+                    Zero-code onboarding for everyday users. Get running in 3 simple steps without
+                    touching a terminal.
+                  </p>
+                </div>
+                <div class="mt-3 flex items-center justify-between border-t border-border/60 pt-2 text-xs">
+                  <code class="text-muted">documents.quickStart</code>
+                  <a href="/docs/vibtools-v1/" class="font-medium text-accent hover:underline">
+                    View Guide →
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex flex-col justify-between rounded-lg border border-border bg-background p-4">
+                <div>
+                  <div class="mb-2 flex items-center gap-2">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 text-sm font-bold text-accent">
+                      📋
+                    </span>
+                    <h3 class="font-semibold text-text">Features</h3>
+                  </div>
+                  <p class="text-sm text-content">
+                    Non-technical overview of visual workspace presets, automatic window saving, and
+                    local-first privacy.
+                  </p>
+                </div>
+                <div class="mt-3 flex items-center justify-between border-t border-border/60 pt-2 text-xs">
+                  <code class="text-muted">documents.features</code>
+                  <a href="/docs/vibtools-v1/" class="font-medium text-accent hover:underline">
+                    View Guide →
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex flex-col justify-between rounded-lg border border-border bg-background p-4">
+                <div>
+                  <div class="mb-2 flex items-center gap-2">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 text-sm font-bold text-accent">
+                      ❓
+                    </span>
+                    <h3 class="font-semibold text-text">FAQ</h3>
+                  </div>
+                  <p class="text-sm text-content">
+                    Plain-English answers to questions regarding free usage, local storage, security,
+                    and update channels.
+                  </p>
+                </div>
+                <div class="mt-3 flex items-center justify-between border-t border-border/60 pt-2 text-xs">
+                  <code class="text-muted">documents.faq</code>
+                  <a href="/docs/vibtools-v1/" class="font-medium text-accent hover:underline">
+                    View Guide →
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex flex-col justify-between rounded-lg border border-border bg-background p-4">
+                <div>
+                  <div class="mb-2 flex items-center gap-2">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 text-sm font-bold text-accent">
+                      ✨
+                    </span>
+                    <h3 class="font-semibold text-text">What's New</h3>
+                  </div>
+                  <p class="text-sm text-content">
+                    Release highlights, new visual capabilities, OpenGraph social cards, and future
+                    roadmap sneak peeks.
+                  </p>
+                </div>
+                <div class="mt-3 flex items-center justify-between border-t border-border/60 pt-2 text-xs">
+                  <code class="text-muted">documents.whatsNew</code>
+                  <a href="/docs/vibtools-v1/" class="font-medium text-accent hover:underline">
+                    View Guide →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        <section id="vibtools-folder" class="mb-7">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-text">
+              VibTools Workspace Hub (<code>/vibtools/</code>)
+            </h2>
+            <Badge variant="draft">Folder Structure</Badge>
+          </div>
+          <Card>
+            <p class="mb-4 text-base text-content">
+              A dedicated <code>/vibtools/</code> workspace folder is maintained in the project
+              repository containing all specification assets, manifests, and non-technical
+              documentation:
+            </p>
+            <div class="space-y-1 rounded-lg border border-border bg-background p-4 font-mono text-xs text-content">
+              <div class="font-bold text-text">vibtools/</div>
+              <div class="pl-4 text-muted">
+                ├── README.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-content"># Overview and navigation</span>
+              </div>
+              <div class="pl-4 font-semibold text-accent">
+                ├── vibtools.json &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-content"># Canonical reference manifest</span>
+              </div>
+              <div class="pl-4 text-muted">
+                ├── quick-start.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-content"># 3-step beginner guide</span>
+              </div>
+              <div class="pl-4 text-muted">
+                ├── features.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-content"># Plain-language features</span>
+              </div>
+              <div class="pl-4 text-muted">
+                ├── faq.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-content"># Frequently asked questions</span>
+              </div>
+              <div class="pl-4 text-muted">
+                ├── whats-new.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-content"># Release highlights</span>
+              </div>
+              <div class="pl-4 text-muted">└── assets/</div>
+              <div class="pl-8 text-muted">
+                ├── og-image.png &nbsp;&nbsp;&nbsp;
+                <span class="text-content"># 1200x630 social card</span>
+              </div>
+              <div class="pl-8 text-muted">
+                ├── logo.png &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text-content"># 512x512 square logo</span>
+              </div>
+              <div class="pl-8 text-muted">
+                ├── thumbnail.png &nbsp;&nbsp;
+                <span class="text-content"># 800x450 banner</span>
+              </div>
+              <div class="pl-8 text-muted">
+                └── screenshot.png &nbsp;
+                <span class="text-content"># 1200x675 UI preview</span>
+              </div>
+            </div>
+          </Card>
+        </section>
+      </>
+    )
+  }
 
   <section id="example" class="mb-7">
     <h2 class="mb-3 text-lg font-semibold text-text">Example</h2>

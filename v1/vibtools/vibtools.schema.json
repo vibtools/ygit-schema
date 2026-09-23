@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schema.ygit.dev/vibtools/v1/vibtools.schema.json",
   "title": "VibTools Product Catalog Manifest Specification",
-  "description": "Schema for vibtools.json manifests used for auto-discovering and importing projects into VibTools catalog portals.",
+  "description": "Schema for vibtools.json manifests used for auto-discovering and importing projects into VibTools catalog portals, with support for social OG cards and non-technical documentation.",
   "$comment": "https://schema.ygit.dev/",
   "type": "object",
   "additionalProperties": false,
@@ -92,57 +92,89 @@
 
     "assets": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "logoUrl": {
           "type": "string",
-          "format": "uri",
-          "description": "Square logo image URL."
+          "description": "Square logo image URL or relative path."
         },
         "thumbnailUrl": {
           "type": "string",
-          "format": "uri",
-          "description": "Banner or social preview thumbnail image URL."
+          "description": "Banner or preview thumbnail image URL or relative path."
+        },
+        "ogImageUrl": {
+          "type": "string",
+          "description": "Social OpenGraph / Twitter card preview image URL or relative path (1200x630 recommended)."
+        },
+        "ogImage": {
+          "type": "string",
+          "description": "Social OpenGraph preview image URL or relative path (alias for ogImageUrl)."
         },
         "screenshots": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "uri"
+            "type": "string"
           },
-          "description": "Array of screenshot image URLs."
+          "description": "Array of screenshot image URLs or relative paths."
         }
       },
-      "description": "Visual branding and media assets."
+      "description": "Visual branding and media assets, including social OG images and logos."
+    },
+
+    "documents": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "quickStart": {
+          "type": "string",
+          "description": "Path or URL to the Quick Start guide for non-technical users (e.g. 'vibtools/quick-start.md')."
+        },
+        "quick-start": {
+          "type": "string",
+          "description": "Path or URL to the Quick Start guide (kebab-case alias)."
+        },
+        "features": {
+          "type": "string",
+          "description": "Path or URL to the product features and overview document for end users (e.g. 'vibtools/features.md')."
+        },
+        "faq": {
+          "type": "string",
+          "description": "Path or URL to frequently asked questions (e.g. 'vibtools/faq.md')."
+        },
+        "whatsNew": {
+          "type": "string",
+          "description": "Path or URL to what's new and release highlights for non-technical users (e.g. 'vibtools/whats-new.md')."
+        },
+        "whats-new": {
+          "type": "string",
+          "description": "Path or URL to what's new document (kebab-case alias)."
+        }
+      },
+      "description": "Paths or URLs to non-technical documentation and user-facing guides (quick-start, features, FAQ, what's new)."
     },
 
     "links": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "liveDemo": {
           "type": "string",
-          "format": "uri",
           "description": "URL to live demo or hosted web app."
         },
         "download": {
           "type": "string",
-          "format": "uri",
           "description": "Direct download link or release installer URL."
         },
         "docs": {
           "type": "string",
-          "format": "uri",
           "description": "Documentation site or guide URL."
         },
         "github": {
           "type": "string",
-          "format": "uri",
           "description": "GitHub repository web URL."
         },
         "website": {
           "type": "string",
-          "format": "uri",
           "description": "Official product landing page URL."
         }
       },

@@ -12,9 +12,16 @@
   "assets": {
     "logoUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/logo.png",
     "thumbnailUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/banner.png",
+    "ogImageUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/og-image.png",
     "screenshots": [
       "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/screenshot-main.png"
     ]
+  },
+  "documents": {
+    "quickStart": "vibtools/quick-start.md",
+    "features": "vibtools/features.md",
+    "faq": "vibtools/faq.md",
+    "whatsNew": "vibtools/whats-new.md"
   },
   "links": {
     "liveDemo": "https://demo.vib.tools",

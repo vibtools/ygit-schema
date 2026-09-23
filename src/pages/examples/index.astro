@@ -30,8 +30,9 @@ const vibtoolsExample = await readFile(
 
 const vibtoolsExamples = [
   {
-    title: 'Product Catalog Manifest',
-    description: 'Complete vibtools.json manifest with assets, download and demo links, tags, and catalog flags for 1-click GitHub import.',
+    title: 'Product Catalog Manifest with Social OG & User Guides',
+    description:
+      'Complete vibtools.json manifest featuring assets (logo, banner, 1200x630 social OG card), non-technical document paths (quick-start, features, FAQ, what\'s new), download & demo links, and catalog flags.',
     path: '/examples/v1/vibtools/vibtools.json',
   },
 ] as const;
@@ -140,7 +141,9 @@ const v2Examples = [
         <h2 id="vibtools-examples" class="text-lg font-semibold text-text">VibTools Catalog Manifest</h2>
 
         <p class="mt-2 text-base text-content">
-          Official manifest format (<code>vibtools.json</code>) placed at project root for automated catalog discovery and 1-click GitHub import.
+          Official manifest format (<code>vibtools.json</code>) placed at project root for automated
+          catalog discovery, 1-click GitHub import, social OG preview cards (1200×630), and
+          non-technical user guides.
         </p>
       </div>
 

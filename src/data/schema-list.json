@@ -390,7 +390,7 @@
     "slug": "vibtools",
     "acronym": "VibTools",
     "name": "VibTools Product Catalog Manifest Specification",
-    "description": "Official schema for vibtools.json manifests to automate project imports, catalogs, and GitHub repository synchronization.",
+    "description": "Official schema for vibtools.json manifests to automate project imports, catalogs, social OG preview cards, and non-technical user documentation.",
     "version": "1.0.0",
     "schemaVersion": 1,
     "status": "stable",
@@ -399,7 +399,7 @@
     "compatibility": "VibTools v1",
     "schemaPath": "/vibtools/v1/vibtools.schema.json",
     "examplePath": "/examples/v1/vibtools/vibtools.json",
-    "updatedAt": "2026-09-09",
+    "updatedAt": "2026-09-23",
     "properties": [
       {
         "name": "$schema",
@@ -459,7 +459,13 @@
         "name": "assets",
         "type": "object",
         "required": false,
-        "description": "Logos, banner thumbnails, and screenshots."
+        "description": "Logos, social OG image cards (1200x630), banners, and screenshots."
+      },
+      {
+        "name": "documents",
+        "type": "object",
+        "required": false,
+        "description": "Paths to non-technical user guides: quick-start, features, FAQ, and what's new."
       },
       {
         "name": "links",

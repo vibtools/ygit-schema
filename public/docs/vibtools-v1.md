@@ -49,12 +49,17 @@ When managing a catalog website or app directory:
 | `subtitle` | `string` | No | Primary tag or subtitle summary. |
 | `repository` | `string` | No | GitHub repository path (`owner/repo`). |
 | `description` | `string` | No | Markdown or plain text description. |
-| `assets.logoUrl` | `string (URI)` | No | Square logo or icon image URL. |
-| `assets.thumbnailUrl` | `string (URI)` | No | Banner or social preview thumbnail image URL. |
-| `assets.screenshots` | `array` | No | Array of screenshot image URLs. |
-| `links.liveDemo` | `string (URI)` | No | Web demo or preview URL. |
-| `links.download` | `string (URI)` | No | Release download or installer URL. |
-| `links.docs` | `string (URI)` | No | Documentation website URL. |
+| `assets.logoUrl` | `string` | No | Square logo or icon image URL or relative path. |
+| `assets.thumbnailUrl` | `string` | No | Banner or preview thumbnail image URL or relative path. |
+| `assets.ogImageUrl` | `string` | No | Social OpenGraph / Twitter card preview image (1200x630 recommended). |
+| `assets.screenshots` | `array` | No | Array of screenshot image URLs or relative paths. |
+| `documents.quickStart` | `string` | No | Path or URL to non-technical Quick Start guide. |
+| `documents.features` | `string` | No | Path or URL to non-technical Features overview. |
+| `documents.faq` | `string` | No | Path or URL to Frequently Asked Questions document. |
+| `documents.whatsNew` | `string` | No | Path or URL to What's New release highlights. |
+| `links.liveDemo` | `string` | No | Web demo or preview URL. |
+| `links.download` | `string` | No | Release download or installer URL. |
+| `links.docs` | `string` | No | Documentation website URL. |
 | `tags` | `array` | No | Keywords and filter tags list. |
 | `flags.isActive` | `boolean` | No | Visible in public catalog (`true`/`false`). |
 | `flags.isOpenSource` | `boolean` | No | Open source repository flag (`true`/`false`). |
@@ -77,9 +82,16 @@ When managing a catalog website or app directory:
   "assets": {
     "logoUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/logo.png",
     "thumbnailUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/banner.png",
+    "ogImageUrl": "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/og-image.png",
     "screenshots": [
       "https://raw.githubusercontent.com/vibtools/session-manager-pro/main/assets/screenshot-main.png"
     ]
+  },
+  "documents": {
+    "quickStart": "vibtools/quick-start.md",
+    "features": "vibtools/features.md",
+    "faq": "vibtools/faq.md",
+    "whatsNew": "vibtools/whats-new.md"
   },
   "links": {
     "liveDemo": "https://demo.vib.tools",
@@ -136,6 +148,21 @@ async function importFromGitHub(repoInput: string) {
     isFeatured: manifest.flags?.isFeatured ?? false,
     logoUrl: manifest.assets?.logoUrl ?? '',
     thumbnailUrl: manifest.assets?.thumbnailUrl ?? '',
+    ogImageUrl: manifest.assets?.ogImageUrl ?? manifest.assets?.ogImage ?? '',
+    quickStartDoc: manifest.documents?.quickStart ?? manifest.documents?.['quick-start'] ?? '',
+    featuresDoc: manifest.documents?.features ?? '',
+    faqDoc: manifest.documents?.faq ?? '',
+    whatsNewDoc: manifest.documents?.whatsNew ?? manifest.documents?.['whats-new'] ?? '',
   };
 }
 ```
+
+## Workspace Hub & Non-Technical Guides (`/vibtools/`)
+
+To support non-programmers, creators, and team members, repositories can maintain a dedicated `/vibtools/` directory containing:
+
+- **Branding Assets (`vibtools/assets/`)**: Branded social cards (`og-image.png`, 1200×630), square logos (`logo.png`, 512×512), and preview screenshots (`screenshot.png`).
+- **Quick Start Guide (`vibtools/quick-start.md`)**: Jargon-free, 3-step setup guide requiring zero terminal or command-line experience.
+- **Features Breakdown (`vibtools/features.md`)**: Plain-language overview of workspace presets, automated window restoration, and privacy.
+- **FAQ (`vibtools/faq.md`)**: Common questions regarding licensing, local data privacy, and updates.
+- **What's New (`vibtools/whats-new.md`)**: Clear summary of recent features, visual improvements, and upcoming roadmap items.

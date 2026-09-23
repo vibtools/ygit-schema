@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.ygit.dev/vibtools/v1/vibtools.schema.json",
+  "schemaVersion": 1,
+  "name": "VibTools Suite",
+  "slug": "vibtools-suite",
+  "category": "Developer Tools",
+  "status": "Available",
+  "version": "1.0.0",
+  "subtitle": "Visual workspace management, catalog manifests & productivity suite",
+  "repository": "vibtools/ygit-schema",
+  "description": "VibTools provides modern productivity utilities and automated workspace tools designed for both everyday users and developers. Includes 1-click catalog import, visual window presets, social OG image cards, and easy-to-read guides.",
+  "assets": {
+    "logoUrl": "vibtools/assets/logo.png",
+    "thumbnailUrl": "vibtools/assets/thumbnail.png",
+    "ogImageUrl": "vibtools/assets/og-image.png",
+    "screenshots": [
+      "vibtools/assets/screenshot.png"
+    ]
+  },
+  "documents": {
+    "quickStart": "vibtools/quick-start.md",
+    "features": "vibtools/features.md",
+    "faq": "vibtools/faq.md",
+    "whatsNew": "vibtools/whats-new.md"
+  },
+  "links": {
+    "liveDemo": "https://schema.ygit.dev",
+    "download": "https://github.com/vibtools/ygit-schema/releases",
+    "docs": "https://schema.ygit.dev/docs/vibtools-v1/",
+    "github": "https://github.com/vibtools/ygit-schema",
+    "website": "https://schema.ygit.dev"
+  },
+  "tags": [
+    "Productivity",
+    "Workspace",
+    "Automation",
+    "Non-Technical",
+    "Open Source"
+  ],
+  "flags": {
+    "isActive": true,
+    "isOpenSource": true,
+    "isFeatured": true
+  },
+  "custom": {}
+}
